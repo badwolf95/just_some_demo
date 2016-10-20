@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		body{
+			background-color: #eee;
+		}
+		h1{
+			text-align:center;
+			letter-spacing:5px;
+			position:relative;
+			z-index:101;
+		}
+		.show{
+			width:95%;
+			height:100%;
+			margin:0 auto;
+		}
+		.show img{
+			width:30%;
+			height:30%;
+			position:relative;
+			z-index:100;
+
+			/*两个秒数，第一个是动画执行时间，第二个是动画开始前的延迟时间*/
+			transition:all .2s ease .1s;
+			-o-transition:all .2s ease .1s;
+			-ms-transition:all .2s ease .1s;
+			-moz-transition:all .2s ease .1s;
+			-webkit-transition:all .2s ease .1s;
+		}
+		.show img:hover{
+			z-index:102;
+			border:10px solid #fff;
+			box-shadow:0 0 30px #000;
+			transform:rotate(0deg) scale(1.75);
+			-o-transform:rotate(0deg) scale(1.75);
+			-ms-transform:rotate(0deg) scale(1.75);
+			-moz-transform:rotate(0deg) scale(1.75);
+			-webkit-transform:rotate(0deg) scale(1.75);
+
+		}
+		.img1{
+			transform:rotate(30deg);
+			-o-transform:rotate(30deg);
+			-ms-transform:rotate(30deg);
+			-moz-transform:rotate(30deg);
+			-webkit-transform:rotate(30deg);
+		}
+		.img2{
+			transform:rotate(179deg);
+			-o-transform:rotate(179deg);
+			-ms-transform:rotate(179deg);
+			-moz-transform:rotate(179deg);
+			-webkit-transform:rotate(179deg);
+		}
+		.img3{
+			transform:rotate(-10deg);
+			-o-transform:rotate(-10deg);
+			-ms-transform:rotate(-10deg);
+			-moz-transform:rotate(-10deg);
+			-webkit-transform:rotate(-10deg);
+		}
+		.img4{
+					transform:rotate(10deg);
+					-o-transform:rotate(10deg);
+					-ms-transform:rotate(10deg);
+					-moz-transform:rotate(10deg);
+					-webkit-transform:rotate(10deg);
+				}
+		.img5{
+					transform:rotate(30deg);
+					-o-transform:rotate(30deg);
+					-ms-transform:rotate(30deg);
+					-moz-transform:rotate(30deg);
+					-webkit-transform:rotate(30deg);
+				}
+		.img6{
+					transform:rotate(-15deg);
+					-o-transform:rotate(-15deg);
+					-ms-transform:rotate(-15deg);
+					-moz-transform:rotate(-15deg);
+					-webkit-transform:rotate(-15deg);
+				}
+		.img7{
+					top:10px;
+					left:60px;
+					transform:rotate(24deg);
+					-o-transform:rotate(24deg);
+					-ms-transform:rotate(24deg);
+					-moz-transform:rotate(24deg);
+					-webkit-transform:rotate(24deg);
+				}
+		.img8{
+					top:20px;
+					left:40px;
+					transform:rotate(-30deg);
+					-o-transform:rotate(-30deg);
+					-ms-transform:rotate(-30deg);
+					-moz-transform:rotate(-30deg);
+					-webkit-transform:rotate(-30deg);
+				}
+
+
+	</style>
+</head>
+<body>
+<h1>A Nice Day</h1>
+<div class="show">
+	<a href="#"><img src="./img/pic1.png" alt="" class="img1"></a>	
+	<a href="#"><img src="./img/pic1.png" alt="" class="img2"></a>	
+	<a href="#"><img src="./img/pic1.png" alt="" class="img3"></a>	
+	<a href="#"><img src="./img/pic1.png" alt="" class="img4"></a>	
+	<a href="#"><img src="./img/pic1.png" alt="" class="img5"></a>	
+	<a href="#"><img src="./img/pic1.png" alt="" class="img6"></a>	
+	<a href="#"><img src="./img/pic1.png" alt="" class="img7"></a>	
+	<a href="#"><img src="./img/pic1.png" alt="" class="img8"></a>	
+</div>
+</body>
+</html>
