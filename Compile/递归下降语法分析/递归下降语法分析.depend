@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1478528487 source:c:\users\escape\desktop\编译原理\实验二\递归下降语法分析\main.cpp
+	<iostream>
+	<string>
+	<fstream>
+
+1478521454 c:\users\escape\desktop\编译原理\实验二\递归下降语法分析\词法分析.cpp
+	<iostream>
+	<string>
+	<fstream>
+
