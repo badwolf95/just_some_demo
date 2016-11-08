@@ -6,16 +6,18 @@ using namespace std;
 /*
 词法分析部分
 */
+fstream fin("in.txt");
 string input;
 char token[255]="";
 int p_input;
 int p_token;
 string word[2];
 char ch;
-string tab[100] = {"if","then","else","end","procedure","repeat","while","read","write","int","until","char","const","eof"};
-void getbc()
-{
-    while(ch==' ')
+int row;
+string tab[100] = {"if","then","else","end","procedure","repeat","while","do","read","write","int","until","char","const","break","eof"};
+
+void getbc(){
+    while(ch==' '||ch=='\t')
     {
         ch = input[p_input];
         p_input++;
@@ -97,7 +99,7 @@ string scaner()
         }
         retract();
         word[0] = "101";
-        word[1] = ")";
+        word[1] = token;
     }
     else switch(ch)
         {
@@ -140,15 +142,14 @@ string scaner()
                     cout<<ch;
                 }
                 cout<<endl;
-                break;
             }
             else
             {
+                retract();
                 word[0] = "108";
                 word[1] = "/";
-                break;
             }
-
+            break;
         case '%':
             word[0] = "109";
             word[1] = "%";
@@ -167,6 +168,7 @@ string scaner()
             }
             else
             {
+                retract();
                 word[0] = "112";
                 word[1] = "<";
             }
@@ -180,6 +182,7 @@ string scaner()
             }
             else
             {
+                retract();
                 word[0] = "114";
                 word[1] = ">";
             }
@@ -208,49 +211,218 @@ string scaner()
             word[0] = "120";
             word[1] = "\'";
             break;
+        case '(':
+            word[0] = "121";
+            word[1] = "(";
+            break;
+        case ')':
+            word[0] = "122";
+            word[1] = ")";
+            break;
         default:
-            word[0] = "999";
-            word[1] = "error";
+            if(p_input>input.size()){
+                word[0] = "998";
+                word[1] = "endl";
+            }else{
+                word[0] = "999";
+                word[1] = ch;
+            }
         }
-    cout<<"("<<word[0]<<","<<word[1]<<")\n";
+    cout<<"( "<<word[0]<<" , "<<word[1]<<" )\n";
     return  word[0];
+}
+void print_line(){
+    cout<<"\n===================ROW "<<row<<": ";
+    for(int i=0; i<input.size(); i++)
+    {
+        cout<<input[i];
+    }
+    cout<<""<<endl;
 }
 /*
 语法分析部分：
 */
+void error_show(string);
+void match(string ,string);
+void factor();
+void term1();
+void term();
+void stmts();
+void stmt();
+void stmt1();
+void bool0();
+void bool1();
+void expr();
+void expr1();
+void block();
+void program();
 
-void block(string str){
-    cout<<"block\n";
-    return;
+void error_show(string info){
+    cout<<"+-----------------------------------------error row "<<row<<": "<<info<<endl;
 }
-void program(string str){
-    block(str);
-    return;
+void match(string str,string err_info){
+    if(str!=word[1]){
+        error_show(err_info);
+    }else{
+        scaner();
+    }
 }
-int main()
-{
-    string in;
-    fstream fin("in.txt");
-    int row = 1;
-    string str;
-    while(getline(fin,in))
+void factor(){
+    if(word[1]=="("){
+        scaner();
+        expr();
+        match(")","缺少）");
+    }else if(word[0]!="100"&&word[0]!="101"){
+        error_show("缺少factor");//一旦出错，不要继续扫描，等待回溯继续匹配当前字符
+    }else{
+        scaner();
+    }
+}
+void term1(){
+    scaner();
+    factor();
+}
+void term(){
+    factor();
+    while(word[1]=="*" || word[1]=="/"){
+        term1();
+    }
+}
+void stmt1(){
+    if(word[1]=="else"){
+        scaner();
+        stmt();
+    }
+}
+void bool0(){
+    expr();
+    if(word[1]=="<" || word[1]==">"){
+        scaner();
+        bool1();
+    }else if(word[0]=="100"){
+        error_show("缺少bool关系运算符");
+        expr();
+    }else{
+        error_show("bool关系运算有误");
+    }
+}
+void bool1(){
+    if(word[1]=="="){
+        scaner();
+    }
+    expr();
+}
+void expr(){
+    term();
+    if(word[1]=="+" || word[1]=="-"){
+        scaner();
+        expr1();
+    }
+}
+void expr1(){
+    term();
+    while(word[1]=="+"||word[1]=="-"){
+        scaner();
+        expr1();
+    }
+}
+void stmt(){
+    if(word[0]=="100"){
+        scaner();
+        match("=","缺少等号");
+        expr();
+        match(";","缺少分号");
+    }else if(word[1]=="if"){
+        scaner();
+        match("(","缺少（");
+        bool0();
+        match(")","缺少）");
+        stmt();
+        stmt1();
+    }else if(word[1]=="while"){
+        scaner();
+        match("(","缺少（");
+        bool0();
+        match(")","缺少）");
+        stmt();
+    }else if(word[1]=="do"){
+        scaner();
+        stmt();
+        match("while","缺少while");
+        match("(","缺少（");
+        bool0();
+        match(")","缺少）");
+    }else if(word[1]=="break"){
+        scaner();
+        match(";","缺少；");
+    }else if(word[1]=="{"){
+        match("{","缺少左花括号");
+        block();
+        match("}","缺少右花括号");
+    }
+}
+void stmts(){
+    stmt();
+    while(word[0]=="100"||// 标识符
+          word[0]=="1"|| // if
+          word[0]=="7"|| // while
+          word[0]=="8"|| // do while
+          word[0]=="15"){ // break
+        stmt();
+    }
+}
+void block(){
+    while(word[1]!="}"){
+        if(word[1]=="endl"){
+            if(getline(fin,input)){
+                row++;
+                print_line();
+                p_input = 0;
+                scaner();
+            }else{
+                break;
+            }
+        }
+        stmts();
+    }
+}
+void program(){
+    bool flag_end = false;//是否已经读取到文件末尾
+    while(getline(fin,input))
     {
         //词法分析
-        input = in;
-        cout<<"----------ROW "<<row++<<": ";
-        for(int i=0; i<input.size(); i++)
-        {
-            cout<<input[i];
-        }
-        cout<<"--------------"<<endl;
+        print_line();
         p_input = 0;
-        while(p_input<input.size())
-        {
-            str = scaner();
-            program(str);
+        scaner();
+        while(word[1]=="endl"){
+            if(getline(fin,input)){
+                row++;
+                print_line();
+                p_input = 0;
+                scaner();
+            }else{
+                flag_end = true;//已经到末尾，标注后，下面不再进行匹配,直接break退出
+                break;
+            }
         }
+        if(flag_end){
+            break;
+        }
+        match("{","缺少左花括号");
+        block();
+        match("}","缺少右花括号");
+
 
     }
+    return;
+}
+
+
+int main()
+{
+
+    row=1;
+    program();
     return 0;
 }
 
