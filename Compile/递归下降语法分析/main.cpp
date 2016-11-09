@@ -411,8 +411,6 @@ void program(){
         match("{","»±…Ÿ◊Ûª®¿®∫≈");
         block();
         match("}","»±…Ÿ”“ª®¿®∫≈");
-
-
     }
     return;
 }
@@ -420,7 +418,6 @@ void program(){
 
 int main()
 {
-
     row=1;
     program();
     return 0;
