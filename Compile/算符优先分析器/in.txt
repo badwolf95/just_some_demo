@@ -1,0 +1,8 @@
+id + - * / ( ) 
+2
+  E-> E + E|E  -E| E*E| E /E|(E ) |-E|  id
+  E-> E + E|E
+
+
+	id+id*id/id-(id+id-id*id)+id
+
