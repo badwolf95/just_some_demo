@@ -285,10 +285,10 @@ string table[10][10] = {
     {"-",">",">","<","<","<","<",">",">"},
     {"*",">",">",">",">","<","<",">",">"},
     {"/",">",">",">",">","<","<",">",">"},
-    {"id",">",">",">",">"," "," ",">",">"},
-    {"(","<","<","<","<","<","<","="," ",},
-    {")",">",">",">",">"," "," ",">",">"},
-    {"#","<","<","<","<","<","<"," "," ",}
+    {"id",">",">",">",">","中间缺个运算符啊喂","此处应有运算符。",">",">"},
+    {"(","<","<","<","<","<","<","=","你的右括号呢！",},
+    {")",">",">",">",">","右括号后面加个运算符好吗！","两个括弧之间要怎么运算？",">",">"},
+    {"#","<","<","<","<","<","<","左括号呢，想干嘛","结束咯",}
 };
 stack<string> stk_s;
 
@@ -414,64 +414,95 @@ int getCol(string str){
 //建立分析树骨架
 void oneline(){
     string rel = " ";//字符关系
-    string sinput = input;
-    sinput += "#";
-    int sinput_k = 0;
-    string stk[100];
-    int stk_k = 0;
-    string act;
+    string sinput = input; // 待输入串
+    int sinput_k = 0;   //待输入串的下标
+    string stk[100]; // 模仿 栈存储
+    int stk_k = 0;  // stk的指针
+    string act;  //操作
     int row;// 行
     int col;// 列
     int i,j,k;
     int sz = input.size();
-    string stk_vt;
-    cout<<"栈        关系   待处理符号串     操作  \n";
-    stk[stk_k] = "#";
+    string stk_vt; // 存储当前栈中的终结符
+    cout<<"栈\t\t\t关系\t\t待处理符号串\t\t\t操作  \n";
+    stk[stk_k] = "#"; //栈初始化
+    bool stk_flag = true; // 看是否出错了，来区别Accept 和Failed
+    int count_stk = 0; // 序号
     while(p_input<=input.size()){
         //找栈中的终结符
         for(i=stk_k;i>=0;i--){
             if(vt_exist(stk[i])){
                 stk_vt = stk[i];
+                break;
             }
         }
+        //查表
         row = getRow(stk_vt);
         col = getCol(word[1]);
         rel = table[row][col];
-        if(rel == "<"|| rel == "="){
+        if(rel == "<" || rel == "="){
             act = "移进";
         }else{
-            act = "归约";
+            if(rel == ">"){
+                act = "归约";
+            }else if(stk[stk_k]=="E" && stk_k==1 && sinput[sinput_k]=='#'){
+                if(stk_flag == true){
+                    act = "Accepted";
+                }else{
+                    act = "Failed";
+                }
+            }else{
+                act = "---------------------->表达式有误!!!!!!!!!!!!!!!!!!!!!!!!!\n";
+            }
         }
         //输出一波
-        cout<<stk[stk_k]<<"\t"<<rel<<"\t";
+        cout<<++count_stk<<"\t";
+        for(i=0;i<=stk_k;i++){
+            cout<<stk[i];
+        }
+        cout<<"\t\t"<<rel<<"\t\t";
         for(i=sinput_k;i<sz;i++){
             cout<<sinput[i];
         }
         cout<<"\t"<<act<<endl;
-        /********************/
-        if(rel == "<" || rel=="="){
-            stk[++stk_k] = word[1];
-            sinput_k++;
-        }else{
-            stk[stk_k]
+        // 判断是否结束了
+        if(act=="Accept" || act=="Failed"){
+            break;
         }
-        scaner();
+        /**********下一波处理**********/
+        if(rel=="<" || rel=="="){
+            stk[++stk_k] = word[1];
+            sinput_k = p_input;
+            scaner();
+        }else if(rel == ">"){
+            // 先将就下呗，这里应该比较复杂
+            if(stk[stk_k] == "id"){
+                stk[stk_k] = "E";
+            }else{
+                stk_k -= 2;
+                stk[stk_k] = "E";
+            }
+        }else{
+            // 此处应该报错
+            //error_show(rel);
+            stk_flag = false;
+            sinput_k = p_input;
+            scaner();
+        }
     }
-
 }
 //逐行读取，逐行处理
 void program(){
     bool flag_end = false;//是否已经读取到文件末尾
     while(getline(fin,input))
     {
-        //词法分析
-        print_line();
         p_input = 0;
         scaner();
+        // 空行跳过
         while(word[1]=="endl"){
             if(getline(fin,input)){
                 row++;
-                print_line();
+                //print_line();
                 p_input = 0;
                 scaner();
             }else{
@@ -482,8 +513,17 @@ void program(){
         if(flag_end){
             break;
         }
+        //格式好看点
+        cout<<"|\n|\n|\n|\n|\n";
+        for(int i=0;i<3;i++){
+            cout<<">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n";
+        }
+        print_line();
+        row++;
+        // 嗯
         oneline();
     }
+    cout<<"\n\n\n";
     return;
 }
 void match(string str,string err_info){

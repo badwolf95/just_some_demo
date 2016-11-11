@@ -1,6 +1,8 @@
 # depslib dependency file v1.0
-1478780139 source:c:\users\escape\desktop\编译原理\实验三\算符优先分析器\main.cpp
+1478856890 source:c:\users\escape\desktop\编译原理\实验三\算符优先分析器\main.cpp
 	<iostream>
 	<string>
 	<fstream>
+	<stack>
+	<queue>
 
