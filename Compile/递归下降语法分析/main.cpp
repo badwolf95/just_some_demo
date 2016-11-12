@@ -228,7 +228,7 @@ string scaner()
                 word[1] = ch;
             }
         }
-    cout<<"( "<<word[0]<<" , "<<word[1]<<" )\n";
+    //cout<<"( "<<word[0]<<" , "<<word[1]<<" )\n";
     return  word[0];
 }
 void print_line(){
@@ -373,7 +373,7 @@ void stmts(){
 }
 void block(){
     while(word[1]!="}"){
-        if(word[1]=="endl"){
+        if(word[1]=="endl" || word[1]=="//"){
             if(getline(fin,input)){
                 row++;
                 print_line();
@@ -382,6 +382,9 @@ void block(){
             }else{
                 break;
             }
+        }
+        if(word[1]=="//"){
+            continue;
         }
         stmts();
     }

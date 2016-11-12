@@ -1,11 +1,18 @@
 
 
 { 
-  a=1+b*c-2   
 
+
+  a=1+b*c-2   
+	//我是注释，仅做测试
 	b=2 + a/b*c*+e*f;   
   if(a*b b+c a=a*b+c;else d=e+f/g;
 
+
+
+
+
+  // 还有我，我也是测试
   while(a*b>1+a  a=a+c-b*d;
 
   do b=c+d*a-b; while(e-a>f)
@@ -13,6 +20,8 @@
   { a=b*c3;
 	}
 break;
+
+
 }
 
 
