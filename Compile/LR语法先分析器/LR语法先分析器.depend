@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1479266879 source:c:\users\escape\desktop\编译原理\04-实验四\lr语法先分析器\main.cpp
+	<iostream>
+	<string>
+	<fstream>
+	<stack>
+	<queue>
+
