@@ -272,7 +272,7 @@ int vts_k = 0;// 非终结符的数量
 string ges[30][30];// 存储文法的二维数组，每行是一行文法的存储，每个单元格是一个字符
 int ges_k = 0;// 文法表达式的行数
 int ges_k_k[30];// 每行表达式的字符数量
-string state;
+string state[30];
 string table[20][100] = {
     {
         " ","+","*","(",")","i","#","E","T","F"
@@ -380,7 +380,7 @@ void getge(){
     }
 }
 int getRow(string str){
-    for(int i=1;i<9;i++){
+    for(int i=1;i<13;i++){
         if(str == table[i][0]){
             return i;
         }
@@ -388,7 +388,7 @@ int getRow(string str){
     return 0;
 }
 int getCol(string str){
-    for(int i=1;i<9;i++){
+    for(int i=1;i<10;i++){
         if(str == table[0][i]){
             return i;
         }
@@ -396,47 +396,86 @@ int getCol(string str){
     return 0;
 }
 void oneline(){
-    string todo;
-    string stk_anl = "#";
-    int stk_k = 1;
-    string s_input = input;
-    state = "0";
-    int row;
-    int col;
-    int ge_k;
-    while(){
-        row = getRow(state);
+    string todo; // 动作
+    string stk_anl = "#"; // 分析栈
+    int stk_k = 0; // 分析栈指针
+    string s_input = input; // 输入栈
+    int s_input_k = 0; // 输入栈指针
+    int state_k = 0; // 状态栈指针
+    state[state_k] = "0"; // 状态栈
+    int row; // 查表的行
+    int col; // 查表的列
+    int ge_k; // 规约时需要用到的文法下标
+    int ii=0; // 序号
+
+    // 要开始分析了
+    //先查动作
+    row = getRow(state[state_k]); //查行，当前状态栈栈顶
+    col = getCol(word[1]); // 查列，当前输入符号
+    todo = table[row][col]; // 查表，获得相应动作
+    /******按格式输出分析表*******/
+    cout<<"序号\t状态栈\t\t分析栈\t\t待输入符号串\t\t动作\n";
+    cout<<++ii<<"\t"; // 序号
+    cout<<state[state_k]; //状态栈
+    cout<<"\t\t";
+    cout<<stk_anl[stk_k]; // 分析栈
+    cout<<"\t\t";
+    for(int j=s_input_k;j<s_input.size();j++){
+        cout<<s_input[j]; // 待输入符号串
+    }
+    cout<<"\t\t"<<todo<<endl; // 动作
+    /************输出完毕************/
+    while(todo!="ACC"){ // 当前动作不是ACC接受就循环做处理
+        if(todo[0]=='S'){  // 进栈处理
+            //状态栈新增
+            if(todo.size()>2){
+                state[++state_k] = todo[1];
+                state[state_k] += todo[2];
+            }else{
+                state[++state_k] = todo[1];
+            }
+            stk_anl[++stk_k] = word[1].c_str()[0]; // 分析栈新增
+            s_input_k++; // 输入栈指针后移
+            scaner(); // 扫描下一个符号
+        }else if(todo[0]=='R'){ // 规约处理
+            // 记录规约用到的文法下标
+            if(todo.size()>2){
+                ge_k = todo[1]-'0';
+                ge_k *= 10;
+                ge_k += todo[2]-'0';
+            }else{
+                ge_k = todo[1]-'0';
+            }
+            ge_k--; // 实际是从0开始，需要减一
+            stk_k -= ges_k_k[ge_k]-2; // 分析栈指针，出栈N个，用移动表示
+            state_k -= ges_k_k[ge_k]-2; // 状态栈指针，同理
+            stk_anl[++stk_k] = ges[ge_k][0].c_str()[0]; // 归约进分析栈
+            // 查下归约后状态栈的新状态
+            row = getRow(state[state_k]); // 查当前状态栈栈顶
+            col = getCol(ges[ge_k][0].c_str()); // 查当前分析栈栈顶，也就是规约的文法左部
+            state[++state_k] = table[row][col].c_str(); // 查表进状态栈
+        }else{
+            // 状态有误
+            cout<<"error--------------------------："<<todo<<endl;
+        }
+        // 查下一个动作
+        row = getRow(state[state_k]);
         col = getCol(word[1]);
         todo = table[row][col];
-        if(isdigit(todo[0])){
-            state = todo;
-        }else{
-            if(todo[0]=="S"){
-                if(todo.size()>2){
-                    state = todo[1]+todo[2];
-                }else{
-                    state = todo[1];
-                }
-                stk_anl[stk_k] = word[1];
-                scaner();
-            }else if(todo[0]=="R"){
-                if(todo.size()>2){
-                    state = todo[1]+todo[2];
-                    ge_k = todo[1]-'0';
-                    ge_k *= 10;
-                    ge_k += todo[2]-'0';
-                }else{
-                    state = todo[1];
-                    ge_k = todo[1]-'0';
-                }
-                ge_k--;
-                stk_k -= ges[ge_k].size()-3-1;
-                stk_anl[stk_k] = ges[ge_k][0];
-                //cout<<stk_anl<<endl;
-            }else{
-
-            }
+        /******按格式输出分析表*******/
+        cout<<++ii<<"\t";
+        for(int j=0;j<=state_k;j++){
+            cout<<state[j];
         }
+        cout<<"\t\t";
+        for(int j=0;j<=stk_k;j++){
+            cout<<stk_anl[j];
+        }
+        cout<<"\t\t";
+        for(int j=s_input_k;j<s_input.size();j++){
+            cout<<s_input[j];
+        }
+        cout<<"\t\t"<<todo<<endl;
     }
 }
 //逐行读取，逐行处理
@@ -468,7 +507,6 @@ void program(){
         }
         print_line();
         row++;
-        //
         oneline();
     }
     cout<<"\n\n\n";
