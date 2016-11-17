@@ -137,7 +137,7 @@ string scaner()
                 word[1] = "//";
                 while(m_getch() && ch!='\n')
                 {
-                    cout<<ch;
+                    //cout<<ch;
                 }
                 cout<<endl;
             }
@@ -278,7 +278,7 @@ string table[20][100] = {
         " ","+","*","(",")","i","#","E","T","F"
     },
     {
-        "0"," "," ","S4"," ","S5"," ","1","2","3"
+        "0","符号前面少个数","符号前面少个数","S4","我觉得貌似少个左括号","S5","不会吧，在这里结束？","1","2","3"
     },
     {
         "1","S6"," "," "," "," ","ACC"," "," "," "
@@ -455,8 +455,12 @@ void oneline(){
             col = getCol(ges[ge_k][0].c_str()); // 查当前分析栈栈顶，也就是规约的文法左部
             state[++state_k] = table[row][col].c_str(); // 查表进状态栈
         }else{
+            if(isdigit(todo[0])){
+                error_show("输入的符号非法");
+                break;
+            }
             // 状态有误
-            cout<<"error--------------------------："<<todo<<endl;
+            break;
         }
         // 查下一个动作
         row = getRow(state[state_k]);
@@ -507,6 +511,9 @@ void program(){
         }
         print_line();
         row++;
+        if(word[1]=="//"){
+            continue;
+        }
         oneline();
     }
     cout<<"\n\n\n";

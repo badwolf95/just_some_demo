@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1479387722 source:c:\users\escape\desktop\编译原理\04-实验四\lr语法先分析器\main.cpp
+1479396021 source:c:\users\escape\desktop\编译原理\04-实验四\lr语法先分析器\main.cpp
 	<iostream>
 	<string>
 	<fstream>
