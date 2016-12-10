@@ -1,8 +1,12 @@
 <?php
 namespace app\enjoyusf\controller;
+use think\Controller;
 
-class Index {
+
+class Index extends Base {
+
 	public function index(){
-		return "Enjoy yourself!";
+		return $this->fetch();
 	}
+
 }

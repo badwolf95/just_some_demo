@@ -10,3 +10,15 @@
 // +----------------------------------------------------------------------
 
 // 应用公共文件
+
+
+// 返回格式
+function show($status,$mes,$data=[]){
+	header('Content-type:text/html;charset=utf-8');
+	$show = [
+		'status' = $status,
+		'message' = $mes,
+		'data' = $data,
+	];
+	exit(json_encode($show));
+}
