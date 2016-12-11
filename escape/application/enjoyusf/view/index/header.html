@@ -8,11 +8,15 @@
 <link href="/static/enjoyusf/css/bootstrap.min.css" rel="stylesheet">
 <link href="/static/enjoyusf/css/datepicker3.css" rel="stylesheet">
 <link href="/static/enjoyusf/css/styles.css" rel="stylesheet">
+<link href="/static/enjoyusf/css/bootstrap-table.css" rel="stylesheet">
 
 <!--[if lt IE 9]>
 <script src="/static/enjoyusf/js/html5shiv.js"></script>
 <script src="/static/enjoyusf/js/respond.min.js"></script>
 <![endif]-->
+
+<link rel="stylesheet" href="/static/enjoyusf/js/layer/skin/layer.css">
+
 
 </head>
 
@@ -33,7 +37,7 @@
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="#"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
 							<li><a href="#"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
-							<li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+							<li><a href="/enjoyusf/loginout/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -48,10 +52,10 @@
 			</div>
 		</form> -->
 		<ul class="nav menu">
-			<li><a href="/index/index"><span class="glyphicon glyphicon-dashboard"></span> Blog</a></li>
-			<li class="active"><a href="/enjoyusf/index"><span class="glyphicon glyphicon-dashboard"></span> Dashboard</a></li>
-			<li><a href="widgets.html"><span class="glyphicon glyphicon-th"></span> User</a></li>
-			<li><a href="charts.html"><span class="glyphicon glyphicon-stats"></span> Article</a></li>
+			<li><a href="/index/index" target="_blank"><span class="glyphicon glyphicon-dashboard"></span> Blog</a></li>
+			<li class="active"><a href="/enjoyusf/index/index"><span class="glyphicon glyphicon-dashboard"></span> Dashboard</a></li>
+			<li><a href="/enjoyusf/user/index"><span class="glyphicon glyphicon-th"></span> User</a></li>
+			<li><a href="/enjoyusf/article/index"><span class="glyphicon glyphicon-stats"></span> Article</a></li>
 			<!-- <li><a href="tables.html"><span class="glyphicon glyphicon-list-alt"></span> Tag</a></li>
 			<li><a href="forms.html"><span class="glyphicon glyphicon-pencil"></span> Forms</a></li>
 			<li><a href="panels.html"><span class="glyphicon glyphicon-info-sign"></span> Alerts &amp; Panels</a></li>
