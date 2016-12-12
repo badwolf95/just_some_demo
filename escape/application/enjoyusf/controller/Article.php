@@ -15,9 +15,9 @@ class Article extends Base {
 	{
 		$file = request()->file('thumb');
 		if($file){
-			$file_info = $file->move(ROOT_PATH.'public'.DS.'uploads');
+			$file_info = $file->move(ROOT_PATH.'public'.DS.'uploads/thumbs');
 			if($file_info){
-				$data = '/uploads/'.$file_info->getSaveName();
+				$data = '/uploads/thumbs/'.$file_info->getSaveName();
 				return show(1,'上传成功',$data);
 			}else{
 				return show(0,'封面上传失败,具体原因如下：'.$file_info->getError());
@@ -33,10 +33,10 @@ class Article extends Base {
 		$files = request()->file();
 		foreach($files as $file){
 	        // 移动到框架应用根目录/public/uploads/ 目录下
-	        $info = $file->move(ROOT_PATH . 'public' . DS . 'uploads');
+	        $info = $file->move(ROOT_PATH . 'public' . DS . 'uploads/articles');
 	        if($info){
 	            // 成功上传后 获取上传信息
-	            $data = '/uploads/'.$info->getSaveName();
+	            $data = '/uploads/articles/'.$info->getSaveName();
 				return showKind(0,$data);
 	        }else{
 	            // 上传失败获取错误信息
