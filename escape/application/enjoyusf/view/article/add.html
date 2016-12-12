@@ -1,3 +1,12 @@
+
+
+<script>
+var CONFIG = {
+	'submit_url'	:'/enjoyusf/article/add',
+	'jump_url'		:'/enjoyusf/article/index',
+}
+</script>
+
 <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
     <div class="row">
         <ol class="breadcrumb">
@@ -17,31 +26,32 @@
             <div class="panel panel-default">
                 <!-- <div class="panel-heading">Form Elements</div> -->
                 <div class="panel-body" style="margin-bottom:200px">
-                    <form role="form" >
+                    <form role="form" id="my_submit_form">
                         <div class="col-md-7">
                             <div class="form-group">
                                 <label>Title</label>
-                                <input class="form-control" placeholder="套路，是我和你走过最长的路">
+                                <input class="form-control" placeholder="套路，是我和你走过最长的路" name="title" id="title">
                             </div>
                             <div class="form-group">
                                 <label>Summary</label>
-                                <textarea class="form-control" rows="10" placeholder="类似文章的引子"></textarea>
+                                <textarea class="form-control" rows="10" placeholder="类似文章的引子" name="summary"></textarea>
                             </div>
                         </div>
                         <div class="col-md-5">
                             <div class="form-group">
                                 <label>Thumb</label>
-                                <input type="file">
-                                <p class="help-block">挑张漂亮的做封面</p>
-                                <img src="/uploads/blackhorse.jpg" alt="" style="width:250px;height:250px">
+                                <input type="file" name="thumb" id="img_select" multiple="true">
+                                <p class="help-block" id="output">挑张漂亮的做封面</p>
+                                <img style="display: none" id="show_img" src="" width="250px" height="250px">
+								<input id="upload_image" name="thumb" type="hidden" multiple="true" value="">
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>Text area</label>
-                                <textarea class="form-control" rows="25"></textarea>
+                                <label>Content</label>
+                                <textarea class="form-control js-editor" rows="20" id="editor_escape" name="content"></textarea>
                             </div>
-	                        <button type="submit" class="btn btn-primary">Submit</button>
+	                        <button type="button" class="btn btn-primary" id="my_submit_btn">Submit</button>
 	                        <!-- <button type="reset" class="btn btn-default">Reset Button</button> -->
                         </div>
                     </form>
@@ -49,3 +59,13 @@
             </div>
         </div>
         <!-- /.col-->
+
+        <script src="/static/kindeditor/kindeditor-all-min.js"></script>
+        <script>
+		KindEditor.ready(function(K) {
+		    window.editor = K.create('#editor_escape',{
+		      uploadJson : '/enjoyusf/article/kindUpload',
+		      afterBlur : function(){this.sync();}, //
+		    });
+		  });
+        </script>

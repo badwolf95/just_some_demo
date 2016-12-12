@@ -22,6 +22,23 @@ function show($status,$mes,$data=[]){
 	];
 	exit(json_encode($show));
 }
+//kindeditor需要的特殊返回数组
+function showKind($status,$data){
+
+	header("Content-Type:Application/json;charset=utf-8");
+	if(0 == $status){
+		$res = array(
+			'error' => 0,
+			'url'	=> $data,
+		);
+	}else{
+		$res = array(
+			'error'	=>	1,
+			'message' => $data,
+		);
+	}
+	exit(json_encode($res));
+}
 
 
 // 加密
