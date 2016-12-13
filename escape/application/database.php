@@ -17,9 +17,9 @@ return [
     // 数据库名
     'database'       => 'escape',
     // 用户名
-    'username'       => 'root',
+    'username'       => 'escape',
     // 密码
-    'password'       => '',
+    'password'       => 'escape05976',
     // 端口
     'hostport'       => '3306',
     // 连接dsn

@@ -11,7 +11,7 @@ class Index extends Controller
 
     public function home()
     {
-    	$res = model('Article')->select();
+    	$res = model('Article')->where('id','>',5)->select();
     	$this->assign('article',$res);
     	return $this->fetch();
     }
