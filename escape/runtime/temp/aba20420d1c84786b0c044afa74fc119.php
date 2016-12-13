@@ -1,3 +1,4 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:74:"F:\Coding\wamp\www\escape\public/../application/index\view\index\home.html";i:1481608667;s:70:"F:\Coding\wamp\www\escape\public/../application/index\view\layout.html";i:1481589406;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,12 +55,12 @@
 					<a href="#" class="main__tags__a">热门</a>
 				</section> -->
 				<section class="main__list">
-				{volist name="article" id="atc" empty=""}
+				<?php if(is_array($article) || $article instanceof \think\Collection): $i = 0; $__LIST__ = $article;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$atc): $mod = ($i % 2 );++$i;?>
 					<div class="main__list__one">
 						<div class="list__one__left">
 							
-							<h3><a href="/index/index/article/get/{$atc.id}"><b class="ficon">\</b>{$atc.title}</a></h3>
-							<p><b class="ficon">4</b>{$atc.update_time|getTimeSimple}</p>
+							<h3><a href="/index/index/article/get/<?php echo $atc['id']; ?>"><b class="ficon">\</b><?php echo $atc['title']; ?></a></h3>
+							<p><b class="ficon">4</b><?php echo getTimeSimple($atc['update_time']); ?></p>
 							<p>
 							<!-- <a href="#">热门</a>
 							<a href="#">热门</a>
@@ -67,10 +68,10 @@
 							</p>
 						</div>
 						<div class="list__one__right">
-							<a href="#"><img src="{$atc.thumb}" alt=""></a>
+							<a href="#"><img src="<?php echo $atc['thumb']; ?>" alt=""></a>
 						</div>
 					</div>
-				{/volist}
+				<?php endforeach; endif; else: echo "" ;endif; ?>
 					<!-- <button class="main__list__more">More <b class="ficon">:</b></button> -->
 				</section>
 				<footer>

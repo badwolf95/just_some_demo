@@ -1,3 +1,4 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:77:"F:\Coding\wamp\www\escape\public/../application/index\view\index\article.html";i:1481608495;s:70:"F:\Coding\wamp\www\escape\public/../application/index\view\layout.html";i:1481589406;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,10 +37,10 @@
 
 			
 			<section class="main">
-				<h1><b class="ficon">È</b>	{$res.title}</h1>
-				<span><b class="ficon">4</b>	{$res.update_time|getTime}</span>
+				<h1><b class="ficon">È</b>	<?php echo $res['title']; ?></h1>
+				<span><b class="ficon">4</b>	<?php echo getTime($res['update_time']); ?></span>
 				<article>
-					{$res.content}
+					<?php echo $res['content']; ?>
 				</article>
 				<button class="main__list__more main__list__others" id="my_back_btn">Others <b class="ficon">Ì</b></button>
 				<footer>
