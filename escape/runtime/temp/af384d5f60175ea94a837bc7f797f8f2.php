@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:75:"F:\Coding\wamp\www\escape\public/../application/index\view\index\index.html";i:1481591524;s:70:"F:\Coding\wamp\www\escape\public/../application/index\view\layout.html";i:1481589406;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:75:"F:\Coding\wamp\www\escape\public/../application/index\view\index\index.html";i:1481617899;s:70:"F:\Coding\wamp\www\escape\public/../application/index\view\layout.html";i:1481589406;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,10 +9,14 @@
 	<link href="/static/handsome/img/f2e.ico" rel="shortcut icon" />
 	<link rel="stylesheet" href="/static/handsome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="/static/handsome/css/index.css">
+	<!-- <link rel="stylesheet" href="/static/handsome/css/mobile.css"> -->
 </head>
 <body>
+<div class="wrap">
+	
+
 	<h1 class="blog__name">ESCAPE</h1>
-	<nav>
+	<nav class="blog__nav">
 		<ul>
 			<!-- <a href="/static/handsome/#"  id="nav1">
 				<li class="mynav"><i class="fa fa-envira"></i></li>home
@@ -31,5 +35,6 @@
 			</a>
 		</ul>
 	</nav>
+</div>
 </body>
 </html>

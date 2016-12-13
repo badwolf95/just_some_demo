@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:74:"F:\Coding\wamp\www\escape\public/../application/index\view\index\home.html";i:1481608667;s:70:"F:\Coding\wamp\www\escape\public/../application/index\view\layout.html";i:1481589406;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:74:"F:\Coding\wamp\www\escape\public/../application/index\view\index\home.html";i:1481617890;s:70:"F:\Coding\wamp\www\escape\public/../application/index\view\layout.html";i:1481589406;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +7,7 @@
 	<link href="/static/handsome/img/f2e.ico" rel="shortcut icon" />
 	<link rel="stylesheet" href="/static/handsome/css/home.css">
 	<link rel="stylesheet" href="/static/handsome/css/raphaelicons.css">
+	<!-- <link rel="stylesheet" href="/static/handsome/css/mobile.css"> -->
 </head>
 <body>
 	<div class="wrap">
@@ -38,7 +39,7 @@
 			<section class="main">
 				<header>
 				<span><n class="ficon">Æ</n>Coding</span>
-				<input type="text" class="main__search" placeholder="search">
+				<!-- <input type="text" class="main__search" placeholder="search"> -->
 				</header>
 				<!-- <section class="main__tags">
 					<a href="#" class="main__tags__a active">热门</a>
