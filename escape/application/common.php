@@ -52,3 +52,7 @@ function addMd5($val)
 function getTime($time){
 	return date("Y-m-d H:i:s",$time);
 }
+function getTimeSimple($time)
+{
+	return date("Y-m-d",$time);
+}

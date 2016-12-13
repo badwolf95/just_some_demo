@@ -6,21 +6,18 @@ var CONFIG  = {
 </script>
 
 
-<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">			
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
 		<div class="row">
 			<ol class="breadcrumb">
 				<li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
 				<li class="active">Article</li>
 			</ol>
 		</div><!--/.row-->
-		
 		<div class="row">
 			<div class="col-lg-12">
 				<h1 class="page-header">Article</h1>
 			</div>
 		</div><!--/.row-->
-				
-		
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="panel panel-default">
@@ -37,76 +34,21 @@ var CONFIG  = {
 						        <th data-field="update_time" data-sortable="true" data-align="center">Update Time</th>
 						    </tr>
 						    </thead>
+						    {volist name="article" id="atc" empty="一篇都木有……"}
 						    <tr>
 						    	<!-- <td><input type="checkbox"></td> -->
-						    	<td>#1</td>
-						    	<td><a href="#">文章标题</a></td>
-						    	<td><img src="/uploads/blackhorse.jpg" alt="" style="width:50px;height:50px"></td>
-						    	<td>2016-12-12 12:12:12</td>
-						    	<td>2016-12-12 12:12:12</td>
+						    	<td>#{$atc.id}___{$atc.user_id}</td>
+						    	<td><a href="#">{$atc.title}</a></td>
+						    	<td><img src="{$atc.thumb}" alt="" style="width:50px;height:50px"></td>
+						    	<td>{$atc.create_time|getTime}</td>
+						    	<td>{$atc.update_time|getTime}</td>
 						    </tr>
-						    <tr>
-						    	<!-- <td><input type="checkbox"></td> -->
-						    	<td>#1</td>
-						    	<td><a href="#">文章标题</a></td>
-						    	<td><img src="/uploads/blackhorse.jpg" alt="" style="width:50px;height:50px"></td>
-						    	<td>2016-12-12 12:12:12</td>
-						    	<td>2016-12-12 12:12:12</td>
-						    </tr>
-						    <tr>
-						    	<!-- <td><input type="checkbox"></td> -->
-						    	<td>#1</td>
-						    	<td><a href="#">文章标题</a></td>
-						    	<td><img src="/uploads/blackhorse.jpg" alt="" style="width:50px;height:50px"></td>
-						    	<td>2016-12-12 12:12:12</td>
-						    	<td>2016-12-12 12:12:12</td>
-						    </tr>
-						    <tr>
-						    	<!-- <td><input type="checkbox"></td> -->
-						    	<td>#1</td>
-						    	<td><a href="#">文章标题</a></td>
-						    	<td><img src="/uploads/blackhorse.jpg" alt="" style="width:50px;height:50px"></td>
-						    	<td>2016-12-12 12:12:12</td>
-						    	<td>2016-12-12 12:12:12</td>
-						    </tr>
-						    <tr>
-						    	<!-- <td><input type="checkbox"></td> -->
-						    	<td>#1</td>
-						    	<td><a href="#">文章标题</a></td>
-						    	<td><img src="/uploads/blackhorse.jpg" alt="" style="width:50px;height:50px"></td>
-						    	<td>2016-12-12 12:12:12</td>
-						    	<td>2016-12-12 12:12:12</td>
-						    </tr>
-						    <tr>
-						    	<!-- <td><input type="checkbox"></td> -->
-						    	<td>#1</td>
-						    	<td><a href="#">文章标题</a></td>
-						    	<td><img src="/uploads/blackhorse.jpg" alt="" style="width:50px;height:50px"></td>
-						    	<td>2016-12-12 12:12:12</td>
-						    	<td>2016-12-12 12:12:12</td>
-						    </tr>
-						    <tr>
-						    	<!-- <td><input type="checkbox"></td> -->
-						    	<td>#1</td>
-						    	<td><a href="#">文章标题</a></td>
-						    	<td><img src="/uploads/blackhorse.jpg" alt="" style="width:50px;height:50px"></td>
-						    	<td>2016-12-12 12:12:12</td>
-						    	<td>2016-12-12 12:12:12</td>
-						    </tr>
-						    <tr>
-						    	<!-- <td><input type="checkbox"></td> -->
-						    	<td>#1</td>
-						    	<td><a href="#">文章标题</a></td>
-						    	<td><img src="/uploads/blackhorse.jpg" alt="" style="width:50px;height:50px"></td>
-						    	<td>2016-12-12 12:12:12</td>
-						    	<td>2016-12-12 12:12:12</td>
-						    </tr>
-						    
+						    {/volist}
 						</table>
 					</div>
 				</div>
 			</div>
-		</div><!--/.row-->	
+		</div><!--/.row-->
 
 
 
