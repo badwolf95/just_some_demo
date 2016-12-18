@@ -8,12 +8,12 @@ class Article extends Base {
 
 	public function index()
 	{
-		$res = model('Article')->select();
+		$res = model('Article')->order('id','desc')->select();
 		$this->assign('article',$res);
 		return $this->fetch();
 	}
 
-	
+
 
 	public function add()
 	{
@@ -55,7 +55,7 @@ class Article extends Base {
 			$rules = [
 				['title','require|length:0,90','标题别忘了|标题有点长了，30个字以内'],
 				['summary','require|length:10,400','写点简介呗|简介少了或者多了,120个字就好'],
-				['content','require','咋不写点捏']
+				['editormd-markdown-doc','require','咋不写点捏']
 			];
 			$validate = new Validate($rules);
 			if($validate->check(input('post.'))){
@@ -65,7 +65,8 @@ class Article extends Base {
 				$data['title'] = input('post.title');
 				$data['summary'] = input('post.summary');
 				$data['thumb'] = input('post.thumb');
-				$data['content'] = input('post.content');
+				$data['content'] = input('post.editormd-html-code');
+				$data['md_content'] = input('post.editormd-markdown-doc');
 				//图片
 				// save才会自动添加时间
 				$res = model('Article')->save($data);
@@ -74,7 +75,6 @@ class Article extends Base {
 				}else{
 					return show(0,'添加失败');
 				}
-
 			}else{
 				return show(0,$validate->getError());
 			}
@@ -100,6 +100,46 @@ class Article extends Base {
 				$data['summary'] = input('post.summary');
 				$data['thumb'] = input('post.thumb');
 				$data['content'] = input('post.content');
+				$data['update_time'] = time();
+				$where = [];
+				$where['id'] = input('post.id');
+				//图片
+				// save才会自动添加时间
+				$res = model('Article')->where($where)->update($data);
+				if($res){
+					return show(1,'修改成功');
+				}else{
+					return show(0,'修改失败');
+				}
+			}else{
+				return show(0,$validate->getError());
+			}
+		}else{
+			$where = [];
+			$where['id'] = $id;
+			$res = model('Article')->where($where)->find();
+			$this->assign('res',$res);
+			return $this->fetch();
+		}
+	}
+	public function editMd($id)
+	{
+		if(request()->isPost()){
+			$rules = [
+				['title','require|length:0,90','标题别忘了|标题有点长了，30个字以内'],
+				['summary','require|length:10,400','写点简介呗|简介少了或者多了,120个字就好'],
+				['editormd-markdown-doc','require','咋不写点捏']
+			];
+			$validate = new Validate($rules);
+			if($validate->check(input('post.'))){
+				$user = session('Badman');
+				$data = [];
+				$data['user_id'] = $user->id;
+				$data['title'] = input('post.title');
+				$data['summary'] = input('post.summary');
+				$data['thumb'] = input('post.thumb');
+				$data['content'] = input('post.editormd-html-code');
+				$data['md_content'] = input('post.editormd-markdown-doc');
 				$data['update_time'] = time();
 				$where = [];
 				$where['id'] = input('post.id');
