@@ -49,6 +49,40 @@ class Article extends Base {
 		}
 	}
 
+	public function addMd()
+	{
+		if(request()->isPost()){
+			$rules = [
+				['title','require|length:0,90','标题别忘了|标题有点长了，30个字以内'],
+				['summary','require|length:10,400','写点简介呗|简介少了或者多了,120个字就好'],
+				['content','require','咋不写点捏']
+			];
+			$validate = new Validate($rules);
+			if($validate->check(input('post.'))){
+				$user = session('Badman');
+				$data = [];
+				$data['user_id'] = $user->id;
+				$data['title'] = input('post.title');
+				$data['summary'] = input('post.summary');
+				$data['thumb'] = input('post.thumb');
+				$data['content'] = input('post.content');
+				//图片
+				// save才会自动添加时间
+				$res = model('Article')->save($data);
+				if($res){
+					return show(1,'添加成功');
+				}else{
+					return show(0,'添加失败');
+				}
+
+			}else{
+				return show(0,$validate->getError());
+			}
+		}else{
+			return $this->fetch();
+		}
+	}
+
 	public function edit($id)
 	{
 		if(request()->isPost()){
@@ -90,7 +124,7 @@ class Article extends Base {
 	}
 
 
-public function fileUpload()
+	public function fileUpload()
 	{
 		// 头像异步上传
 		$file = request()->file('thumb');
@@ -98,6 +132,23 @@ public function fileUpload()
 			$file_info = $file->move(ROOT_PATH.'public'.DS.'uploads/thumbs');
 			if($file_info){
 				$data = '/uploads/thumbs/'.$file_info->getSaveName();
+				return show(1,'上传成功',$data);
+			}else{
+				return show(0,'封面上传失败,具体原因如下：'.$file_info->getError());
+			}
+		}else{
+			return show(0,'上传失败');
+		}
+	}
+
+	public function mdUpload()
+	{
+		// 头像异步上传
+		$file = request()->file('thumb_md');
+		if($file){
+			$file_info = $file->move(ROOT_PATH.'public'.DS.'uploads/articles');
+			if($file_info){
+				$data =  '/uploads/articles/'.$file_info->getSaveName();
 				return show(1,'上传成功',$data);
 			}else{
 				return show(0,'封面上传失败,具体原因如下：'.$file_info->getError());
