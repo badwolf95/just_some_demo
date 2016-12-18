@@ -18,7 +18,7 @@ class Index extends Controller
         $data['visited_time'] = time();
         model('Who')->insert($data);
         model('Count')->where('id','>',0)->setInc('home');
-    	$res = model('Article')->where('id','>',5)->select();
+    	$res = model('Article')->where('id','>',5)->order('id','desc')->select();
     	$this->assign('article',$res);
     	return $this->fetch();
     }
