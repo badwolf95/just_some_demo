@@ -61,7 +61,7 @@ var CONFIG = {
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>Content</label>
-                                <div id="editormd" >
+                                <div id="editormd" style="z-index:10000">
                                     <textarea style="display:none;" >{$res.md_content}</textarea>
                                 </div>
                             </div>
@@ -80,6 +80,8 @@ var CONFIG = {
             $(function() {
                 var editor = editormd("editormd", {
                     path : "/static/editor-md/lib/", // Autoload modules mode, codemirror, marked... dependents libs path
+                    width : '100%',
+                    height : '500px',
                     saveHTMLToTextarea : true
                 });
             });
