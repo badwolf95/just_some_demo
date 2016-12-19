@@ -17,11 +17,11 @@ return [
     // 应用命名空间
     'app_namespace'          => 'app',
     // 应用调试模式
-    'app_debug'              => true,
-    // 'app_debug'              => false,
+    // 'app_debug'              => true,
+    'app_debug'              => false,
     // 应用Trace
-    'app_trace'              => true,
-    // 'app_trace'              => false,
+    // 'app_trace'              => true,
+    'app_trace'              => false,
     // 应用模式状态
     'app_status'             => '',
     // 是否支持多模块
@@ -143,8 +143,8 @@ return [
         'layout_on'     =>  true,
         'layout_name'   =>  'layout',
         //模板缓存
-        'tpl_cache'     =>  false,
-        // 'tpl_cache'     =>  true,
+        // 'tpl_cache'     =>  false,
+        'tpl_cache'     =>  true,
     ],
 
     // 视图输出字符串内容替换
