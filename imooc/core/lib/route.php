@@ -1,6 +1,9 @@
 <?php 
-
+/**
+ * 路由类
+ */
 namespace core\lib;
+use \core\lib\config;
 
 class route
 {
@@ -9,6 +12,7 @@ class route
 	public $action;
 
 	public function __construct(){
+
 		$path = $_SERVER['REDIRECT_URL'];
 		if(isset($path) && $path!='/'){
 			$patharr = explode('/',trim($path,'/'));
@@ -18,7 +22,7 @@ class route
 			if(isset($patharr[1])){
 				$this->action = $patharr[1];
 			}else{
-				$this->action = 'index';
+				$this->action = config::get('route','ACTION');
 			}
 
 			$count = count($patharr);
@@ -29,10 +33,10 @@ class route
 				}
 				$i += 2;
 			}
-			// p($_GET);
 		}else{
-			$this->ctrl = 'index';
-			$this->action = 'index';
+			$this->ctrl = config::get('route','CTRL');
+			$this->action = config::get('route','ACTION');
 		}
+		// p(config::get('CTRL','route'));
 	}
 }
