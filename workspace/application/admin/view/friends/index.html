@@ -1,0 +1,87 @@
+<script type="text/javascript">
+var SCOPE = {
+	'table' : 'Friends',
+	'delete_url' : '/admin/friends/delete',
+	'jump_url' : '/admin/friends',
+}
+	
+</script>
+
+<div class="row">
+	<div class="col-lg-12">
+		<h3 class="page-header"> <i class="fa fa-laptop"></i>
+			好友关系列表
+		</h3>
+		<ol class="breadcrumb">
+			<li> <i class="fa fa-home"></i>
+				<a href="/admin/friends/index">首页</a>
+			</li>
+			<li>
+				<i class="fa fa-laptop"></i>
+				好友关系列表
+			</li>
+		</ol>
+	</div>
+
+</div>
+
+<div class="row">
+	<div class="col-lg-12">
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<h2>
+					<i class="fa fa-table blue"></i>
+					<span class="break"></span>
+					<a class="btn btn-primary" href="/admin/friends/add">
+						添加好友关系
+						<i class="fa fa-edit "></i>
+					</a>
+				</h2>
+				<div class="panel-actions">
+					<a href="javascript:void(0);" class="btn-setting" id="my_refresh" title="刷新">
+						<i class="fa fa-rotate-right"></i>
+					</a>
+					<a href="table.html#" class="btn-minimize" title="收起">
+						<i class="fa fa-chevron-up"></i>
+					</a>
+					<!-- <a href="table.html#" class="btn-close">
+					<i class="fa fa-times"></i>
+				</a>
+				-->
+			</div>
+		</div>
+		<div class="panel-body">
+			<table class="table table-striped table-bordered bootstrap-datatable datatable">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>用户</th>
+						<th>好友列表(考虑到加载速度，</th>
+						<th>创建时间</th>
+						<th>更新时间</th>
+						<!-- <th>相关操作</th> -->
+					</tr>
+				</thead>
+				<tbody>
+					{volist name="friends" id="friend" empty="还没有任何好友关系记录"}
+					<tr>
+
+						<td>{$i}</td>
+						<td>{$friend.user_id}</td>
+						<td><span title="{$friend.friends_id}">{$friend.friends_id|substr=1,50}</span></td>
+						<td>{$friend.create_time|getTempTime}</td>
+						<td>{$friend.update_time|getTempTime}</td>
+						<!-- <td>
+							
+						</td> -->
+					</tr>
+					{/volist}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+<!--/col-->
+
+</div>
+<!--/row-->

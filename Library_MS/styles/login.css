@@ -1,0 +1,168 @@
+*{
+	margin:0;
+	padding:0;
+}
+a{
+	text-decoration:none;
+	color:black;
+	cursor:pointer;
+}
+li{
+	list-style:none;
+	cursor:pointer;
+	height:50px;
+}
+header{
+	height:50px;
+	width:100%;
+	background:rgba(0,0,0,0.3);
+	color:white;
+	line-height:50px;
+
+}
+body{
+	background:url(../images/bg4.jpg) no-repeat center center;
+	background-size:cover;
+	
+}
+.header_logo{
+	font-size:28px;
+	font-weight:bold;
+	margin-left:30px;
+}
+header ul{
+	float:right;
+	margin-right:30px;
+}
+header li{
+	display:inline-block;
+	margin:0 10px;
+}
+header li a {
+	color:white;
+	font-size:24px;
+
+}
+/*******************************************************/
+.main{
+	width:100%;
+	height:100%;
+	clear:right;
+	line-height:50px;
+	position:relative;
+}
+.main .login{
+	width:350px;
+	height:100%;
+	border:1px solid #e8e8e8;
+	float:right;
+	margin-right:50px;
+	padding:20px 30px;
+	margin-top:40px;
+	margin-bottom:100px;
+	background:white;
+	text-align:center;
+	position:relative;
+}
+.login label{
+	display:inline-block;
+	width:80px;
+	text-align:right;
+	font-size:18px;
+}
+.hidden{
+	display:none;
+}
+#username,#password,#confirm-password{
+	width:260px;
+	height:30px;
+	text-indent:10px;
+	font-size:16px;
+	margin:10px 0;
+	padding:3px;
+}
+#verify{
+	width:130px;
+	height:30px;
+	text-indent:10px;
+	font-size:16px;
+
+}
+#verify_img{
+	width:124px;
+	height:34px;
+	position:relative;
+	top:12px;
+	
+}
+.login .radio{
+	width:55px;
+	margin-left:15px;
+	text-align:right;
+}
+
+.login .userType{
+	width:15px;
+	height:15px;
+	/*display:none;*/
+
+}
+.login .autoLogin{
+	margin-top:30px;
+	display:inline-block;
+	width:150px;
+	text-align:center;
+}
+#autoLogin{
+	width:20px;
+	height:20px;
+	position:relative;
+	top:3px;
+}
+#submit{
+	width:200px;
+	height:50px;
+	border:none;
+	background:rgb(47, 29, 207);
+	color:white;
+	font-size:22px;
+	cursor:pointer;
+}
+.goto_reg{
+	display:inline-block;
+	width:180px;
+	height:35px;
+	color:white;
+	background:rgb(47, 29, 207);
+	font-size:24px;
+	line-height:35px;
+	position:absolute;
+	bottom:-37px;
+	right:0;
+}
+footer{
+	height:35px;
+	width:100%;
+	background:rgba(0,0,0,0.3);
+	position:absolute;
+	top:540px;
+	text-align:center;
+	color:#bbb;
+	font-size:20px;
+	line-height:35px;
+}
+
+label.error{
+	line-height:0em;
+	width:100%;
+	float:left;;
+	color:red;
+	display:block;
+}
+
+
+
+
+
+
+

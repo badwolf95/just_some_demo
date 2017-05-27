@@ -1,0 +1,72 @@
+
+<script type="text/javascript">
+
+var SCOPE = {
+	'submit_url' : '/admin/new_friend/add',
+	'jump_url' : '/admin/new_friend',
+}
+</script>
+<div class="row">
+	<div class="col-lg-12">
+		<h3 class="page-header"> <i class="fa fa-laptop"></i>
+			添加好友申请
+		</h3>
+		<ol class="breadcrumb">
+			<li> <i class="fa fa-home"></i>
+				<a href="/admin/new_friend/index">首页</a>
+			</li>
+			<li>
+				<i class="fa fa-laptop"></i>
+				添加好友申请
+			</li>
+		</ol>
+	</div>
+
+</div>
+
+
+
+<div class="row">
+	<div class="col-lg-2"></div>
+	<div class="col-lg-8">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h2>
+					<i class="fa fa-indent red"></i> <strong>添加好友申请</strong>
+				</h2>
+			</div>
+			<div class="panel-body">
+				<form action="" method="post" id="my_form">
+					<div class="form-group">
+						<label for="nf-email">用户ID</label>
+						<input type="text" id="nf-email" name="user_id" class="form-control" placeholder="ID">
+						<span class="help-block">Please enter your ID</span>
+					</div>
+
+					<div class="form-group">
+						<label for="nf-email">申请添加的ID</label>
+						<input type="text" id="nf-email" name="add_user_id" class="form-control" placeholder="ID">
+						<span class="help-block">Please enter your ID</span>
+					</div>
+
+					
+					
+
+					<button type="button" class="btn btn-sm btn-success" id="my_submit">
+						<i class="fa fa-dot-circle-o"></i>
+						Submit
+					</button>
+					<button type="reset" class="btn btn-sm btn-danger" value="reset">
+						<i class="fa fa-ban"></i>
+						Reset
+					</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+<!--/col-->
+
+</div>
+<!--/row-->

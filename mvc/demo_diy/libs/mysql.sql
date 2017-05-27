@@ -1,0 +1,26 @@
+DROP DATABASE IF EXISTS news;
+CREATE DATABASE news;
+
+DROP TABLE IF EXISTS admin;
+CREATE TABLE admin(
+`id` INT(4) PRIMARY KEY AUTO_INCREMENT,
+`name` VARCHAR(20) NOT NULL,
+`password` CHAR(32) NOT NULL,
+`email` VARCHAR(30)
+);
+
+INSERT admin(name,password) VALUES("admin","admin");
+
+DROP TABLE IF EXISTS news;
+CREATE TABLE news(
+`id` INT(4) PRIMARY KEY AUTO_INCREMENT,
+`title` VARCHAR(30) NOT NULL,
+`author` VARCHAR(20) NOT NULL,
+`from` VARCHAR(20) NOT NULL,
+`content` VARCHAR(999) NOT NULL,
+`pubtime` INT(20) NOT NULL
+);
+
+
+
+

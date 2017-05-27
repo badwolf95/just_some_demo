@@ -1,0 +1,50 @@
+.right_cont label{
+	width:100px;
+	display:inline-block;
+	line-height:3em;
+	text-align:right;
+	background:#1616cb;
+	color:white;
+	font-size:20px;
+	padding-right:10px;
+}
+#book{
+	width:400px;
+	height:35px;
+	padding-left:5px;
+	font-size:20px;
+}
+#author,#press{
+	width:200px;
+	height:35px;
+	font-size:18px;
+	text-indent:5px;
+}
+#num{
+	width:100px;
+	height:35px;
+	text-align:center;
+	font-size:18px;
+}
+#submit{
+	width:350px;
+	height:50px;
+	background:#1616cb;
+	color:white;
+	border:none;
+	font-size:20px;
+	cursor:pointer;
+}
+#submit:hover{
+	font-size:26px;
+}
+.right_cont .sex{
+	width:80px;
+	height:35px;
+	line-height:35px;
+	text-align:center;
+	background:white;
+	color:blue;
+	border:1px solid blue;
+	margin-right:10px;
+}

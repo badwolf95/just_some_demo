@@ -1,0 +1,122 @@
+/*************************classify****************************/
+/*************************classify_title****************************/
+/*************************classify_content****************************/
+
+/*************************classify****************************/
+.classify{
+	width:185px;
+	min-height:325px;
+	border:1px solid #d7d7d7;
+	background:#fff;
+	float:left;
+
+}
+/*************************classify_title****************************/
+
+.classify_title{
+	height:35px;
+	border-bottom:1px solid #d7d7d7;
+	line-height:35px;
+	text-align:center;
+	font-size:16px;
+	color:#555;
+	font-weight:bold;
+}
+/*************************classify_content****************************/
+
+.classify_content .cls_cont_ul{
+	border-bottom:1px dotted #d7d7d7;
+	padding:12px 20px;
+}
+.cls_cont_ul li{
+	line-height:25px;
+}
+.classify_content .cls_cont_title{
+	font-weight:bold;
+	color:#555;
+	font-size:15px;
+}
+.cls_cont_ul ul li{
+	width:70px;
+	display:inline-block;
+}
+.cls_cont_ul ul li a{
+	color:#555;
+}
+
+/*************************classify_main****************************/
+/*************************classify_main_one****************************/
+/*************************classify_main_title****************************/
+/*************************classify_main_cont****************************/
+
+/*************************classify_main****************************/
+.classify_main{
+	min-height:600px;
+	background-color:white;
+	width:810px;
+	display:inline-block;
+
+}
+/*************************classify_main_one****************************/
+.classify_main_one{
+	min-height:600px;
+}
+/*************************cls_main_title****************************/
+.cls_main_title{
+	width:810px;
+	height:40px;
+	border-bottom:2px solid #ccc;
+
+}
+.cls_main_title h2{
+	width:180px;
+	height:100%;
+	line-height:40px;
+	font-size:16px;
+	font-weight:bold;
+	text-indent:10px;
+	border-bottom:2px solid #096dba;
+	color:#454545;
+	float:left;
+
+}
+/*************************cls_main_cont****************************/
+.cls_main_cont{
+	padding-top:22px;
+	min-height:560px;
+}
+.cls_main_cont_one{
+	width:175px;
+	min-height:162px;
+	display:inline-block;
+	margin-right:-3px;
+	padding:22px 12px;
+}
+.cls_main_cont_one img{
+	margin-bottom:16px;
+	cursor:pointer;
+}
+.cls_main_cont_one p{
+	padding:0 5px;
+	color:#333;
+	line-height:1.3em;
+}
+.cls_main_cont_one span{
+	display:block;
+	margin-top:18px;
+	color:#d4107e;
+	font-weight:bold;
+}
+.cls_main_cont_one .comment{
+	margin-top:8px;
+	font-size:13px;
+}
+.cls_main_cont_one i{
+	width:15px;
+	height:13px;
+	display:inline-block;
+	background:url(../img/classify/分类_07.png) no-repeat 0 2px;
+}
+.cls_main_cont_one a{
+	color:#089ed9;
+}

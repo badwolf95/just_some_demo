@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>WorkSpace</title>
+    <link rel="stylesheet" type="text/css" href="/static/home/css/home.css">
+    <script src="/static/admin/assets/js/jquery-2.1.1.min.js"></script>
+    <script src="/static/admin/layer/layer.js"></script>
+</head>
+
+<body>
+    <script type="text/javascript">
+    var SCOPE = {
+        'register_url': '/index/index/register',
+        'login_url': '/index/index/login',
+        'jump_url': '/index/user/index',
+    };
+    </script>
+    <div class="wrap">
+        <div class="header">
+            <img src="/static/home/img/home.gif" alt="WorkSpace">
+            <div class="header_list">
+                <span class="login" id="my_login_btn"><i></i>登录</span>
+                <span class="regist" id="my_regist_btn"><i></i>注册</span>
+                <span class="menu"><i></i></span>
+            </div>
+        </div>
+        <div class="description">
+            <span class="title">“ <b>W</b> ”等你来</span>
+            <p>亲爱的朋友您好，欢迎来到“Work Space”之站。我们相聚在这里，虔诚地做一件事，它将由你 我建造为属于我们共有的聚集地。因为一个人的力量总是渺小的、所以我等待志同道合的你。这里每 日都可能发生着数个故事，它想陪这里的每一个团队成长、记录过去、做好当下、展望未来，努力用 高效的办法完成形形色色的工作学习内容，以不断完善自身本领优化服务。 “W”会是一个不断 better 的单位交流办公网站。</p>
+            <span class="end_of_desc">—您的得力助手</span>
+        </div>
+        <div class="instruction">
+            <div class="pic img1"><i></i></div>
+            <div class="text">
+                <p>校园“白领”工作站，</p>
+                <p>我们的交流无需那么繁琐。</p>
+                <div class="left">
+                    <p>它是单位，</p>
+                    <p>以任何性质团队存在</p>
+                    <p>它将与生俱来：</p>
+                    <br>
+                    <p>动态页面</p>
+                    <p>任务功能</p>
+                    <p>通知回执</p>
+                    <p>管理成员</p>
+                    <p>工资编辑</p>
+                    <p>创建合作</p>
+                    <p>奖惩记录</p>
+                </div>
+                <div class="left">
+                    <p>它是单位，</p>
+                    <p>以任何性质团队存在</p>
+                    <p>它将与生俱来：</p>
+                    <br>
+                    <p>动态页面</p>
+                    <p>任务功能</p>
+                    <p>通知回执</p>
+                    <p>管理成员</p>
+                    <p>工资编辑</p>
+                    <p>创建合作</p>
+                    <p>奖惩记录</p>
+                </div>
+                <i class="whatis"></i>
+            </div>
+        </div>
+        <div class="full_page">
+            <p>OUR TEAM IS COMMITTED TO BUILDING A “CAMPUS ORGANIZATION PERSONNER MANAGEMENT SYSTEM”,WHICH IS MAINED TO MAKE THE CAMPUS TEAM WORK MORE CONVENIENT AND FASTER.</p>
+        </div>
+        <div class="instruction">
+            <div class="text">
+                <div class="about_us"></div>
+                <div class="about_detail">
+                    <p>生活像匹脱缰的野马，</p>
+                    <p>不知道前方在哪里，</p>
+                    <p>也不知道何时会停下，</p>
+                    <p>那何不尽善尽美，</p>
+                    <p>用心去做，</p>
+                    <p>将遗憾的可能性逼到绝境存生般渺小。</p>
+                </div>
+                <div class="about_name">
+                    <span>谢心斌</span><i></i><b>X</b>
+                    <span>黄新宇</span><i></i><b>H</b>
+                    <span>郭莉莉</span><i></i><b>G</b>
+                </div>
+            </div>
+            <div class="pic img2"></div>
+        </div>
+        <div class="instruction">
+            <div class="pic img3"></div>
+            <div class="text">
+                <div class="contact"></div>
+            </div>
+        </div>
+        <div class="footer">
+            <i></i><span>友情链接：</span><span>网站信息：</span>
+        </div>
+        <!-- 注册框 -->
+        <div class="lr_window" id="my_regist_window">
+            <form method="post" id="my_register_form">
+                <input type="email" name="email" placeholder="注册邮箱">
+                <input type="password" name="password" placeholder="密码">
+                <input type="password" name="re_password" placeholder="确认密码">
+                <input type="button" value="注册" class="submit_btn" id="my_regist_submit">
+            </form>
+        </div>
+        <!-- 登录框 -->
+        <div class="lr_window" id="my_login_window">
+            <form method="post" id="my_login_form">
+                <input type="email" name="email" placeholder="邮箱">
+                <input type="password" name="password" placeholder="密码">
+                <input type="button" value="登录" class="submit_btn" id="my_login_submit">
+            </form>
+        </div>
+        <!-- 遮罩层 -->
+        <div class="mask_window" id="my_mask_window"> </div>
+    </div>
+    <script type="text/javascript">
+    $("#my_regist_btn").click(function() {
+        $("#my_regist_window").show();
+        $("#my_mask_window").show();
+    });
+    $("#my_login_btn").click(function() {
+        $("#my_login_window").show();
+        $("#my_mask_window").show();
+    });
+    $("#my_mask_window").click(function() {
+        $("#my_regist_window").hide();
+        $("#my_mask_window").hide();
+        $("#my_login_window").hide();
+    });
+    </script>
+    <script src="/static/home/js/common.js"></script>
+</body>
+
+</html>

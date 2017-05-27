@@ -1,0 +1,313 @@
+<html>
+   <head>
+   	    <meta charset="utf-8">
+   	    <link rel="stylesheet" type="text/css" href="/static/home/css/个人空间首页-主页.css">
+   	    <script src="/static/home/js/移入变色.js"></script>
+   	    <script src="/static/admin/assets/js/jquery-2.1.1.min.js"></script>
+	<script src="/static/admin/layer/layer.js"></script>    
+   	    <script type="text/javascript">
+   	    	window.onload=function ()
+   	    	{
+   	    		changecolor(1);
+   	    	}
+   	    </script>
+    </head>
+
+    <body>
+          <div class="header">
+		     	<ul>
+		     		<li class="lif"></li>
+		     		<li><img src="/static/home/img/网站首页小图标.jpg"></li>
+		     		<li class="lis"></li>
+		     		<li>Welcome to Work Space</li>
+		     		<li class="lit"></li>
+		     		<!-- <li class="li_right"><img src="/static/home/img/搜索.jpg" class="img"></li>
+		     		<li class="li_right"><input type="text"></li> -->
+		     	</ul>
+		     	<div class="beijintu">
+		     		<div class="daohanglan">
+		     			<table>
+		     				<tr>                                                                        
+		     					<td class="tdff"></td>
+		     					<td class="tds point"><a href="/index/index" class="active">主页</a></td>
+		     					<td class="tdt point"><a href="/index/papers">手记</a></td>
+		     					<td class="tdf point"><a href="/index/assignment">任务</a></td>
+		     					<td class="tdfive point"><a href="/index/information">通知</a></td>
+		     					<td class="tdsix point"><a href="/index/friends">好友</a></td>
+		     					<td class="tdseven point"><a href="个人-提问.html">....</a></td>
+		     					<td class="tdff"></td>
+		     				</tr>
+		     			</table>
+		     		</div>
+		     	</div>
+		   	</div>
+		   	<div class="zhuye" id="divfirst">
+               <div class="touxiangleirong">
+		     		<div class="touxiang">
+		     			<img src="/static/home/img/访问个人主页个人头像.jpg">
+		     		</div>
+		     		<div class="jiesao">
+		     			<ul>
+		     				<li class="li"></li>
+		     				<li><a>{$user.nickname}</a></li>
+		     				<li  class="lif"></li>
+		     				<li><!-- <img src="/static/home/img/个人空间主页男标志.jpg" class="imgs"> --></li>
+		     				<li><a>ID：{$user.id|getFackId=$user.type}</a></li>
+		     			</ul>
+		     			<p>学院：{$userinfo.academy}</p>
+		     			<p>年级：{$userinfo.grade}</p>
+		     			<p>职务：{$userinfo.organization}</p>
+		     		</div>
+		     		<img src="/static/home/img/letter.png" class="letter point" id="my_newfriends_alter">
+		     		<a href="/index/user/setup"><img src="/static/home/img/options.png" class="options point"></a>
+               </div>
+		     	
+		    
+		     <div class="bottom_left">
+		     	<ul>
+		     		<li class="lif"></li>
+		     		<li>通知</li>
+		     		<!--<li class="lis"></li>
+		     		<li class="point"><img src="/static/home/img/左键.png" class="img1"></li>
+		     		<li class="point"><img src="/static/home/img/右键.png" class="img2"></li>-->
+		     	</ul>
+		     	<div class="img">
+		     	   <img src="/static/home/img/">
+		     	</div>
+		     	<div class="changzhixian">
+		     	</div>
+		     </div>
+		     <div class="bottom_right">
+		           <div class="shouji">
+		           	<ul>
+		           		
+		           		<li class="li1">最新手记</li>
+		           		<!--<li><img src="/static/home/img/左键.png" class="img1"></li>
+		           		<li><img src="/static/home/img/右键.png" class="img2"></li>-->
+		           	</ul>
+		           	<div class="leirong1">
+		           	   <div class="divf">
+		           		<p class="p1">2016.7.21</p>
+		           		<p class="p2">中即可就离开我据了解来看几节课了健康自己来看会计借口借口借口就借口借klaks口借口借口借口借口化工内心当时就可怜见可怜见次点击链接口化工内心当时就可怜见</p>
+		           	   </div>   
+		           	   <div class="divf">
+		           		<p class="p1">2016.7.21</p>
+		           		<p class="p2">中即可就离开我据了解来看几节课了sf可怜见次点击链接简历库进口量刻录</p>
+		           	   </div>   
+		           	   <div class="divf">
+		           		<p class="p1">2016.7.21</p>
+		           		<p class="p2">中即可就离开我据了解来看几节课了sf可怜见次点击链接简历库进口量刻录</p>
+		           	   </div>  
+		           	 
+		           	</div>
+		           </div>
+		           <div class="tongzhi" id="zhuyetongzhianniu">
+		           	<ul>
+		           		
+		           		<li class="li1">最近任务</li>
+		           		<!--<li><img src="/static/home/img/左键.png" class="img1"></li>
+		           		<li><img src="/static/home/img/右键.png" class="img2"></li>-->
+		           	</ul>
+		           	<div class="content">
+		           	  <div class="leirongzhan" id="the-content">
+		  
+		           	    <div class="leirong">
+		           	         
+		             	</div>
+		             	<div class="leirong">
+		           	                		
+		             	</div>
+		             	<div class="leirong">
+		           	           		
+		             	</div>
+		             </div>
+		           	</div>
+		           	
+		           </div>
+                 </div>
+
+
+		           <div class="tiwen">
+
+                       <div class="div-left">
+		           	       <ul>
+		           	  	     <li>联系单位</li>
+		           	  	   <!--  <li class="li"></li>
+		           	  	     <li><img src="/static/home/img/左键.png" class="img1"></li>
+		           	  	     <li class="lis"></li>
+		           	  	     <li><img src="/static/home/img/右键.png" class="img2"></li>-->
+		           	       </ul>
+		           	       <div class="qingjiatiaoban wenzi point">请假调班</div>
+		           	       <div class="yijianjianyi wenzi point">意见交流</div>
+		           	       <div class="yiyuanshenqing wenzi point">意愿申请</div>
+		           	       <div class="jiaoliuzhixun wenzi point">交流咨询</div>
+                        <div class="the-content">
+		           	       <div class="kuang">
+		           	       	   <div class="img-kuang">
+		           	       	       <img src="/static/home/img/访问个人主页个人头像.jpg" class="img">
+		           	       	   </div>
+		           	       	   <div class="wenziti">
+		           	       	   	   <p>今晚大列会请假</p>
+		           	       	   	   <p>2019.9.8</p>
+		           	       	   </div>
+		           	       </div>
+		           	       <div class="kuang">
+		           	       	 <div class="img-kuang">
+		           	       	       <img src="/static/home/img/访问个人主页个人头像.jpg" class="img">
+		           	       	   </div>
+		           	       	   <div class="wenziti">
+		           	       	   	   <p>今晚大列会请假</p>
+		           	       	   	   <p>2019.9.8</p>
+		           	       	   </div>
+		           	       </div>
+		           	       <div class="kuang">
+		           	       	 <div class="img-kuang">
+		           	       	       <img src="/static/home/img/访问个人主页个人头像.jpg" class="img">
+		           	       	   </div>
+		           	       	   <div class="wenziti">
+		           	       	   	   <p>今晚大列会请假</p>
+		           	       	   	   <p>2019.9.8</p>
+		           	       	   </div>
+		           	        </div>
+		           	   </div>
+		           	   
+		           	  </div>
+		           	   <div class="div-right">
+		           	      <ul>
+		           	      	  
+		           	      	 <li>回执信息</li>  
+		           	    <!--  	 <li><img src="/static/home/img/左键.png" class="img1"></li>
+		           	      	 <li class="lis"></li>
+		           	  	     <li><img src="/static/home/img/右键.png" class="img2"></li>
+		           	  	     <li class="lif"></li>-->
+		           	      	
+		           	  	     
+		           	  	     
+		           	       </ul>
+
+		           	     <div class="the-content">
+		           	       <div class="kuang">
+		           	       	   <div class="img-kuang">
+		           	       	       <img src="/static/home/img/访问个人主页个人头像.jpg" class="img">
+		           	       	   </div>
+		           	       	   <div class="wenziti">
+		           	       	   	   <p>今晚大列会请假</p>
+		           	       	   	   <p>2019.9.8</p>
+		           	       	   </div>
+		           	       </div>
+		           	        <div class="kuang">
+		           	       	   <div class="img-kuang">
+		           	       	       <img src="/static/home/img/访问个人主页个人头像.jpg" class="img">
+		           	       	   </div>
+		           	       	   <div class="wenziti">
+		           	       	   	   <p>今晚大列会请假</p>
+		           	       	   	   <p>2019.9.8</p>
+		           	       	   </div>
+		           	       </div>
+		           	        <div class="kuang">
+		           	       	   <div class="img-kuang">
+		           	       	       <img src="/static/home/img/访问个人主页个人头像.jpg" class="img">
+		           	       	   </div>
+		           	       	   <div class="wenziti">
+		           	       	   	   <p>今晚大列会请假</p>
+		           	       	   	   <p>2019.9.8</p>
+		           	       	   </div>
+		           	       </div>
+		           	     </div>
+		           	   </div>
+		           	
+		           </div>
+		     
+             <div class="footer">
+
+             	<div class="zuobian" >
+             		<img src="/static/home/img/个人空间主页左边.jpg" id="zuobian">
+             	</div>
+             	<div class="tupianzhan">
+             		<div class="tupian" id="tupian">
+             			<img src="/static/home/img/访问个人主页个人头像.jpg">
+             			<img src="/static/home/img/访问个人主页个人头像.jpg">
+             			<img src="/static/home/img/访问个人主页个人头像.jpg">
+             			<img src="/static/home/img/访问个人主页个人头像.jpg">
+             			<img src="/static/home/img/访问个人主页个人头像.jpg">
+             			<img src="/static/home/img/访问个人主页个人头像.jpg">
+             			<img src="/static/home/img/访问个人主页个人头像.jpg">
+             			<img src="/static/home/img/访问个人主页个人头像.jpg">
+             			<img src="/static/home/img/访问个人主页个人头像.jpg">
+             			<img src="/static/home/img/访问个人主页个人头像.jpg">
+             			<img src="/static/home/img/访问个人主页个人头像.jpg">
+             			<img src="/static/home/img/访问个人主页个人头像.jpg">
+             			<img src="/static/home/img/访问个人主页个人头像.jpg">
+             		</div>
+
+             	</div>
+             	<div class="youbian">
+             		<img src="/static/home/img/个人空间主页右边.jpg"  id="youbian">
+             	</div>
+             </div>
+		</div>	
+		 <div class="weibian">
+            <ul>
+             <li class="lif"></li>
+             <li class="point">WorkSapce|@201<a class="a1">6</a></li>
+             <li class="lis"></li>
+             <li class="point">友情链接</li>
+             <li class="lit"> </li>
+             <li class="point">网站信息</li>
+            </ul>
+        </div>
+
+        <div class="new_friends_window" id="new_friends_window">
+        <?php  $k=0;	?>
+        {volist name="friends_apply" id="friend"}
+        	<div class="new_friends_one">
+        		<span>用户"<a href="/index/friends/show_card/id/{$friend.id}">{$friend.nickname}</a>"申请添加好友</span>
+        		<span class="new_friends_deny right" name="{$new_friends[$k]->id}" id="new_friends_deny">拒绝</span>
+        		<span class="new_friends_allow right" name="{$new_friends[$k]->id}" id="new_friends_allow">同意</span>
+        	</div>
+        	<?php $k++; ?>
+        {/volist}
+
+        </div>
+        <div class="mask" id="my_mask"></div>
+<script>
+	$("#my_mask").click(function(){
+		$("#new_friends_window").hide();
+		$("#my_mask").hide();
+	});
+	$("#my_newfriends_alter").click(function(){
+		$("#new_friends_window").show();
+		$("#my_mask").show();
+	});
+	$("#new_friends_allow").click(function(){
+		var url = "/index/friends/allowFriend";
+		var data = {};
+		data['id'] = $("#new_friends_allow").attr('name');
+		$.post(url,data,function(res){
+			if(res.status == 1){
+				$("#new_friends_allow").text('已同意');
+			}else{
+				$("#new_friends_allow").text('失败鸟');
+			}
+		},'json');
+	});
+	$("#new_friends_deny").click(function(){
+		var url = "/index/friends/denyFriend";
+		var data = {};
+		data['id'] = $("#new_friends_deny").attr('name');
+		$.post(url,data,function(res){
+			if(res.status == 1){
+				$("#new_friends_deny").text('已拒绝');
+			}else{
+				$("#new_friends_deny").text('失败鸟');
+			}
+		},'json');
+	});
+</script>
+         
+<script src="/static/home/js/common.js"></script>
+    </body>
+    </html>
+           
+      
+      

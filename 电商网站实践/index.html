@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta equiv-http="Content-Type" content="text/html;charset=utf-8"/>
+	<title>慕课网</title>
+	<link rel="stylesheet" type="text/css" href="css/reset.css"/>
+	<link rel="stylesheet" type="text/css" href="css/main.css" />
+	<script type="text/javascript" src="js/main.js" ></script>
+	<!--myFocus插件-->
+	<!--首先是包含以下三个文件
+		然后，<div id="xxx"></div>
+		接着，在上面的div里嵌入一个<div class="pic"></div>
+		继续在上面的div里嵌入一个列表<ul><li></li></ul>有几张图片就放几个li，图片要放在li里面
+		最后，在js里写上
+		myFocus.set({
+			id:'xxx'(这里的id要和第一div里面的id一样，而且是id不是类)
+		})
+	-->
+	<script type="text/javascript" src="js/myfocus-2.0.1.min.js"></script>
+	<script type="text/javascript" src="js/mf-pattern/mF_fancy.js"></script>
+	<link type="text/css" rel="stylesheet" href="js/mf-pattern/mF_fancy.css"  />
+
+</head>
+<body>
+<div class="head">
+		<div class="title">
+			<div class="wrap">
+				<h2>收藏慕课</h2>
+				<div class="title_right">
+					<span>欢迎来到慕课网！</span>
+					<span>[登陆]</span>
+					<span>[注册]</span>
+				</div>
+			</div><!--wrap结束-->
+		</div><!--title结束-->
+		<div class="logo">
+			<div class="wrap">
+				<a href="index.html"><img src="img/home/1_06.png" alt="imooc" title="imooc" /></a>
+				<input type="text" name="search" class="search_text"/>
+				<input type="submit" name="submit" value="搜索" class="search_btn"/>
+				<span class="shop_car">购物车</span>
+				<div class="shop_num"><span>0</span></sdiv>
+			</div>
+		</div><!--logo结束-->
+		<div class="nav" >
+			<div class="wrap">
+				<ul>
+					<li class="nav_home"><a href="#">全部商品分类</a></li>
+					<li class="on"><a href="#">数码城</a></li>
+					<li><a href="#">天黑黑</a></li>
+					<li><a href="#">团购</a></li>
+					<li><a href="#">发现</a></li>
+					<li><a href="#">二手特卖</a></li>
+					<li><a href="#">名品汇</a></li>
+				</ul>
+			</div>
+		</div><!--nav结束-->
+	
+</div><!--head结束-->
+<div class="wrap">
+	<div class="guideline">
+		<div class="catalog">
+			<ul>
+				<li>手机 数码 <span>合约机</span>
+					<p>荣耀3x &nbsp;单反 &nbsp;智能设备</p>						
+				</li>
+				<li class="on">电脑 硬件外设 <span>装机宝</span>
+					<p>笔记本 &nbsp;台式 &nbsp;超极本 &nbsp;平板</p>					
+				</li>
+				<li>大家电
+					<p>电视 &nbsp;空调 &nbsp;冰箱 &nbsp;洗衣机</p>					
+				</li>
+				<li>厨房电器 生活电器
+					<p>空气净化 &nbsp;微波炉 &nbsp;取暖设备</p>					
+				</li>
+				<li>食品/饮料/生鲜 <span>粮油</span>
+					<p>进口 &nbsp;方便面 &nbsp;零食 &nbsp;保健</p>			
+				</li>				
+			</ul>
+		</div><!--catalog结束-->
+		<div class="pic_guide"id="pic_guide1"><!--插件要id不是要类-->
+			<div class="loading">
+				<img src="img/home/loading.gif" alt="拼命加载中，你别跑" />
+			</div>
+			<div class="pic">
+				<ul><!--而且这里要是一个列表-->
+					<li><img src="img/home/1_04.png" /></li>
+					<li><img src="img/home/ad1.jpg" /></li>
+					<li><img src="img/home/ad2.jpg" /></li>
+					<li><img src="img/home/ad3.jpg" /></li>
+					<li><img src="img/home/ad1.jpg" /></li>
+					<li><img src="img/home/ad2.jpg" /></li>
+				</ul>
+			</div>
+		</div><!--pic_guide结束-->
+	</div><!--guideline结束-->
+	<div class="furniture">
+		<div class="fnt_title">家用电器 <span><a href="#">更多&gt;&gt;</a></span></div>
+		<div class="fnt_main">
+			<div class="fnt_main_left">
+				<img src="img/home/1_29.png" alt="furniture" />
+			</div>
+			<div class="fnt_main_right">
+				<ul class="top">
+					<li>
+						<img src="img/home/1_30.png" alt="荣耀" />
+						<p>HTC新渴望81系列</p><span>1599元</span>
+					</li>
+					<li>
+						<img src="img/home/1_30.png" alt="荣耀" />
+						<p>HTC新渴望8b系列</p><span>1999元</span>
+					</li>
+					<li>
+						<img src="img/home/1_30.png" alt="荣耀" />
+						<p>HTC新渴望8c系列</p><span>2999元</span>
+					</li>
+					<li>
+						<img src="img/home/1_30.png" alt="荣耀" />
+						<p>HTC新渴望8d系列</p><span>3999元</span>
+					</li>
+				</ul>
+				<ul class="down">
+					<li>
+						<img src="img/home/1_33.png" alt="荣耀" />
+						<p>NFC技术一碰轻松配对！接触屏幕</p><span>&yen;1599元</span>
+					</li>
+					<li>
+						<img src="img/home/1_35.png" alt="荣耀" />
+						<p>Samsung三星GALAXY Grand2</p><span>&yen;1999元</span>
+					</li>
+					<li>
+						<img src="img/home/1_37.png" alt="荣耀" />
+						<p>全网低价 Apple 苹果iPad mini1</p><span>&yen;2999元</span>
+					</li>
+					<li>
+						<img src="img/home/1_39.png" alt="荣耀" />
+						<p>Apple苹果全新Retina屏MacBook</p><span>&yen;3999元</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="food furniture">
+		<div class="fnt_title">食品酒水 <span><a href="#">更多&gt;&gt;</a></span></div>
+		<div class="fnt_main">
+			<div class="fnt_main_left">
+				<img src="img/home/1_45.png" alt="furniture" />
+			</div>
+			<div class="fnt_main_right">
+				<ul class="top">
+					<li>
+						<img src="img/home/1_46.png" alt="美食" />
+						<p>三月美食狂享购</p><span>80元</span>
+					</li>
+					<li>
+						<img src="img/home/1_46.png" alt="美食" />
+						<p>三月美食狂享购</p><span>50元</span>
+					</li>
+					<li>
+						<img src="img/home/1_46.png" alt="美食" />
+						<p>三月美食狂享购</p><span>20元</span>
+					</li>
+					<li>
+						<img src="img/home/1_46.png" alt="美食" />
+						<p>三月美食狂享购</p><span>9.9元</span>
+					</li>
+				</ul>
+				<ul class="down">
+					<li>
+						<img src="img/home/1_48.png" alt="美食" />
+						<p>康比特 维他命咀嚼片 60片</p><span>&yen;600元</span>
+					</li>
+					<li>
+						<img src="img/home/1_48.png" alt="美食" />
+						<p>康比特 维他命咀嚼片 50片</p><span>&yen;400元</span>
+					</li>
+					<li>
+						<img src="img/home/1_48.png" alt="美食" />
+						<p>康比特 维他命咀嚼片 40片</p><span>&yen;300</span>
+					</li>
+					<li>
+						<img src="img/home/1_48.png" alt="美食" />
+						<p>康比特 维他命咀嚼片 30片</p><span>&yen;200</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	
+</div><!--wrap结束-->
+<div class="footer">
+	<p><a href="#">&nbsp;慕课简介&nbsp;</a>|<a href="#">&nbsp;慕课公告&nbsp;</a>|<a href="#">&nbsp;招贤纳士&nbsp;</a>|<a href="#">&nbsp;联系我们&nbsp;</a>|<a href="#">&nbsp;客服热线</a>：400-675-1234</p>
+	<p>Copyright &copy; 2006 - 2014 &nbsp;&nbsp;慕课版权所有  &nbsp;&nbsp;京ICP备09037834号&nbsp;&nbsp; 京ICP证B1034-8373号&nbsp;&nbsp; 某市公安局XX分局备案编号:123456789123</p>
+	<img src="img/home/1_52.png" alt="可信网站查询"  />
+</div><!--footer结束-->
+</body>
+</html>

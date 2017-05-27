@@ -1,0 +1,21 @@
+#login{
+	height: 300px;
+	width: 400px;
+	background: #E6E365;
+	border: solid gainsboro 1px;
+	margin: 0 auto;
+	margin-top: 200px;
+	
+}
+#login{
+	text-align: center;
+}
+#login .user,#login .passworld,#submit{
+	margin-top: 30px;
+}
+.user input,.passworld input{
+	text-indent: 10px;
+}
+#submit{
+	text-align: center;
+}

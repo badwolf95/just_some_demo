@@ -1,0 +1,41 @@
+body{
+	font-family: "微软雅黑";
+	font-size: 16px;
+	letter-spacing: 1px;
+}
+#header .head{
+	background: #f8f8f8;
+	height: 120px;
+	font-size: 40px;
+	line-height: 120px;
+	text-align: center;
+	border: solid gainsboro 1px;
+}
+#content .nav{
+	background: #333;
+	height: 600px;
+}
+#content .section{
+	background: #E6E6E6;
+	height: 600px;
+}
+#content .nav{
+	padding: 0;
+}
+#content .nav ul a{
+	display: block;
+	color: white;
+	text-decoration: none;
+	
+}
+#content .nav ul a:hover{
+	background: rgba(255,255,255,0.1);
+}
+#content .nav ul li{
+	margin-top: 50px;
+	height: 80px;
+	line-height: 80px;
+	font-size: 23px;
+	text-align: center;
+	
+}

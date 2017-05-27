@@ -1,0 +1,24 @@
+#view{
+	background: rgba(255,255,255,0.2);
+}
+#content .section .count{
+	height: 40px;
+	line-height: 40px;
+	letter-spacing: 3px;
+	background: #333333;
+	color: white;
+	margin-top: 15px;
+}
+#content .general-view{
+	background: white;
+}
+#content .to-excel{
+	margin: 15px 0;
+}
+#content  table{
+	width: 100%;
+}
+#content  .section , th,td{
+	text-align: center;
+}
+

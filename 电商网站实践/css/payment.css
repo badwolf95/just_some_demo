@@ -1,0 +1,275 @@
+/**************************progress******************************/
+.progress{
+	width:400px;
+	float:right;
+	padding-right:46px;
+	line-height:22px;
+	margin-top:30px;
+}
+.progress .go_left{
+	position:relative;
+	left:-25px;
+}
+.progress span{
+	margin-right:66px;
+	color:#F3E402;
+	font-weight:bold;
+}
+.progress em{
+	font-style:normal;
+	color:white;
+}
+
+/*************************************************************/
+/*************************************************************/
+/*************************************************************/
+.comStyle{
+	width:100%;
+	min-height:10px;
+	background:white;
+	line-height:36px;
+	border:1px solid #CCCCCC;
+	margin-top:20px;
+	clear:left;
+	float:left;
+}
+.receiving{
+	padding-bottom:15px;
+	margin-top:-15px;
+
+}
+.comStyle .headline{
+	width:990px;
+	height:30px;
+	line-height:30px;
+	padding-left:10px;
+	background:#F3F3F3;
+	font-size:16px;
+	border-bottom:1px solid #ccc;
+	color:#666;
+}
+.receiving_info{
+	margin:10px 0 15px 30px;
+}
+.receiving_info li{
+	background:url(../img/payment/star1.gif) no-repeat left center;
+	padding-left:12px;
+}
+.receiving_info .address{
+	border:1px solid #ccc;
+	color:#000;
+	padding:0 25px 0 10px;
+	background:url(../img/payment/triangle.gif) no-repeat 152px center;
+	cursor:pointer;
+}
+.receiving_info .sm_title{
+	width:64px;
+	display:inline-block;
+	font-size:12px;
+}
+.receiving_info input{
+	border:1px solid #ccc;
+	color:#666;
+	text-indent:10px;
+	padding:3px 0;
+}
+.receiving_info .detail{
+	width:500px;
+}
+.rec_submit{
+	width:114px;
+	height:28px;
+	line-height:28px;
+	text-align:center;
+	background:#3E8BF5;
+	color:white;
+	border:none;
+	margin-left:30px;
+}
+/*************************************************************/
+/*************************************************************/
+/*************************************************************/
+/*************************************************************/
+.pay_method{
+	padding-bottom:20px;
+}
+.pay_choice{
+	margin-left:30px;
+	line-height:40px;
+	padding-top:20px;
+}
+.pay_choice input{
+	margin:0 5px;
+}
+.pay_choice span{
+	display:inline-block;
+	width:65px;
+}
+.pay_choice i{
+	display:inline-block;
+	width:26px;
+	height:21px;
+	background:url(../img/payment/weixin.gif);
+	position:relative;
+	top:6px;
+	margin-right:5px;
+}
+
+/*************************************************************/
+/*************************************************************/
+/*************************************************************/
+/*************************************************************/
+.bill{
+	padding-bottom:24px;
+}
+.checkbox1{
+	margin-left:30px;
+	margin-right:3px;
+	width:15px;
+	height:15px;
+	position:relative;
+	top:3px;
+}
+.reserve{
+	width:66px;
+	height:24px;
+	line-height:24px;
+	text-align:center;
+	background:#4290FB;
+	color:white;
+	border:none;
+	margin-left:48px;
+}
+.cancle{
+	width:66px;
+	height:24px;
+	line-height:24px;
+	text-align:center;
+	border:1px solid #CCCCCC;
+	background:#F3F3F3;
+}
+
+/*******************************************************/
+/*******************************************************/
+/*******************************************************/
+.headline a{
+	float:right;
+	margin-right:30px;
+	color:#3377FF;
+}
+.goods_dt span{
+	width:120px;
+	display:inline-block;
+	vertical-align:top;
+
+}
+.goods{
+	float:left;
+}
+.goods_dt .dt_title{
+	width:470px;
+	padding-left:30px;
+}
+.goods_info{
+	float:left;
+	min-height:10px;
+}
+.goods_info img{
+	float:left;
+	margin-left:30px;
+	margin-top:2px;
+}
+.goods_info .dt_title{
+	width:376px;
+	padding-left:0;
+}
+.bd_bottom{
+	border-bottom:1px solid #E6E6E6;
+}
+.fl_le{
+	float:left;
+}
+.hr_18{
+	margin-top:18px;
+}
+.goods_all{
+	float:left;
+}
+.goods_dt .money{
+	color:#D70000;
+	font-weight:bold;
+}
+.goods_failure{
+	margin-left:30px;
+	padding-bottom:10px;
+	float:left;
+}
+.leave_message{
+	color:#3377FF;
+	font-size:12px;
+}
+.attention_failure{
+	font-size:12px;
+	color:#EE0000;
+}
+.failure_detail{
+	line-height:22px;
+}
+.failure_detail img{
+	float:left;
+	display:block;
+}
+.failure_detail p{
+	font-size:12px;
+	color:#666666;
+}
+.hr_10{
+	width:10px;
+	height:10px;
+}
+.margin_left{
+	float:left;
+	margin-left:5px;
+	width:200px;
+}
+.margin_left span{
+	color:#D70000;
+	font-weight:bold;
+}
+
+/***************************************************************/
+/***************************************************************/
+/***************************************************************/
+/***************************************************************/
+.get_info{
+	height:90px;
+	text-align:right;
+	padding:25px;
+}
+.get_info span{
+	line-height:50px;
+	font-size:14px;
+	color:#999;
+	margin-right:16px;
+}
+.get_info strong{
+	line-height:50px;
+	font-size:30px;
+	color:#EE0000;
+}
+.get_info input{
+	width:165px;
+	height:32px;
+	line-height:32px;
+	color:white;
+	background:#e00;
+	border:none;
+	font-size:18px;
+}
+input{
+	cursor:pointer;
+	
+}
+.footer{
+	float:left;
+}

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="/static/home/css/个人-任务.css">
+	<link rel="stylesheet" type="text/css" href="/static/home/css/个人空间-头部.css">
+	<link rel="stylesheet" type="text/css" href="/static/home/css/个人空间-底部.css">
+	<script src="/static/home/js/移入变色.js"></script>
+   	    <script type="text/javascript">
+   	    	window.onload=function ()
+   	    	{
+   	    		changecolor(3);
+   	    		var oscontent=document.getElementsByClassName("simple_content");
+   	    		var occontent=document.getElementsByClassName("complex_content");
+   	    		var omore=document.getElementsByClassName("more");
+   	    		var oless=document.getElementsByClassName("less");
+   	    		for(var i=0;i<omore.length;i++)
+   	    		{
+   	    			omore[i].num=i;
+   	    			oless[i].aum=i;
+   	    			omore[i].onclick=function()
+   	    		   {
+   	    			oscontent[this.num].style.display="none";
+   	    			occontent[this.num].style.display="block";
+   	    		   }
+   	    		   oless[i].onclick=function()
+   	    		   {
+   	    			oscontent[this.aum].style.display="block";
+   	    			occontent[this.aum].style.display="none";
+   	    		   }
+   	    		}
+   	    		
+   	    	}
+   	    </script>
+</head>
+<body>
+           <div class="header">
+		     	<ul>
+		     		<li class="lif"></li>
+		     		<li><img src="/static/home/img/网站首页小图标.jpg"></li>
+		     		<li class="lis"></li>
+		     		<li>Welcome to Work Space</li>
+		     		<li class="li_right"><img src="/static/home/img/搜索.jpg" class="img"></li>		     		
+		     		<li class="li_right"><input type="text"></li>
+		     	</ul>
+		     	<div class="beijintu">
+		     		<div class="daohanglan">
+		     			<table>
+		     				<tr>
+		     					<td class="tdff"></td>
+		     					<td class="tds point"><a href="/index/user">主页</a></td>
+		     					<td class="tdt point"><a href="/index/papers">手记</a></td>
+		     					<td class="tdf point">任务</td>
+		     					<td class="tdfive point"><a href="/index/information">通知</a></td>
+		     					<td class="tdsix point"><a href="/index/friends">好友</a></td>
+		     					<td class="tdseven point"><a href="/index/user">...</a></td>
+		     					<td class="tdff"></td>
+		     				</tr>
+		     			</table>
+		     		</div>
+		     	</div>
+		   	</div>
+		  <!-- 
+             <div class="headimg_content">
+		     		<div class="touxiang">
+		     			<img src="/static/home/img/访问个人主页个人头像.jpg">
+		     		</div>
+		     		<div class="jiesao">
+		     		  <div class="left">
+		     			<ul>
+		     				<li><a>爱的海洋</a></li>
+		     				<li  class="lif"></li>
+		     				<li><img src="/static/home/img/个人空间主页男标志.jpg" class="imgs"></li>
+		     			</ul>
+		     			<p>网薪：12点</p>
+		     		  </div>
+		     		  <div class="right">
+		     			<p>学校：中国矿业大学</p>
+		     			<p>年级：大二</p>
+		     			<p>职务：学生在线-前端组-干事</p>
+		     		  </div>
+		     		</div>
+		     </div> -->
+
+            <div class="gerenrenwuye" id="divthird">
+		     	<div class="lishishoujihetianjiashouji">
+		     	   <div class="lishishouji">
+		     	   <!-- 历史手记:<a>31</a>&nbsp篇 -->
+		     	   时间
+		     	   </div>
+		     	   <div class="faqixinrenwu">
+		     	   新任务
+		     	   </div>
+		     	   <div class="caozuoxiang">
+		     	   操作项
+		     	   </div>
+		    </div>
+
+		     <div class="aim-content">
+		     	
+		     	<div class="renwu first-task">
+		     	 <div class="simple_content">
+		     		<div class="renwuleft">
+		     			<div class="left">
+		     			   2015-3-6
+		     			</div>
+		     			<div class="right">
+                           <p class="name"></p>
+		     			</div>
+		     			<div class="more point">
+		     				展开
+		     			</div>
+		     		</div>
+		     		<div class="renwuright">
+		     			<p></p>
+		     		    <img src="/static/home/img/删除.png" class="delete point"> 
+		     		    <div class="power-send">
+		     		    	权限：发起任务
+		     		    </div>
+		     		    <div class="operate point">
+		     		    	推送至单位
+		     		    </div>
+		     		</div>
+		     	  </div>
+		     	  <div class="complex_content">
+		     	       <div class="renwuleft">
+		     			<div class="left">
+		     			   <p>sfsafmslkfjmdksljlk</p>
+		     			</div>
+		     			<div class="right">
+		     			 <p class="name">始大举将扩大jfk就类似的觉</p>
+		     			  
+		     			</div>
+		     			<div class="less point">
+		     			   收起
+		     			</div>
+		     		</div>
+		     		<div class="renwuright">
+		     			
+		     		    <img src="/static/home/img/删除.png" class="delete point"> 
+		     		    <div class="com_power">
+		     		    	权限：发起任务
+		     		    </div>
+		     		    <div class="com_power point">
+		     		    	推送至单位
+		     		    </div>
+		     		</div>
+		     	  </div>
+		     	</div>
+
+		     	<div class="renwu second-task">
+		     		
+		     	 <div class="simple_content">
+		     		<div class="renwuleft">
+		     			<div class="left">
+		     			</div>
+		     			<div class="right">
+                             <p class="name"></p>
+		     			</div>
+		     			<div class="more point">
+		     				展开
+		     			</div>
+		     		</div>
+		     		<div class="renwuright">
+		     			
+		     		    <img src="/static/home/img/删除.png" class="delete point"> 
+		     		    <div class="power-send">
+		     		    	权限：发起任务
+		     		    </div>
+		     		    <div class="operate point">
+		     		    	推送至单位
+		     		    </div>
+		     		</div>
+		     	  </div>
+		     	  <div class="complex_content">
+		     	       <div class="renwuleft">
+		     			<div class="left">
+		     			   <p></p>
+		     			</div>
+		     			<div class="right">
+		     			 <p class="name">始大举将扩大jfk就类似的觉</p>
+		     			  
+		     			</div>
+		     			<div class="less point">
+		     			   收起
+		     			</div>
+		     		</div>
+		     		<div class="renwuright">
+		     			
+		     		    <img src="/static/home/img/删除.png" class="delete point"> 
+		     		    <div class="com_power">
+		     		    	权限：发起任务
+		     		    </div>
+		     		    <div class="com_power point">
+		     		    	推送至单位
+		     		    </div>
+		     		</div>
+		     	  </div>
+		     	</div>
+
+		     	<div class="renwu third-task">
+		     		
+		     	 <div class="simple_content">
+		     		<div class="renwuleft">
+		     			<div class="left">
+		     			</div>
+		     			<div class="right">
+                           <p class="name"></p>
+		     			</div>
+		     			<div class="more point">
+		     				展开
+		     			</div>
+		     		</div>
+		     		<div class="renwuright">
+		     		    <img src="/static/home/img/删除.png" class="delete point"> 
+		     		    <div class="power-send">
+		     		    	权限：发起任务
+		     		    </div>
+		     		    <div class="operate point">
+		     		    	推送至单位
+		     		    </div>
+		     		</div>
+		     	  </div>
+		     	  <div class="complex_content">
+		     	       <div class="renwuleft">
+		     			<div class="left">
+		     			   <p>sfsafmslkfjmdksljlk</p>
+		     			</div>
+		     			<div class="right">
+		     			   <p class="name">始大举将扩大jfk就类似的觉</p>
+		     			   <p>将扩大jfk就类似的觉得是卡了刺激多数考拉才能打开进来咯大家坷拉经常卡机了的出来撒看见策略加快速度进来看角度坚持垃圾结束了东风科技收到扣费记录的路上看见的解决可怜的撒娇出口的世界里说了几句的时刻牢记时  刻惦记了巨大亏损从没打算立刻举手圣诞快乐数据上看了解到了开始大举将扩大jfk就类似的觉得是卡了刺激多数考拉才能打开进来咯大家坷拉经常卡机了的出来撒看见策略加快速度进来看角度坚持垃圾结束了东风科技收到扣费记录的路上看见的解决可怜的撒娇出口的世界里说了几句的时刻牢记时刻惦记了巨大亏损从没打算立刻举手圣诞快乐数据上看了解到了开始大举将扩大jfk就类似的觉</p>
+		     			</div>
+		     			<div class="less point">
+		     			   收起
+		     			</div>
+		     		</div>
+		     		<div class="renwuright">
+		     			
+		     		    <img src="/static/home/img/删除.png" class="delete point"> 
+		     		    <div class="com_power">
+		     		    	权限：发起任务
+		     		    </div>
+		     		    <div class="com_power point">
+		     		    	推送至单位
+		     		    </div>
+		     		</div>
+		     	  </div>
+		     	</div>
+
+		     	<div class="renwu fourth-task">
+		     		
+		     	 <div class="simple_content">
+		     		<div class="renwuleft">
+		     			<div class="left">
+		     			</div>
+		     			<div class="right">
+                           <p class="name"></p>
+		     			</div>
+		     			<div class="more point">
+		     				展开
+		     			</div>
+		     		</div>
+		     		<div class="renwuright">
+		     			 
+		     		    <img src="/static/home/img/删除.png" class="delete point"> 
+		     		    <div class="power-send">
+		     		    	权限：发起任务
+		     		    </div>
+		     		    <div class="operate point">
+		     		    	推送至单位
+		     		    </div>
+		     		</div>
+		     	  </div>
+		     	  <div class="complex_content">
+		     	       <div class="renwuleft">
+		     			<div class="left">
+		     			   <p>sfsafmslkfjmdksljlk</p>
+		     			</div>
+		     			<div class="right">
+		     			 <p class="name">始大举将扩大jfk就类似的觉</p>
+		     			  <p>将扩大jfk就类似的觉得是卡了刺激多数考拉才能打开进来咯大家坷拉经常卡机了的出来撒看见策略加快速度进来看角度坚持垃圾结束了东风科技收到扣费记录的路上看见的解决可怜的撒娇出口的世界里说了几句的时刻牢记时  刻惦记了巨大亏损从没打算立刻举手圣诞快乐数据上看了解到了开始大举将扩大jfk就类似的觉得是卡了刺激多数考拉才能打开进来咯大家坷拉经常卡机了的出来撒看见策略加快速度进来看角度坚持垃圾结束了东风科技收到扣费记录的路上看见的解决可怜的撒娇出口的世界里说了几句的时刻牢记时刻惦记了巨大亏损从没打算立刻举手圣诞快乐数据上看了解到了开始大举将扩大jfk就类似的觉</p>
+		     			  
+		     			</div>
+		     			<div class="less point">
+		     			   收起
+		     			</div>
+		     		</div>
+		     		<div class="renwuright">
+		     			
+		     		    <img src="/static/home/img/删除.png" class="delete point"> 
+		     		    <div class="com_power">
+		     		    	权限：发起任务
+		     		    </div>
+		     		    <div class="com_power point">
+		     		    	推送至单位
+		     		    </div>
+		     		</div>
+		     	  </div>
+		     	</div>
+		     </div>
+		     
+		     
+
+		     	<div class="thebottom">
+		     		<div class="theleft">
+		     			<img src="/static/home/img/手记页more2 .jpg">
+		     		</div>
+		     		<div class="fanye fanyeyi">
+		     		首页
+		     		</div>
+		     		<div class="fanye fanyeer">
+		     		上一页
+		     		</div>
+		     		<div class="fanye fanyesan">
+		     		下一页
+		     		</div>
+		     		<div class="fanye fanyesi">
+		     		尾页
+		     		</div>
+		     	</div>
+		</div>
+	
+</body>
+</html>

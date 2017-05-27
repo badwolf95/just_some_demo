@@ -1,0 +1,146 @@
+<script type="text/javascript">
+var SCOPE = {
+	'table' : 'Papers',
+	'delete_url' : '/admin/papers/delete',
+	'jump_url' : '/admin/papers',
+	'admin_create_url' : '/admin/papers/add',
+	'my_hidden_url' : '/admin/papers/hidden',
+	'my_forbidden_url' : '/admin/papers/forbidden',
+	'delete_many_url' : '/admin/papers/delete_many',
+}
+	
+</script>
+
+<div class="row">
+	<div class="col-lg-12">
+		<h3 class="page-header"> <i class="fa fa-laptop"></i>
+			手记管理
+		</h3>
+		<ol class="breadcrumb">
+			<li> <i class="fa fa-home"></i>
+				<a href="/admin/papers/index">首页</a>
+			</li>
+			<li>
+				<i class="fa fa-laptop"></i>
+				手记管理
+			</li>
+		</ol>
+	</div>
+
+</div>
+
+<div class="row">
+	<div class="col-lg-12">
+		<div class="col-sm-12">
+
+			<div class="panel panel-success">
+				<div class="panel-heading">
+					<h3 class="panel-title">控制面板</h3>
+					
+				</div>
+				<div class="panel-body">
+				<div class="col-sm-12">
+					 <!-- active -->
+					<button  class="btn btn-warning" id="my_check_all">
+						<label for="check_all">
+							<input type="checkbox" id="check_all_box"></label>
+						全 选
+					</button>
+
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<button type="button" id="my_admin_papers" class="btn btn-primary" >管理员发布手记</button>
+					&nbsp;&nbsp;
+					<button type="button" class="btn btn-success" id="my_hidden_btn" >不显示该手记</button>
+					&nbsp;&nbsp;
+					<button type="button" class="btn btn-default" id="my_forbidden_btn">禁用该账号</button>
+					&nbsp;&nbsp;
+					<button type="button" class="btn btn-danger" id="my_delete_btn">删除手记</button>
+					&nbsp;&nbsp;
+					<div class="btn-group dropup">
+						<button type="button" class="btn btn-info">筛选</button>
+						<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+							<span class="caret"></span>
+							<span class="sr-only">Toggle Dropdown</span>
+						</button>
+						<ul class="dropdown-menu" role="menu" id="my_select_condition">
+							<li>
+								<a href="/admin/papers/index/select/createby">管理员发布</a>
+							</li>
+							<li class="divider"></li>
+							<li selected>
+								<a href="/admin/papers/index/select/create_time">今日新增</a>
+							</li>
+							<li>
+								<a href="/admin/papers/index/select/status">不显示的手记</a>
+							</li>
+							<li>
+								<a href="/admin/papers/index/select/user">全部</a>
+							</li>
+						</ul>
+					</div>
+					&nbsp;&nbsp;
+						
+						每页显示<input type="text" id="my_pagesize" style="width:30px;text-align:center">条记录
+
+
+				</div>
+				<div class="col-sm-12">
+					{$page}
+				</div>
+					<!-- /btn-group -->
+				</div>
+				<div class="panel-footer"></div>
+			</div>
+		</div>
+		
+		<!--/col-->
+		<div class="col-sm-12">
+			{volist name="Papers" id="info" empty="还没有手记..."}
+			<div class="panel panel-default" id="">
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						<label for="content_panel{$i}" style="cursor:pointer">
+							<input type="checkbox" name="{$info.id}" id="content_panel{$i}">
+							#{$i}
+						</label>
+						{$info.user_id|getUserStatus}
+							&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;
+
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						<span class="label label-warning">I D</span>
+						{$info.user_id=='1000'?'管理员':$info.user_id}
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						<span class="label label-warning">发布时间：</span>
+						{$info.create_time|getTempTime}
+										
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						<button type="button" class="btn btn-success btn-sm" id="my_hidden_btn_single" name="{$info.id}" value="1" {if condition="$info.status == 2"}disabled="disabled"{/if}>不显示该手记</button>
+						<button type="button" class="btn btn-default btn-sm"  id="my_forbidden_btn_single" name="{$info.id}" value="1">禁用该账号</button>
+						<button type="button" class="btn btn-danger btn-sm" id="my_delete_btn_single" name="{$info.id}" value="1" >删除手记</button>
+
+						<br>
+						<span class="label label-primary">标题：</span>
+						{$info.title}
+					</h3>
+				</div>
+				<div class="panel-body">
+					<textarea style="width:100%;max-height:160px;overflow:auto;resize:none">
+						{$info.content}
+					</textarea>
+				</div>
+				<!-- <div class="panel-footer">Panel footer</div>
+			-->
+		</div>
+		{/volist}
+	</div>
+
+</div>
+<!--/col-->
+</div>
+</div>
+<!--/col-->
+
+</div>
+<!--/row-->

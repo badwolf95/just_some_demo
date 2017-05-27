@@ -1,0 +1,432 @@
+<html>
+<head>
+  <title>person set</title>
+  <meta charset="utf-8">
+  <style type="text/css">
+        *{margin:0;padding:0;}
+        li {
+          float: left;
+          list-style: none;
+          height: 100px;
+          line-height: 100px;
+        }
+          header {
+            height: 100px;
+            width: 100%;
+            overflow: hidden;
+            font-size: 30px;
+            color: #00aad9;
+          }
+          header
+          .li_first {
+            width: 10%;
+          }
+          header
+          .li_second {
+            width:2%;
+          }
+          header 
+          img {
+            display: block;
+            height: 60px;
+            width: 60px;
+            margin-top: 20px;
+          }
+          .main {
+            width: 100%;
+            clear: both;
+            float: left;
+          }
+          .the_left {
+            float: left;
+            width: 15%;
+            background: #00aad9;
+            height: 1400px;
+          }
+          .the_right {
+            float: right;
+            width: 15%;
+            background: #00aad9;
+            height: 1400px;
+          }
+          .the_center {
+            float: left;
+            width: 70%;
+            height: 1400px;
+            position: relative;
+          }
+          .the_center 
+          .div_f {
+            height: 100px;
+            width: 100%;
+            background: #e4c484;
+          }
+          .div_f
+          img {
+            display: block;
+            height: 80px;
+            width: 80px;
+            margin-top: 10px;
+            
+          } 
+          .div_f
+          .img_left {
+            float: left;
+          }
+          .div_f
+          .img_right {
+            float: right;
+          }
+          .div_f
+          li {
+            width: 33%;
+            text-align: center;
+            font-size: 30px;
+            color: white;
+            font-weight: bold;
+          }    
+          .div_s {
+            width: 50%;
+            height: 60px;
+            padding: 60px 25%;
+           
+          }
+          .img_one {
+           
+            display: block;
+            float: left;
+          }
+          .img_another {
+            
+            display: block;
+            float: right;
+          }
+         .user {
+          clear: left;
+          float: left;
+          font-size: 16px;
+          
+         }
+        .setspace {
+          font-size: 16px;
+          float: right;
+        }
+        .div_t 
+        table {
+          
+          width: 100%;
+          border-collapse: collapse;
+         
+        }
+       
+        .div_t
+        td {
+         
+          height: 60px;
+          border-bottom: 1px solid #ccc;
+        }
+        .td_f {
+          width: 30%;
+          padding-left: 10%;
+          
+        }
+        input {
+          border:2px solid #e4c484;
+          width: 100%;
+          height: 30px;
+          border-right: none;
+        }
+        .td_s {
+          width: 10%;
+        }
+        .man,.woman {
+          width: 50%;
+        }
+        .td_t {
+          width: 25%;
+         
+        }
+        .td_four {
+          width: 3%;
+         
+        }
+        .sure {
+          width: 100%;
+          height: 162px;
+          background: #e4c484;
+          text-align: center;
+          font-size: 20px;
+          padding-top: 110px;
+        }
+        .td_ss {
+          width: 30%;
+        
+          text-align: center;
+        }
+        .td_ss
+        input {
+          border:2px solid #e4c484;
+        }
+        .td_tt {
+          width: 8%;
+          text-align: left;
+          font-size: 12px;
+        }
+        .do_sure {
+          width: 90%;
+          height: 30px;
+          line-height: 30px;
+          text-align: center;
+          margin-left: 10%;
+          background: #e4c484;
+          font-size: 20px;
+        }
+        .td {
+          width: 15%;
+          text-align: left;
+        }
+        .img {
+          display: inline;
+          margin-left: 20px;
+        }
+        .td_last {
+          width: 30%;
+        }
+        .td_last
+        input {
+          border: 1px solid #e4c484;
+        }
+        .td_last_s {
+          width: 10%;
+        }
+        .left_kaung {
+          position: absolute;
+          top: 600px;
+          right: 10px;
+          width: 18%;
+          padding:1%;
+          height: 400px;
+          border:10px solid #e4c484;
+        }
+        p {
+          height: 30px;
+        }
+        .p {
+          text-align: center;
+        }
+          footer {
+            width: 100%;
+            height: 100px;
+            background: #00aad9;
+            clear: both;
+          }
+          .point {
+            cursor: pointer;
+          }
+  </style>
+</head>
+
+<script src="/static/admin/assets/js/jquery-2.1.1.min.js"></script>
+    <script src="/static/admin/layer/layer.js"></script>
+<script>
+var SCOPE = {
+  'submit_url' : '/index/user/setup',
+  'jump_url' : '/index/user/index',
+}      
+</script>
+<body>
+    <header>
+      <ul>
+        <li class="li_first"></li>
+        <li><img src="/static/home/img/网站logo.png"></li>
+        <li class="li_second"></li>
+        <li>Welcome to Work Space</li>      
+      </ul>
+    </header>
+    <div class="main">
+      <div class="the_left"></div>
+      <div class="the_right"></div>
+      <div class="the_center">
+           <div class="div_f">
+               <ul>
+                 <li><img src="/static/home/img/set.jpg" class="img_left point"></li>
+                 <li>Setup</li>
+                 <li><a href="/index/user"><img src="/static/home/img/yes.jpg" class="img_right point"></a></li>
+               </ul>               
+           </div>
+           <div class="div_s">
+                <img src="/static/home/img/set_informatin.jpg" class="img_one point">
+                
+                <img src="/static/home/img/set_informatin.jpg" class="img_another point" >
+                <div class="user point">用户信息</div>
+                <div class="setspace point">空间设置</div>  
+           </div>
+           <div class="div_t">
+           <form method="post" id="my_form">
+                 <table>
+                   <tr>
+                     <td class="td_f">个人简介信息：</td>
+                     <td class="td_s">我的昵称</td>
+                     <td class="td_t"><input type="text" name="nickname" value="{$user.nickname}"></td>
+                     <td  rowspan="5" class="td_four" >
+                        <div class="sure point" id="my_submit_btn">
+                          确认
+                        </div>
+                     </td>
+                     <td></td>
+
+                   </tr>
+                   <tr>
+                     <td class="td_f"></td>
+                     <td class="td_s">当前年级</td>
+                     <td class="td_t"><input type="text" name="grade" value="{$userinfo.grade}"></td>
+                     <td class="td_five"></td>
+      
+                     
+                   </tr>
+                    <tr>
+                     <td class="td_f"></td>
+                     <td class="td_s">联系电话</td>
+                     <td class="td_t"><input type="text" name="phone" value="{$userinfo.phone}"></td>
+                     <td class="td_five"></td>
+            
+                     
+                   </tr>
+                    <tr>
+                     <td class="td_f"></td>
+                     <td class="td_s">所属学院</td>
+                     <td class="td_t"><input type="text" name="academy" value="{$userinfo.academy}"></td>
+                     <td class="td_five"></td>
+           
+                     
+                   </tr>
+                   <tr>
+                     <td class="td_f"></td>
+                     <td class="td_s">所属组织</td>
+                     <td class="td_t"><input type="text" name="organization" value="{$userinfo.organization}"></td>
+                     <td class="td_five"></td>
+                 
+                     
+                   </tr>
+                 </table>
+              </form>
+                 <!--第二个table-->
+                 <table>
+                   <tr>
+                     <td class="td_f">所属下属组织：</td>
+                     <td class="td_ss"</td>
+                     <td class="td_tt"></td>
+                     <td></td>
+
+                   </tr>
+                   <tr>
+                    
+                     <td class="td_f"></td>
+                     <td class="td_ss">
+                         <input type="text">
+                         
+                     </td>
+                     <td class="td_tt">
+                         <div class="do_sure point">
+                           确认
+                         </div>
+                         
+                     </td>
+                     <td class="td_five"></td>
+      
+                     
+                   </tr>
+                   <tr>
+                     
+                     <td class="td_ss" colspan="4">请填写单位所在的名称(务必与其在该网站的用户名一致)</td>
+                    
+           
+                     
+                   </tr>
+                   <tr>
+                     <td class="td_f"></td>
+                     <td class="td_ss">
+                          <input type="text" name="">
+                         
+                     </td>
+                     <td class="td_tt">
+                          <div class="do_sure point">
+                           添加
+                          </div>  
+                     </td>
+                     <td class="td_five"></td>
+                   </tr>
+                   
+                   <tr>
+                     <td class="td_ss" colspan="4"> 请输入你所在单位的分组织</td> 
+                   </tr>
+                   <tr>
+                     <td class="td_f"></td>
+                     <td class="td_ss"></td>
+                     <td class="td_tt"></td>
+                     <td class="td_five"></td>
+                   </tr>
+                    <tr>
+                     <td class="td_f"></td>
+                     <td class="td_ss"></td>
+                     <td class="td_tt"></td>
+                     <td class="td_five"></td>
+                   </tr>
+                    <tr>
+                     <td class="td_f"></td>
+                     <td class="td_ss"></td>
+                     <td class="td_tt"></td>
+                     <td class="td_five"></td>
+                   </tr>
+                    <tr>
+                     <td class="td_f"></td>
+                     <td class="td_ss"></td>
+                     <td class="td_tt"></td>
+                     <td class="td_five"></td>
+                   </tr>
+                 </table>
+                 <table>
+                     <tr>
+                     <td class="td_f">模块添加与取消</td>
+                     <td class="td">手记<img src="/static/home/img/矩形 .png" class="img point"></td>
+                     <td class="td">个人任务<img src="/static/home/img/矩形 .png" class="img point"></td>
+                     <td class="td">回执信息<img src="/static/home/img/矩形 .png" class="img point"></td>
+                   </tr>
+                    <tr>
+                     <td class="td_f"></td>
+                     <td class="td">通知<img src="/static/home/img/矩形 .png" class="img point"></td>
+                     <td class="td">联系单位<img src="/static/home/img/矩形 .png" class="img point"></td>
+                     <td class="td">访客记录<img src="/static/home/img/矩形 .png" class="img point"></td>
+                   </tr>
+                  
+                 </table>
+                <table>
+                 <tr>
+                     <td class="td_f">清除历史：</td>
+                     <td class="td_last">选择模块并清除历史记录</td>
+                     <td class="td_last_s"></td>
+                     <td class="td_five"></td>
+                   </tr>
+                    <tr>
+                     <td class="td_f"></td>
+                     <td class="td_last"><input type="text"></td>
+                     <td class="td_last_s"><div class="do_sure point">确认</div></td>
+                     <td class="td_five"></td>
+                   </tr>
+                 </table>
+           </div>
+           <div class="left_kaung">
+                 <p class="p">全部组织</p>
+                 <p>运营<8></p>
+                 <p>移动互联<9></p>
+                 <p>前端组<6></p>
+           </div>
+      </div>
+    </div>
+    <footer>
+      
+    </footer>
+<script src="/static/home/js/common.js"></script>
+
+</body>
+</html>

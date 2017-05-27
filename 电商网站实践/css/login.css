@@ -1,0 +1,195 @@
+body{
+	background:white;
+}
+.logo_title{
+	width:100%;
+	background:#1D7AD9;
+	height:83px;
+	clear:left;
+}
+.wrap_new{
+	width:700px;
+	min-height:83px;
+	margin:0 auto;
+
+}
+.wrap_new img{
+	margin-top:12px;
+}
+.wrap_new span{
+	font-size:22px;
+	color:white;
+	position:relative;
+	top:-20px;
+	margin-left:24px;
+	font-weight:normal;
+}
+.wrap_new .come_here{
+	font-size:22px;
+	color:white;
+	position:relative;
+	top:-20px;
+	margin-left:24px;
+	font-weight:normal;
+}
+.center{
+	text-align:center;
+}
+
+
+.logo_main{
+	width:460px;
+	border:1px solid #DDDDDD;
+	background-color:white;
+	margin-top:10px;
+	position:relative;
+}
+.login_main_cont{
+	width:324px;
+	margin:0 auto;
+	padding-top:28px;
+}
+.login_main_cont dl{
+	margin-top:12px;
+}
+.login_main_cont dt{
+	color:#999999;
+}
+.input_user,.input_pw{
+	width:300px;
+	height:30px;
+	border:1px solid #CCCCCC;
+	padding-left:3px;
+}
+.input_user{
+	background:url(../img/login/user.gif) no-repeat 275px center;
+}
+.input_pw{
+	background:url(../img/login/password.gif) no-repeat 275px center;
+}
+.checkbox{
+	width:15px;
+	height:15px;
+	position:relative;
+	top:3px;
+	cursor:pointer;
+}
+.login_main_cont span{
+	font-size:13px;
+	color:#000;
+	position:relative;
+	top:0;
+	margin-left:5px;
+	margin-right:14px;
+}
+.hr_14{
+	width:10px;
+	height:14px;
+}
+.login_btn{
+	width:309px;
+	height:36px;
+	font-size:16px;
+	font-weight:bold;
+	color:#666;
+	border:none;
+	background:url(../img/login/login_btn.gif) no-repeat center center;
+	margin-top:18px;
+	margin-bottom:22px;
+	cursor:pointer;
+}
+.login_more{
+	margin-bottom:22px;
+}
+.login_more a{
+	color:#666;
+}
+.login_more i{
+	font-style:normal;
+	color:#ccc;
+}
+.login_more em{
+	display:inline-block;
+	width:16px;
+	height:10px;
+	background:url(../img/login/triangle.gif) no-repeat center center;
+	cursor:pointer;
+}
+
+.goto_register{
+	position:absolute;
+	bottom:-32px;
+	left:304px;
+	width:115px;
+	height:30px;
+	line-height:30px;
+	text-align:center;
+	background-color:#7CBE56;
+}
+.goto_register a{
+	color:white;
+}
+
+
+
+/**********************************************************/
+.hr_190{
+	margin-top:600px;
+}
+.register_main{
+	border:1px solid #DDD;
+	width:430px;
+	padding:52px 100px;
+	margin-top:16px;
+	margin-bottom:110px;
+	line-height:70px;
+}
+.register_main dt{
+	text-align:right;
+	float:left;
+	width:106px;
+	padding-right:12px;
+}
+.register_main input{
+	width:264px;
+	height:36px;
+	border:1px solid #ddd;
+	padding:0 3px;
+}
+.star_pic{
+	width:22px;
+	height:10px;
+	display:inline-block;
+	background:url(../img/login/star.gif) no-repeat center center;
+}
+.register_user{
+	background:url(../img/login/user.gif) no-repeat 250px center;
+}
+.register_pw{
+	background:url(../img/login/password.gif) no-repeat 250px center;
+}
+.register_agreement{
+	text-align:center;
+}
+.register_agreement input{
+	width:15px;
+	height:15px;
+	position:relative;
+	top:3px;
+	cursor:pointer;
+}
+.register_agreement a{
+	color:#005AA0;
+}
+.register_submit{
+	text-align:center;
+	line-height:38px;
+}
+.register_btn{
+	width:272px;
+	height:38px;
+	background:#91E190;
+	font-size:16px;
+	font-weight:bold;
+	color:#fff;
+}

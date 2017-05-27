@@ -1,0 +1,43 @@
+#manage{
+	background: rgba(255,255,255,0.2);
+}
+#add-admin{
+	margin: 15px 0;
+}
+.section table{
+	width: 100%;
+	background: white;
+}
+.section , th{
+	text-align: center;
+}
+#add-user{
+	width: 600px;
+	background: #EEE8AB;
+	padding: 20px;
+	position: absolute;
+	display: none;
+	z-index: 3;
+}
+#revise{
+	width: 600px;
+	background: #D6E9C6;
+	padding: 20px;
+	position: absolute;
+	display: none;
+	z-index: 3;
+}
+#revise label,#revise input,#add-user label,#add-user input{
+	margin: 10px 0;
+}
+#revise .control,#add-user .control{
+	text-align: center;
+}
+#screen{
+	position: absolute;
+	background: #000;
+	opacity: 0.3;
+	z-index: 2;
+	display: none;
+	z-index: 2;
+}

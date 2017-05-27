@@ -1,0 +1,98 @@
+<script type="text/javascript">
+var SCOPE = {
+	'table' : 'ReviewOrg',
+	'delete_url' : '/admin/review_org/delete',
+	'jump_url' : '/admin/review_org',
+	'review_allow_url' : '/admin/review_org/review_allow',
+}
+	
+</script>
+
+<div class="row">
+	<div class="col-lg-12">
+		<h3 class="page-header"> <i class="fa fa-laptop"></i>
+			组织审核表
+		</h3>
+		<ol class="breadcrumb">
+			<li> <i class="fa fa-home"></i>
+				<a href="/admin/review_org/index">首页</a>
+			</li>
+			<li>
+				<i class="fa fa-laptop"></i>
+				组织审核表
+			</li>
+		</ol>
+	</div>
+
+</div>
+
+<div class="row">
+	<div class="col-lg-12">
+		<div class="panel panel-danger">
+			<div class="panel-heading">
+				<h2>
+					<i class="fa fa-table blue"></i>
+					<span class="break"></span>
+					<!-- <a class="btn btn-primary" href="/admin/review_org/add">
+						添加新的组织审核
+						<i class="fa fa-edit "></i>
+					</a> -->
+				</h2>
+				<div class="panel-actions">
+					<a href="javascript:void(0);" class="btn-setting" id="my_refresh" title="刷新">
+						<i class="fa fa-rotate-right"></i>
+					</a>
+					<a href="table.html#" class="btn-minimize" title="收起">
+						<i class="fa fa-chevron-up"></i>
+					</a>
+					<!-- <a href="table.html#" class="btn-close">
+					<i class="fa fa-times"></i>
+				</a>
+				-->
+			</div>
+		</div>
+		<div class="panel-body">
+			<table class="table table-striped table-bordered bootstrap-datatable datatable">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>用户ID</th>
+						<th>申请组织名</th>
+						<th>当前进度</th>
+						<th>首次申请时间</th>
+						<th>最近申请时间</th>
+						<th>最近审核时间</th>
+						<th>相关操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					{volist name="review_info" id="info" empty="暂时还没有申请记录...."}
+						<td>{$i}</td>
+						<td>{$info.user_id+config('IDENTITY_NUM')}</td>
+						<td>{$info.nickname}</td>
+						<td>
+							{switch name="$info.status"}
+							  	{case value="1"}<span class="label label-default">待审核</span>{/case}
+							  	{case value="2"}<span class="label label-default">待审核</span>&gt;&gt;
+							  	<span class="label label-success">通过</span>{/case}
+							  	{case value="3"}<span class="label label-default">待审核</span>&gt;&gt;
+							  	<span class="label label-danger">拒绝</span>{/case}
+							{/switch}
+						</td>
+						<td>{$info.create_time|getTempTime}</td>
+						<td>{$info.update_time|getTempTime}</td>
+						<td>{$info.operate_time|getTempTime}</td>
+						<td>
+							<button type="button" class="btn btn-primary btn-sm" name="{$info.user_id}" id="review_allow" value="2">通过</button>
+							<button type="button" class="btn btn-warning btn-sm" name="{$info.user_id}" id="review_deny" value="3">拒绝</button>
+						</td>
+					{/volist}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+<!--/col-->
+
+</div>
+<!--/row-->

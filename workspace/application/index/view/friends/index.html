@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="/static/home/css/个人-好友.css">
+    <link rel="stylesheet" type="text/css" href="/static/home/css/个人空间-头部.css">
+	<link rel="stylesheet" type="text/css" href="/static/home/css/个人空间-底部.css">
+	<script src="/static/home/js/移入变色.js"></script>
+	<script src="/static/admin/assets/js/jquery-2.1.1.min.js"></script>
+    <script src="/static/admin/layer/layer.js"></script>
+   	    <script type="text/javascript">
+   	    	window.onload=function ()
+   	    	{
+   	    		changecolor(5);
+   	    		var ofriend=document.getElementsByClassName("yitianjiadehaoyou")[0];
+   	    		var oworkspace=document.getElementsByClassName("yitianjiadedanwei")[0];
+   	    		var ofriend_kuang=document.getElementsByClassName("friend_kuang")[0];
+   	    		var odanwei_kuang=document.getElementsByClassName("danwei_kuang")[0];
+   	    		ofriend.onclick=function()
+   	    		{
+   	    			this.style.background="#8ccccb";
+   	    			oworkspace.style.background="#c5e5e4";
+   	    			ofriend_kuang.style.display="block";
+   	    			odanwei_kuang.style.display="none";
+   	    		}
+   	    		oworkspace.onclick=function()
+   	    		{
+   	    			this.style.background="#8ccccb";
+   	    			ofriend.style.background="#c5e5e4";
+   	    			ofriend_kuang.style.display="none";
+   	    			odanwei_kuang.style.display="block";
+   	    		}
+   	    	}
+   	    </script>
+   	    <script>
+   	    	var SCOPE = {
+   	    		'search_url' : '/index/friends/search',
+   	    		'jump_url' : '/index/friends/search',
+   	    	}
+   	    </script>
+</head>
+<body>
+
+
+            <div class="header">
+		     	<ul>
+		     		<li class="lif"></li>
+		     		<li><img src="/static/home/img/网站首页小图标.jpg"></li>
+		     		<li class="lis"></li>
+		     		<li>Welcome to Work Space</li>
+		     		<li class="li_right"><img src="/static/home/img/搜索.jpg" class="img"></li>
+		     		<li class="li_right"><input type="text"></li>
+		     	</ul>
+		     	<div class="beijintu">
+		     		<div class="daohanglan">
+		     			<table>
+		     				<tr>
+		     					<td class="tdff"></td>
+		     					<td class="tds point"><a href="/index/user">主页</a></td>
+		     					<td class="tdt point"><a href="/index/papers">手记</a></td>
+		     					<td class="tdf point"><a href="/index/assignment">任务</a></td>
+		     					<td class="tdfive point"><a href="/index/information">通知</a></td>
+		     					<td class="tdsix point">好友</td>
+		     					<td class="tdseven point"><a href="/index/user">...</a></td>
+		     					<td class="tdff"></td>
+		     				</tr>
+		     			</table>
+		     		</div>
+		     	</div>
+		     	</div>
+		     	<!-- <div class="headimg_content">
+		     		<div class="touxiang">
+		     			<img src="/static/home/img/访问个人主页个人头像.jpg">
+		     		</div>
+		     		<div class="jiesao">
+		     		  <div class="left">
+		     			<ul>
+		     				<li><a>爱的海洋</a></li>
+		     				<li  class="lif"></li>
+		     				<li><img src="/static/home/img/个人空间主页男标志.jpg" class="imgs"></li>
+		     			</ul>
+		     			<p>网薪：12点</p>
+		     		  </div>
+		     		  <div class="right">
+		     			<p>学校：中国矿业大学</p>
+		     			<p>年级：大二</p>
+		     			<p>职务：学生在线-前端组-干事</p>
+		     		  </div>
+		     		</div>
+		     	 </div> -->
+		   	
+        <div class="gerenlianxiye" id="divfive">
+		    <div class="shousuo">
+		    	<div class="inputkuang">
+		    	   <input type="text" id="my_search_input">
+		    	</div>
+		    	<div class="wenzi">
+		    		可在此处搜索你要联系的个人或单位（全站范围内）
+		    	</div>
+		    	<img src="/static/home/img/单位空间主页搜索图标.jpg" id="my_search_btn" >
+		    </div>
+		    <div class="yitianjiadehaoyou point">
+		    	已添加好友
+		    </div>
+		    <div class="yitianjiadedanwei point">
+		    	已添加单位
+		    </div>
+		    <div class="friend_kuang">
+		    	<div class="friend_left">
+		    		<div class="friend">
+		    			<div class="head_img point">
+		    				<img src="/static/home/img/访问个人主页个人头像.jpg">
+		    			</div>
+		    			<div class="friedn_content">
+		    				
+		    			</div>
+		    			<div class="type point">
+		    				添加好友
+		    			</div>
+
+		    		</div>
+		    	</div>
+		    	<div class="friend_right">
+		    		
+		    	</div>
+		    </div>
+		    <div class="danwei_kuang">
+		    	<div class="friend_left">
+		    		<div class="friend">
+		    			<div class="head_img point">
+		    				<img src="/static/home/img/访问个人主页个人头像.jpg">
+		    			</div>
+		    			<div class="friedn_content">
+		    				<p class="p_f">爱的海洋</p>
+		    				<p class="p_s">所属组织：前端组</p>
+		    				<p class="p_t">年级：大二</p>
+		    			</div>
+		    			<div class="type point">
+		    				添加单位
+		    			</div>
+		    		</div>
+		    		
+		    	</div>
+		    	<div class="friend_right">
+		    		
+		    		
+		    	</div>
+		    </div>
+	    </div>
+
+
+
+            <div class="weibian">
+                <ul>
+                   <li class="lif"></li>
+                   <li class="point">WorkSapce|@201<a class="a1">6</a></li>
+                   <li class="lis"></li>
+                   <li class="point">友情链接</li>
+                   <li class="lit"> </li>
+                   <li class="point">网站信息</li>
+                </ul>
+            </div>
+<script src="/static/home/js/common.js"></script>
+<script src="/static/admin/assets/js/jquery-2.1.1.min.js"></script>
+<script src="/static/admin/layer/layer.js"></script>            
+</body>
+</html>

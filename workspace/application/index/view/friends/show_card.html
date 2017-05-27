@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>fangwengerenzhuye</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="/static/home/css/访问个人主页.css">
+</head>
+<body>
+<script>
+  var SCOPE = {
+    'add_friends_url' : '/index/friends/addFriends',
+    'jump_url' : '/index/friends/',
+  }
+</script>
+<div class="main">   
+   
+     <div class="footer">
+       <div class="fanhuiwodezhuye">
+       <a href="/index/user" style="color:red;text-decoration:none;">	<strong>返回我的主页</strong></a>
+       </div>
+       <div class="gerenjiesao">
+          <div class="div1">
+          <img src="/static/home/img/访问个人主页顶图.jpg">
+          </div>
+          <div class="div2">
+          	<div class="div21"><img src="/static/home/img/访问个人主页个人头像.jpg"></div>
+          	<div class="div22"><p class="p1">{$user.nickname}</p><p class="p2"><strong>ID:{$user.id|getFackId=$user.type}</strong></p></div>
+          </div> 
+          <div class="div3">
+          	<p>学院:{$userinfo.academy}</p>
+          	<p>年级：{$userinfo.grade}</p>
+          	<p>现在职务：{$userinfo.organization}</p>
+          </div>
+       </div>
+       <div class="shengqingtianjia" id="my_friends_add_btn" name="{$user.id}">
+       	<div class="div1" ><strong >申请添加</strong></div>
+       	<div class="div11"><img src="/static/home/img/访问个人主页个人+.jpg"></div>
+       </div>
+       <div class="shixingliuyan">
+       	<div class="div2"><strong>私信留言</strong></div>
+        <div class="div22"><img src="/static/home/img/访问个人主页留言.jpg"></div>
+       </div>
+     </div>
+</div>
+<script src="/static/admin/assets/js/jquery-2.1.1.min.js"></script>
+<script src="/static/admin/layer/layer.js"></script>
+<script src="/static/home/js/common.js"></script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+#view{
+	background: rgba(255,255,255,0.2);
+}
+#content .section .count{
+	height: 40px;
+	line-height: 40px;
+	letter-spacing: 3px;
+	background: #333333;
+	color: white;
+	margin-top: 15px;
+}
+#content  .section , th{
+	text-align: center;
+}
+.section table{
+	width: 100%;
+	background: white;
+}
+.section .to-excel{
+	margin: 15px 0;
+}
+.section .choose{
+	width: 20px;
+	height: 20px;
+}
+.section a{
+	text-decoration: none;
+	color: black;
+}
+#resume {
+	position: absolute;
+	top:25%;
+	right: 10%;
+	width: 16%;
+	background: #BDB76A;
+	text-align: center;
+	display: none;
+	z-index: 1;
+}
+#resume  textarea{
+	font-size: 14px;
+	width: 100%;
+	height: 380px;
+	padding: 15px;
+}
+#resume h4{
+	cursor: move;
+}
+#close-resume{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+#screen{
+	position: absolute;
+	background: #000;
+	opacity: 0.3;
+	z-index: 2;
+	display: none;
+}
+#edit,#add-resume{
+	position: absolute;
+	display: none;
+	z-index: 3;
+	width: 500px;
+	padding: 10px;
+}
+#edit{
+	background: #D6E9C6;
+}
+#add-resume{
+	background: #EEE8AB;
+}
+#edit label,#edit input,#edit textarea,#add-resume label,#add-resume input,#add-resume textarea{
+	margin: 10px 0;
+}
+#edit textarea,#add-resume textarea{
+	height: 100px;
+}
+#edit .control,#add-resume .control{
+	text-align: center;
+}
+#edit .control input,#add-resume .control input{
+	margin: 10px 20px;
+}

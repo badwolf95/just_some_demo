@@ -1,0 +1,47 @@
+<?php 
+
+/**
+ * 文件大小转换
+ * @param  [type] $size [description]
+ * @return [type]       [description]
+ */
+function transByte($size){
+	
+	$type = array('B','KB','MB','GB','TB','PB');
+	$i = 0;
+	while($size>1024){
+		$size /= 1024;
+		$i++;
+	}
+	return round($size,2).$type[$i];
+}
+/**
+ * 创建文件
+ * @param  string $filename 
+ * @return string           
+ */
+function createFile($filename){
+	$pattern = "/[\/,*,<,>,?,\|]/";
+	if(!preg_match($pattern,basename($filename))){
+		if(!file_exists($filename)){
+			if(@touch($filename)){
+				$mes = "文件创建成功";
+			}else{
+				$mes = "文件创建失败，请输入正确的文件类型";
+			}
+		}else{
+			$mes = "文件名已存在，请重新命名";
+		}
+	}else{
+		$mes = "文件名不能包含非法字符如?:\/<>*等";
+	}
+	return $mes;
+}
+
+function alertMes($mes,$url){
+	echo "<script type='text/javascript'>alert('{$mes}');location.href='{$url}';</script>";
+
+}
+
+
+?>

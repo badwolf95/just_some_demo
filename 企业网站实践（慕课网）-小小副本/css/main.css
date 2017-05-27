@@ -1,0 +1,180 @@
+*{
+	margin:0;
+	padding:0;
+	list-style-type:none;
+	text-decoration:none;
+	color:black;
+	font-size:14px;
+	font-family:"微软雅黑";
+}
+body{
+	background:#e8e8e8;
+}
+/*************************logo定义*******************************/
+.head{
+	width:100%;
+	height:27px;
+	background:url(../img/top_bg.jpg) repeat-x;
+}
+.wrap{
+	width:1000px;
+	margin:0 auto;
+}
+.logo{
+	height:70px;
+	background:white;
+}
+.logo img{
+	float:left;
+}
+.logo li{
+	float:left;
+	width:100px;
+	height:70px;
+	margin:0 10px;
+	text-align:center;
+	line-height:70px;
+}
+.logo a{
+	font-size:22px;
+}
+
+.logo li:hover,.on{
+	background:#bd3847;
+}
+
+/*************************nav定义*******************************/
+.nav{
+	margin:5px 0;
+	height:310px;
+	overflow:hidden;
+}
+
+/*************************course定义*******************************/
+.course{
+	height:220px;
+	background:white;
+	margin:15px 0;
+}
+.course_title{
+	height:40px;
+	background:#3e3e3e;
+	margin-bottom:20px;
+}
+.course_title h2{
+	background:#bd3847;
+}
+.course_title h2,p{
+	font-size:16px;
+	line-height:40px;
+	color:white;
+	width:150px;
+	text-align:center;
+	float:left;
+	font-weight:normal;
+	margin-bottom:20px;
+}
+.course_list li{
+	width:33%;
+	height:160px;
+	float:left;
+	border:1px solid #e7e7e7;
+	text-align:center;
+	font-size:14px;
+}
+.course_list .make_margin{
+	margin:0 2px;
+}
+/*************************activities定义*******************************/
+.activities{
+	height:305px;
+	background:white;
+	margin-bottom:5px;
+}
+.news,.activity,.connect{
+	width:330px;
+	height:300px;
+	border:1px solid #e7e7e7;
+	float:left;
+}
+.activity{
+	margin:0 2px;
+}
+/*************************news定义*******************************/
+.news h2,.activity h2,.connect h2{
+	height:40px;
+	background:#bd3847;
+	font-size:16px;
+	color:white;
+	line-height:40px;
+	padding-left:20px;
+	margin-bottom:7.5px;
+	font-weight:normal;
+}
+.news_list{
+	width:93%;
+	margin:0 auto;
+	height:60px;
+	padding:10px 0px;
+	clear:both;
+	border-bottom:2px solid #e7e7e7;
+}
+.news_list span{
+	width:50px;
+	height:60px;
+	float:left;
+	color:white;
+	background:#bd3847;
+	line-height:30px;
+	text-align:center;
+	border-radius:5px;
+}
+.news_list h3{
+	text-indent:1em;
+}
+.news_list p{
+	font-size:12px;
+	color:black;
+	line-height:14px;
+	width:230px;
+	padding-left:1em;
+}
+/*************************activity定义*******************************/
+
+.activity img{
+	width:280px;
+	height:120px;
+	margin:0 auto;
+	display:block;
+	margin-top:25px;
+}
+.activity p{
+	width:280px;
+	line-height:0.8em;
+	color:black;
+	text-align:left;
+	margin:5px 25px;
+}
+/*************************connect定义*******************************/
+
+.connect p{
+	color:black;
+	line-height:1.4em;
+	width:75%;
+	text-align:left;
+	padding:0px 18px;
+	
+}
+/*************************copyRight定义*******************************/
+
+.copyRight{
+	width:100%;
+	height:60px;
+	background:#c7c7c7;
+	color:#8e8e8e;
+	text-align:center;
+}
+.copyRight p{
+	line-height:60px;
+	width:100%;
+}

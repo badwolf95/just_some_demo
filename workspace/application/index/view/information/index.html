@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="/static/home/css/个人-通知.css">
+	<link rel="stylesheet" type="text/css" href="/static/home/css/个人空间-头部.css">
+	<link rel="stylesheet" type="text/css" href="/static/home/css/个人空间-底部.css">
+	<script src="/static/home/js/个人通知.js"></script>
+	<script src="/static/home/js/imgmove.js"></script>
+	<script src="/static/home/js/move.js"></script>
+		<script src="/static/home/js/移入变色.js"></script>
+   	    <script type="text/javascript">
+   	    	window.onload=function ()
+   	    	{
+   	    		changecolor(4);
+   	    		var oclik=document.getElementsByClassName("answer");
+   	    		var omain=document.getElementsByClassName("main")[0];
+   	    		var oback=document.getElementsByClassName("back")[0];
+   	            var ocover=document.getElementsByClassName("bg_color")[0];
+   	    		var obelieve=document.getElementsByClassName("believe");
+   	    		var onote_content=document.getElementsByClassName("note_content");
+   	    		var n=0;
+   	     for(var i=0;i<onote_content.length;i++)
+   	     {
+
+   	     	   oclik[i].n=i;
+   	     	   oclik[i].onclick=function()
+   	    		{
+                      omain.style.display="block";
+                      ocover.style.display="block";
+                      omain.style.top=830+this.n*140+'px';
+   	    		}
+   	    		oback.onclick=function()
+   	    		{
+   	    			omain.style.display="none";
+   	    			ocover.style.display="none";
+   	    		}
+   	    		obelieve[i].onclick=function()
+   	    		{
+   	    			this.src="/static/home/img/已确认收到 .png";
+   	    		}
+                
+   	     }
+   	  
+   	 }
+   	    </script>
+	
+</head>
+<body>
+            <div class="header">
+		     	<ul>
+		     		<li class="lif"></li>
+		     		<li><img src="/static/home/img/网站首页小图标.jpg"></li>
+		     		<li class="lis"></li>
+		     		<li>Welcome to Work Space</li>
+		     		
+		     		<li class="li_right"><img src="/static/home/img/搜索.jpg" class="img"></li>
+		     		<li class="li_right"><input type="text"></li>
+		     	</ul>
+		     	<div class="beijintu">
+		     		<div class="daohanglan">
+		     			<table>
+		     				<tr>
+		     					<td class="tdff"></td>
+		     					<td class="tds point"><a href="/index/user">主页</a></td>
+		     					<td class="tdt point"><a href="/index/papers">手记</a></td>
+		     					<td class="tdf point"><a href="/index/assignment">任务</a></td>
+		     					<td class="tdfive point">通知</td>
+		     					<td class="tdsix point"><a href="/index/friends">好友</a></td>
+		     					<td class="tdseven point"><a href="/index/user">...</a></td>
+		     					<td class="tdff"></td>
+		     				</tr>
+		     			</table>
+		     		</div>
+		     	</div>
+		   	</div>
+		  
+                 <!-- <div class="headimg_content">
+		     		<div class="touxiang">
+		     			<img src="/static/home/img/访问个人主页个人头像.jpg">
+		     		</div>
+		     		<div class="jiesao">
+		     		  <div class="left">
+		     			<ul>
+		     				<li><a>爱的海洋</a></li>
+		     				<li  class="lif"></li>
+		     				<li><img src="/static/home/img/个人空间主页男标志.jpg" class="imgs"></li>
+		     			</ul>
+		     			<p>网薪：12点</p>
+		     		  </div>
+		     		  <div class="right">
+		     			<p>学校：中国矿业大学</p>
+		     			<p>年级：大二</p>
+		     			<p>职务：学生在线-前端组-干事</p>
+		     		  </div>
+		     		</div>
+		     	 </div> -->
+       	<div class="gerentongzhiye" id="divfour">
+		    <div class="lishishoujihetianjiashouji">
+		     	   <div class="lishishouji point">
+		     	   历史通知
+		     	   </div>
+		     	   <div class="tianjiashouji">
+		     	     	<a class="the-notice point click_a">回复信息</a>
+		           </div>
+		    </div>
+		        <div class="main">
+                    <div class="left">
+                    </div>
+                    <div class="right">
+                    </div>
+                    <input type="text" value="标题">
+                    <div class="textarea">
+                       <textarea>请输入您要发布的内容：</textarea>
+                    </div>
+                <div class="tianjiatupian point">
+                  <img src="/static/home/img/编辑窗口添加图片.jpg">
+                  <p>添加图片</p>
+                </div>
+                <div class="tebietixing point">
+                  <img src="/static/home/img/编辑窗口特别提醒.jpg">
+                  <p>特别提醒</p>
+                </div>
+                <div class="dingshifasong point">
+                   <img src="/static/home/img/编辑窗口特定时发送.jpg">
+                   <p>定时发送</p>
+               </div>
+               <div class="shifoufankui point">
+                   <img src="/static/home/img/编辑窗口（方块）.jpg">
+                   <p>是否反馈</p>
+               </div>
+               <div class="querenfasong point">
+                   <img src="/static/home/img/编辑窗口确认发送.jpg">
+                   <p>确认发送</p>
+               </div>
+               <div class="baocunweicaogao point">
+                   <img src="/static/home/img/编辑窗口（保存）.jpg" class="baocun">
+                   <p>保存为草稿</p>
+               </div>
+               <div class="fujiagongneng">
+                 <img src="/static/home/img/编辑窗口（附加功能）.jpg">
+      
+               </div>
+               <div class="fujiagongnengwenzi point">
+                附加功能
+               </div>
+                <div class="qingjiatiaoban point four_words">
+                请假调班
+                </div>
+                <div class="jianyiyijian point four_words">
+                建议意见
+                </div>
+                <div class="yuanyishenqing point four_words">
+                愿意申请
+                </div>
+                <div class="jiaoliuzixun point four_words">
+                交流咨询
+                </div>
+               <div class="yingyubiaoyu">
+                 Where we work,where we are together!
+               </div>
+               <div class="back point">
+               	   返回
+               </div>
+             </div>
+		    <div class="tongzhileirong">
+		    	<div class="quanyuantongzhi">全员通知</div>
+		    	<div class="xiangxileirong">详细内容</div>
+		    	<div class="zhixianzuo"></div><!--红线部分-->
+		    	<div class="zhixianyouyi"></div>
+		    	<div class="zhixianyouer"></div>
+		    	<div class="zuodaozhijiao">
+		    		<div class="cover">
+		    			<div class="line"></div>
+		            	</div>
+		    		</div>
+		    	<div class="youdaozhijiao">
+		    		<div class="cover">
+		    			
+		    		</div>
+		    	</div>
+		    	<!--<div class="shuzhixian"></div>//红线部分-->
+		    	<div class="jutitongzhineirong">
+		    	    <div class="note_content">
+		    		  <div class="shijian">
+		    		  	<p class="p1">2016</p>
+		    		  	<p>7.24</p>
+		    		  </div>
+		    	      <div class="hongdian">
+		    		       
+		    	      </div>
+		    	      <div class="tongzhineirongjianjie">
+		    	      	全员签六月工资
+		    	      </div>
+		    	      <div class="fangkuang">
+		    		    <p>此处是通知消息此处是通知消息此处是通知消息此处是通知消息此处是通知消息此处是通知消息此处是通知消息此处是通知消息此处是通知消息此处是通知消息此处是通知消息此处是通知消息此处是通知消息此处是通知消息此处是通知消息此处是通知消息此处是通知消息此处是通知消息此处是通知消息</p>
+
+		    		
+		    	      </div>
+		    	      <img src="/static/home/img/确认收到.png" class="believe point">
+		    	      <img src="/static/home/img/回复信息.png" class="answer point">
+		    	  </div>
+		    	  <div class="note_content">
+		    		  <div class="shijian">
+		    		  	<p class="p1">2016</p>
+		    		  	<p>7.20</p>
+		    		  </div>
+		    	      <div class="hongdian">
+		    		       
+		    	      </div>
+		    	      <div class="tongzhineirongjianjie">
+		    	      	运营组值班
+		    	      </div>
+		    	      <div class="fangkuang">
+		    		    <p>此处是通知消息此处是通知消息此处是通知消息此处是通知消息此处是通知消息此处是通知消息此处是通知消息此处是通知消息此处是通知消息此处是通知消息此处是通知消息此处是通知消息此处是通知消息此处是通知消息此处是通知消息此处是通知消息此处是通知消息此处是通知消息此处是通知消息</p>
+
+		    	      </div>
+		    	      <img src="/static/home/img/确认收到.png" class="believe point">
+		    	      <img src="/static/home/img/回复信息.png" class="answer point">
+		    	  </div>
+		    	  <div class="note_content">
+		    		  <div class="shijian">
+		    		  	<p class="p1">2016</p>
+		    		  	<p>7.20</p>
+		    		  </div>
+		    	      <div class="hongdian">
+		    		       
+		    	      </div>
+		    	      <div class="tongzhineirongjianjie">
+		    	      	运营组值班
+		    	      </div>
+		    	      <div class="fangkuang">
+		    		    <p>此处是通知消息此处是通知消息此处是通知消息此处是通知消息此处是通知消息此处是通知消息此处是通知消息此处是通知消息此处是通知消息此处是通知消息此处是通知消息此处是通知消息此处是通知消息此处是通知消息此处是通知消息此处是通知消息此处是通知消息此处是通知消息此处是通知消息</p>
+
+		    		 
+		    	      </div>
+		    	      <img src="/static/home/img/确认收到.png" class="believe point">
+		    	      <img src="/static/home/img/回复信息.png" class="answer point">
+		    	  </div>
+		        </div>
+		    </div>
+             <div class="tontzhiyefooter">
+             	<div class="zuobian" >
+             		<img src="/static/home/img/个人空间主页左边.jpg" id="left_img">
+             	</div>
+             	<div class="tupianzhan">
+             		<div class="tupian" id="tupiansecond">
+             			<img src="/static/home/img/访问个人主页个人头像.jpg">
+             			<img src="/static/home/img/访问个人主页个人头像.jpg">
+             			<img src="/static/home/img/访问个人主页个人头像.jpg">
+             			<img src="/static/home/img/访问个人主页个人头像.jpg">
+             			<img src="/static/home/img/访问个人主页个人头像.jpg">
+             			<img src="/static/home/img/访问个人主页个人头像.jpg">
+             			<img src="/static/home/img/访问个人主页个人头像.jpg">
+             			<img src="/static/home/img/访问个人主页个人头像.jpg">
+             			<img src="/static/home/img/访问个人主页个人头像.jpg">
+             			<img src="/static/home/img/访问个人主页个人头像.jpg">
+             			<img src="/static/home/img/访问个人主页个人头像.jpg">
+             			<img src="/static/home/img/访问个人主页个人头像.jpg">
+             		</div>
+
+             	</div>
+             	<div class="youbian">
+             		<img src="/static/home/img/个人空间主页右边.jpg" id="right_img">
+             	</div>
+             </div>
+
+	    </div>
+	    <div class="weibian">
+            <ul>
+             <li class="lif"></li>
+             <li class="point">WorkSapce|@201<a class="a1">6</a></li>
+             <li class="lis"></li>
+             <li class="point">友情链接</li>
+             <li class="lit"> </li>
+             <li class="point">网站信息</li>
+            </ul>
+        </div>
+
+        <div class="bg_color">
+        </div>
+
+</body>
+</html>

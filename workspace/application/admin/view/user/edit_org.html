@@ -1,0 +1,101 @@
+
+<script type="text/javascript">
+
+var SCOPE = {
+	'submit_url' : '/admin/user/edit/type/2',
+	'jump_url' : '/admin/user/index/type/2',
+}
+</script>
+<div class="row">
+	<div class="col-lg-12">
+		<h3 class="page-header"> <i class="fa fa-laptop"></i>
+			编辑组织信息
+		</h3>
+		<ol class="breadcrumb">
+			<li> <i class="fa fa-home"></i>
+				<a href="/admin/user/index/type/2">首页</a>
+			</li>
+			<li>
+				<i class="fa fa-laptop"></i>
+				编辑组织信息
+			</li>
+		</ol>
+	</div>
+
+</div>
+
+<div class="row">
+	<div class="col-lg-2"></div>
+	<div class="col-lg-8">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h2>
+					<i class="fa fa-indent red"></i> <strong>编辑组织信息</strong>
+				</h2>
+			</div>
+			<div class="panel-body">
+				<form action="" method="post" id="my_form">
+					<input type="hidden" id="inline-radio1" name="user_id" value="{$user.id}">
+					<div class="form-group">
+						<label for="nf-email">Email</label>
+						<input type="text" id="disabled-input" name="disabled-input" disabled class="form-control"   value="{$user.email}"></div>
+					 <div class="form-group">
+					<label for="nf-password">Type</label>&nbsp;&nbsp;&nbsp;&nbsp;
+					<label class="radio-inline" for="inline-radio1">
+						<input type="radio" id="inline-radio1" name="type" value="1"{$user['type'] == 1?"checked":""}>普通用户</label>
+					<label class="radio-inline" for="inline-radio2">
+						<input type="radio" id="inline-radio2" name="type" value="2" {$user['type'] == 2?"checked":""}>企业用户</label>
+				</div>
+				
+				<div class="form-group">
+					<label for="nf-password">phone</label>
+					<input type="text" id="nf-text" name="phone" class="form-control"  value="{$user_info['phone']}">
+					<span class="help-block">Please enter your text</span>
+				</div>
+
+				<hr>
+				<div class="form-group">
+					<label for="nf-password">school</label>
+					<input type="text" id="nf-text" name="school" class="form-control"  value="{$user_info['school']}">
+					<span class="help-block">Please enter your text</span>
+				</div>
+				<div class="form-group">
+					<label for="nf-password">academy</label>
+					<input type="text" id="nf-text" name="academy" class="form-control"  value="{$user_info['academy']}">
+					<span class="help-block">Please enter your text</span>
+				</div>
+
+				<div class="form-group">
+					<label for="nf-password">grade</label>
+					<input type="text" id="nf-text" name="grade" class="form-control"  value="{$user_info['grade']}">
+					<span class="help-block">Please enter your text</span>
+				</div>
+				<div class="form-group">
+					<label for="nf-password">organization</label>
+					<input type="text" id="nf-text" name="organization" class="form-control"  value="{$user_info['organization']}">
+					<span class="help-block">Please enter your text</span>
+				</div>
+				<div class="form-group">
+					<label for="nf-password">power</label>
+					<input type="text" id="nf-text" name="organization" class="form-control"  value="{$user_info['power']}" disabled>
+					<span class="help-block">Please enter your text</span>
+				</div>
+
+				<button type="button" class="btn btn-sm btn-success" id="my_submit">
+					<i class="fa fa-dot-circle-o"></i>
+					Submit
+				</button>
+				<button type="reset" class="btn btn-sm btn-danger" value="reset">
+					<i class="fa fa-ban"></i>
+					Reset
+				</button>
+			</form>
+		</div>
+	</div>
+</div>
+</div>
+</div>
+<!--/col-->
+
+</div>
+<!--/row-->

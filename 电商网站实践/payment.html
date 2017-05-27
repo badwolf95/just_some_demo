@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta equiv-http="Content-Type" content="text/html;charset=utf-8"/>
+	<title>产品筛选页</title>
+	<link rel="stylesheet" type="text/css" href="css/reset.css"/>
+	<link rel="stylesheet" type="text/css" href="css/main.css" />
+	<link rel="stylesheet" type="text/css" href="css/payment.css" />
+
+</head>
+<body>
+<div class="head">
+	<div class="title">
+		<div class="wrap">
+			<h2>收藏慕课</h2>
+			<div class="title_right">
+				<span>欢迎来到慕课网！</span>
+				<span>[登陆]</span>
+				<span>[注册]</span>
+			</div>
+		</div><!--wrap结束-->
+	</div><!--title结束-->
+	<div class="logo">
+		<div class="wrap">
+			<a href="index.html"><img src="img/home/1_06.png" alt="imooc" title="imooc" /></a>
+			<div class="progress">
+				<img src="img/payment/123.gif" alt="progress" />
+				<br />
+				<span class="go_left">我的购物车</span>
+				<span>填写核对订单</span>
+				<em>订单提交成功</em>
+			</div>
+		</div>
+	</div><!--logo结束-->
+</div>
+<div class="wrap">
+	<div class="receiving comStyle">
+		<div class="headline">收货信息</div><!--headline-->
+		<form action="#" method="post">
+			<ul class="receiving_info">
+				<li><span class="sm_title">选择地区：</span><span class="address">北京市 海淀区 五环内</span></li>
+				<li><span class="sm_title">详细地址：</span><input type="text" value="最多输入26个汉字" class="detail"/></li>
+				<li><span class="sm_title">收&nbsp;&nbsp;货&nbsp;&nbsp;人：</span><input type="text" value="最多10个汉字"  /></li>
+				<li><span class="sm_title">手&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;机：</span><input type="text" value="如13212345678"  />&nbsp;&nbsp; <span>或固定电话：</span>
+					<input type="text" value="区号" />-
+					<input type="text" value="电话号码" />-
+					<input type="text" value="分机号（可选）" />
+				</li>
+			</ul>
+			<input type="submit" value="确认收货地址"  class="rec_submit"/>
+		</form>
+	</div><!--receiving-->
+
+	<div class="pay_method comStyle">
+		<div class="headline">支付方式</div><!--headline-->
+		<form action="#" method="post">
+			<ul class="pay_choice">
+				<li><input type="radio" /><span>微信支付</span><i></i>用微信扫一扫就能支付</li>
+				<li><input type="radio" /><span>货到付款</span>送货上门后再付款，使用现金或刷银行卡</li>
+			</ul>
+		</form>
+	</div><!--pay_method-->
+
+
+	<div class="bill comStyle">
+		<div class="headline">发票信息</div><!--headline-->
+		<form action="#" method="post">
+			<input type="checkbox"  class="checkbox1"/><span>需要发票</span>
+			<ul class="receiving_info">
+				<li><span class="sm_title">发票类型：</span>
+					<select>
+						<option value="type2">商业零售发票</option>
+					</select>
+				</li>
+				<li>
+					<span class="sm_title">发票抬头：</span>
+					<select>
+						<option value="type1">个人</option>
+					</select>
+					<input type="text" value="阿斯顿"  />
+				</li>
+			</ul>
+
+			<input type="submit" value="保存"  class="reserve"/>
+			<input type="submit" value="取消"  class="cancle"/>
+		</form>
+	</div><!--bill-->
+
+	<div class="goods comStyle">
+		<div class="headline">送货清单<a href="#">返回购物车修改</a></div><!--headline-->
+		<div class="goods_dt bd_bottom">
+			<span class="dt_title">商品名称</span>
+			<span>单价</span>
+			<span>返现</span>
+			<span>数量</span>
+			<span>小计</span>
+		</div>
+		<div class="goods_info bd_bottom">
+			<img src="img/payment/bargain1.gif" alt="bargain" />
+			<div class="goods_all">
+				<div class="goods_dt">
+					<span class="dt_title">
+						海信海信海信海信海信海信海信海信海信海信海信海信海信海信海信海信海信海信海信海信海信海信海信海信海信海信海信海信海信海信海信海信海信海信海信海信海信海信海信海信海信海信海信海信海信海信海信海信
+					</span>
+					<span>$890.00</span>
+					<span>$0.00</span>
+					<span>1</span>
+					<span class="money">$890.00</span>
+				</div>
+				<div class="goods_dt hr_18">
+					<span class="dt_title">
+						【赠品】小米手表小米手表小米手表小米手表小米手表小米手表小米手表小米手表小米手表小米手表小米手表小米手表小米手表小米手表小米手表小米手表小米手表小米手表小米手表小米手表小米手表小米手表小米手表小
+
+					</span>
+					<span>0</span>
+					<span>0</span>
+					<span>1</span>
+					<span>0</span>
+				</div>
+			</div>
+		</div>
+		<div class="goods_failure">
+			<p class="leave_message">若您对包裹有特殊要求，请在此留言</p>
+			<p class="attention_failure">抱歉：以下商品不能购买，已帮您自动在本次结算中剔除并扣除相应金额，您可先购买其他商品：）</p>
+			<div class="failure_detail">
+				<img src="img/payment/bargain2.gif" alt="bargain"/>
+				<div class="hr_10"></div>
+				<div class="margin_left">
+					<p>清风清风清清风清风清清风清风清清风清风清清风清清风清风清清风清风清清风清风清</p>
+					<p>数量：1件</p>
+					<p>$4.00<span>(无货)</span></p>
+				</div>
+			</div>
+		</div>
+		<div class="bd_bottom"></div>
+	</div><!--goods-->
+
+	<div class="submit_all comStyle">
+		<div class="headline">订单结算</div><!--headline-->
+		<form action="#" method="post" class="get_info">
+			<span>总计:</span><strong>$888.88</strong>
+			<br />
+			<input type="submit"  value="提交订单"/>
+		</form>
+	</div><!--submit_all-->
+	
+
+</div><!--wrap结束-->
+<div class="footer">
+	<p><a href="#">&nbsp;慕课简介&nbsp;</a>|<a href="#">&nbsp;慕课公告&nbsp;</a>|<a href="#">&nbsp;招贤纳士&nbsp;</a>|<a href="#">&nbsp;联系我们&nbsp;</a>|<a href="#">&nbsp;客服热线</a>：400-675-1234</p>
+	<p>Copyright &copy; 2006 - 2014 &nbsp;&nbsp;慕课版权所有  &nbsp;&nbsp;京ICP备09117834号&nbsp;&nbsp; 京ICP证B1034-8373号&nbsp;&nbsp; 某市公安局XX分局备案编号:123456789123</p>
+	<img src="img/home/1_52.png" alt="可信网站查询"  />
+</div><!--footer结束-->
+</body>
+</html>
