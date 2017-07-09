@@ -40,6 +40,11 @@ function sendTempMessage($touser,$template_id,$page,$form_id,$data='',$emphasis_
 	return http_post($url,$mes);
 }
 
+// 计算退款金额
+function getRefundAmount($amount){
+    return $amount<100?:ceil($amount*0.99);
+}
+
 
 // 获取格式化结束剩余时间
 function getEndRestTime($time){
@@ -51,12 +56,27 @@ function getEndRestTime($time){
 }
 
 // 格式化时间
-function getFormatTime($time){
+function getFormatTime($time)
+{
 	return date('Y年m月d日 H:i',$time);
 }
 
+// 获取发布的服务或求助的状态
+function getPostStatus($status)
+{
+    switch($status){
+        case 1:
+            return '审核通过';
+        case 2:
+            return '审核中';
+        default:
+            return '状态异常';
+    }
+}
+
 // 订单状态映射
-function getDealStatus($status){
+function getDealStatus($status)
+{
 	switch($status) {
 		case 1:
 			return '已完成';
@@ -80,7 +100,8 @@ function getDealStatus($status){
 }
 
 // 微信支付签名算法
-function getSign($data){
+function getSign($data)
+{
 	// 第一步：对参数按照key=value的格式，并按照参数名ASCII字典序排序
 	ksort($data);
 	$stringA = [];
@@ -99,23 +120,26 @@ function getSign($data){
 }
 
 // 生成退款单号
-function getRefundNumber(){
+function getRefundNumber()
+{
 	return "rf".date("YmdHis").rand(100,999).rand(100,999);
 }
 
 // 生成订单号
-function getOrderNumber(){
+function getOrderNumber()
+{
 	return date("YmdHis").rand(100,999).rand(100,999);
 }
 
 // 生成随机字符串
 function getRandomString()
 {
-	return addMd5(rand());
+	return addMd5(rand().time());
 }
 
 // 对客户端统一返回格式
-function result($status,$data=[]){
+function result($status,$data=[])
+{
 	header('Content-type:text/html;charset=utf-8');
 	$show = [
 		'status' => $status,

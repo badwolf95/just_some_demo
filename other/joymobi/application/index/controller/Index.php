@@ -9,6 +9,220 @@ class Index extends Controller
         return $this->fetch();
     }
 
+    /**
+     * 发送反馈内容
+     */
+    public function postFeedback()
+    {
+        // 1、校验数据
+        $p = input('post.');
+        $user = db('users')->where('session',$p['session'])->find();
+        if(!$user){
+            return result(0,'用户不存在');
+        }
+        // 2、意见数据入库
+        $images = implode(',',$p['images']);
+        $insert = [
+            'user_id'  =>  $user['id'],
+            'content'   =>  $p['content'],
+            'images'    =>  $images,
+            'create_time'   =>  time()
+        ];
+        $res = db('feedback')->insert($insert);
+        return result(1,'反馈成功');
+    }
+
+    /**
+     * 获取我的收藏列表
+     */
+    public function getMyCollectedList()
+    {
+        // 1、校验数据
+        $p = input('post.');
+        $user = db('users')->where('session',$p['session'])->find();
+        if(!$user){
+            return result(0,'用户不存在');
+        }
+        // 2、收藏列表
+        $res = db('collected')
+            ->alias('c')
+            ->where('c.user_id',$user['id'])
+            ->join('service s','c.service_id=s.id')
+            ->join('type_unit tu','s.unit_id=tu.id')
+            ->field('c.create_time,s.id,s.status,s.title,s.images,s.price,tu.name as unit_name')
+            ->order('c.id desc')
+            ->select();
+        foreach($res as $k=>$v){
+            if($res[$k]['status']==0){
+                unset($res[$k]);
+            }else{
+                $images = explode(',',$res[$k]['images']);
+                $res[$k]['images'] = $images[0]??'';
+                $res[$k]['create_time'] = date('Y-m-d',$res[$k]['create_time']);
+            }
+        }
+
+        return result(1,$res);
+    }
+
+
+    /**
+     * 评论列表
+     */
+    public function getMyCommentList()
+    {
+        // 1、校验数据
+        $p = input('post.');
+        $user = db('users')->where('session',$p['session'])->find();
+        if(!$user){
+            return result(0,'用户不存在');
+        }
+
+        // 2、获取我发表的
+        $where = [
+            'c.user_id'   =>  $user['id'],
+            'c.status'    =>  1
+        ];
+        $from_me = db('comment')
+            ->alias('c')
+            ->where($where)
+            ->join('service s','c.service_id = s.id')
+            ->join('users u','c.to_id=u.id')
+            ->field('u.nickname,u.avatar_url,
+                          s.title,c.deal_id,c.create_time,c.score,c.content,c.images')
+            ->order('c.id desc')
+            ->select();
+        // 加工数据
+        foreach($from_me as $k=>$v){
+            // 图片字符串转成数组
+            $images = explode(',',$from_me[$k]['images']);
+            if(empty($images[0])){
+                $images = [];
+            }
+            $from_me[$k]['images'] = $images;
+            // 创建日期
+            $from_me[$k]['create_time'] = date('Y-m-d',$from_me[$k]['create_time']);
+        }
+
+        // 3、获取我收到的
+        $where = [
+            'c.to_id'   =>  $user['id'],
+            'c.status'    =>  1
+        ];
+        $to_me = db('comment')
+            ->alias('c')
+            ->where($where)
+            ->join('service s','c.service_id = s.id')
+            ->join('users u','c.user_id=u.id')
+            ->field('u.nickname,u.avatar_url,
+                          s.title,c.deal_id,c.create_time,c.score,c.content,c.images,c.anonymous')
+            ->order('c.id desc')
+            ->select();
+        // 加工数据
+        foreach($to_me as $k=>$v){
+            // 匿名则不显示用户名
+            if($to_me[$k]['anonymous']==1){
+                $to_me[$k]['nickname'] = '';
+            }
+            // 图片字符串转成数组
+            $images = explode(',',$to_me[$k]['images']);
+            if(empty($images[0])){
+                $images = [];
+            }
+            $to_me[$k]['images'] = $images;
+            // 创建日期
+            $to_me[$k]['create_time'] = date('Y-m-d',$to_me[$k]['create_time']);
+        }
+        // 4、返回最后结果
+        $res['from_me'] = $from_me;
+        $res['count_from'] = count($from_me);
+        $res['to_me']   = $to_me;
+        $res['count_to'] = count($to_me);
+        return result(1,$res);
+    }
+
+    /**
+     * 通过ID删除已发布的服务或求助
+     */
+    public function confirmDeletePostById()
+    {
+        // 1、校验数据
+        $p = input('post.');
+        $user = db('users')->where('session',$p['session'])->find();
+        if(!$user){
+            return result(0,'用户不存在');
+        }
+        $where = [
+            'id'        =>  $p['id'],
+            'user_id'   =>  $user['id'],
+        ];
+        $post = db('service')->where($where)->find();
+        if(!$post){
+            return result(0,'订单不存在');
+        }
+        $update = ['status'=>0];
+        $res = db('service')->where('id',$p['id'])->update($update);
+        return $res?result(1,'删除成功'):result(0,'删除失败');
+    }
+
+    /**
+     * 获取我得发布列表
+     */
+    public function getMyPostList()
+    {
+        // 1、校验数据
+        $p = input('post.');
+        $user = db('users')->where('session',$p['session'])->find();
+        if(!$user){
+            return result(0,'用户不存在');
+        }
+        // 2、分别获取我发布的服务和求助列表
+        // 首先获取服务
+        $where = [
+            'user_id'   =>  $user['id'],
+            'type'      =>  1,
+            'status'    =>  1,
+        ];
+        $service = db('service')
+            ->alias('s')
+            ->where($where)
+            ->join('type_unit tu','s.unit_id=tu.id')
+            ->field('s.id,status,title,images,price,tu.name as unit_name')
+            ->order('s.id desc')
+            ->select();
+        foreach($service as $k=>$v){
+            $images = explode(',',$service[$k]['images']);
+            $service[$k]['images'] = $images[0]??'';
+            $service[$k]['status_mes'] = getPostStatus($service[$k]['status']);
+        }
+        // 其次获取求助
+        $where = [
+            'user_id'   =>  $user['id'],
+            'type'      =>  2,
+            'status'    =>  1,
+        ];
+        $appeal = db('service')
+            ->where($where)
+            ->field('id,status,title,images,price')
+            ->order('id desc')
+            ->select();
+        foreach($appeal as $k=>$v) {
+            $images = explode(',', $appeal[$k]['images']);
+            $appeal[$k]['images'] = $images[0]??'';
+            $appeal[$k]['status_mes'] = getPostStatus($appeal[$k]['status']);
+
+        }
+        // 3、返回获取的结果
+        $res = [
+            'service'   =>  $service,
+            'appeal'    =>  $appeal
+        ];
+        return result(1,$res);
+    }
+
+
+
+
 	/**
 	 * 通过确认服务，获取新的formId
 	 * 更新service表中的相应服务的form_id
@@ -16,11 +230,13 @@ class Index extends Controller
 	 */
 	public function updateOrderFormId()
 	{
+	    // 1、校验数据
 		$p = input('post.');
 		$user = db('users')->where('session',$p['session'])->find();
 		if(!$user){
 			return result(0,'用户不存在');
 		}
+		// 2、更新数据
 		$where = ['id'=> $p['service_id']];
 		$update = [
 			'form_id'	=>	$p['form_id'],
@@ -43,9 +259,11 @@ class Index extends Controller
 		if(!$user){
 			return result(0,'用户不存在');
 		}
+		$type = $p['type'];
 		// 1、获取 我购买的
 		$where = [
-			'appeal_user_id'	=>	$user['id']
+			'appeal_user_id'	=>	$user['id'],
+            'type'              =>  $type
 		];
 		$buyOrder = db('deal_service')
 				->alias('ds')
@@ -81,7 +299,8 @@ class Index extends Controller
 
 		// 2、获取 我出售的
 		$where = [
-			'service_user_id'	=>	$user['id']
+			'service_user_id'	=>	$user['id'],
+            'type'              =>  $type
 		];
 		$saleOrder = db('deal_service')
 				->alias('ds')
@@ -118,7 +337,8 @@ class Index extends Controller
 		// 3、获取 formid已经失效的服务
 		$where = [
 			'user_id'	=>	$user['id'],
-			'form_id_valid'	=>	0
+			'form_id_valid'	=>	0,
+            'type'      =>  $type
 		];
 		$order = db('service')->where($where)->field('id,title')->select();
 		foreach($order as $k=>$v){
@@ -176,7 +396,7 @@ class Index extends Controller
     /**
      * 用户登陆
      * 获取用户信息，然后向微信发起请求获取用户的session_key和openid
-     * 更新用户表数据
+     * 更新用户表数据（如果是新用户则新增到评分表）
      * 新建session发给用户作为标识
      * @return string 用户标识
      */
@@ -222,6 +442,16 @@ class Index extends Controller
 			// 写入数据库
             $update['openid'] = $res->openid;
 	    	$flag = $users->data($update)->save();
+	    	// 新增到评分表中
+            $data = [
+                'user_id'   =>  $users->id,
+                'overall'   =>  5.0,
+                'average'   =>  5.0,
+                'count'     =>  1,
+                'create_time'   => time(),
+                'update_time'   =>  time()
+            ];
+            $res_sc = db('score')->insert($data);
 		}    	
     	$out = [
     		'session' => session('user'),
@@ -238,8 +468,4 @@ class Index extends Controller
         $user = model('Users')->where('session',$post['session'])->find();
         return $user?result(1):result(0);
     }
-
-
-
-
 }

@@ -16,7 +16,7 @@ class Service extends Controller
 	public function sendTempMessage_RejectTakingOrder($openid,$form_id)
 	{
 		$touser = $openid;
-		$template_id = 'u_Eqp-J1uKqs_6O57O3cIxAztGYjWZ-zx1fC8UyM1to';
+		$template_id = 'cgrNlMgfUlTFjZ3JyIcuxUyhVb8YOPxWdeV0puScpqM';
 		$page	= '/pages/index/index';
 		$form_id = $form_id;
 		$data = [
@@ -37,7 +37,7 @@ class Service extends Controller
 	public function sendTempMessage_OnGoing($openid,$form_id)
 	{
 		$touser = $openid;
-		$template_id = 'u_Eqp-J1uKqs_6O57O3cIxAztGYjWZ-zx1fC8UyM1to';
+		$template_id = 'cgrNlMgfUlTFjZ3JyIcuxUyhVb8YOPxWdeV0puScpqM';
 		$page	= '/pages/index/index';
 		$form_id = $form_id;
 		$data = [
@@ -58,7 +58,7 @@ class Service extends Controller
 	public function sendTempMessage_WaitForTaking($openid,$form_id)
 	{
 		$touser = $openid;
-		$template_id = 'u_Eqp-J1uKqs_6O57O3cIxAztGYjWZ-zx1fC8UyM1to';
+		$template_id = 'cgrNlMgfUlTFjZ3JyIcuxUyhVb8YOPxWdeV0puScpqM';
 		$page	= '/pages/index/index';
 		$form_id = $form_id;
 		$data = [
@@ -71,7 +71,115 @@ class Service extends Controller
 		return $res;
 	}
 
+    /**
+     * 收藏功能
+     */
+    public function collectService()
+    {
+        // 1、校验数据
+        $p = input('post.');
+        $user = db('users')->where('session',$p['session'])->find();
+        if(!$user){
+            return result(0,'用户不存在');
+        }
+        // 2、查找看有无记录，有则删除，无则添加
+        $where = [
+            'user_id'   =>  $user['id'],
+            'service_id'    =>  $p['service_id']
+        ];
+        $res = db('collected')->where($where)->find();
+        if($res){
+            $r = db('collected')->delete($res['id']);
+        }else{
+            $insert = [
+                'user_id'   =>  $user['id'],
+                'service_id'    =>  $p['service_id'],
+                'create_time'   =>  time()
+            ];
+            $r = db('collected')->insert($insert);
+        }
+        return $r?result(1,'操作成功'):result(0,'操作失败');
+    }
 
+
+    /**
+     * 对订单发表评论
+     */
+    public function confirmMakeComment()
+    {
+        // 1、校验数据
+        $p = input('post.');
+        $user = db('users')->where('session',$p['session'])->find();
+        if(!$user){
+            return result(0,'用户不存在');
+        }
+        $deal = db('deal_service')->where('id',$p['deal_id'])->find();
+        if($deal['service_user_id'] == $user['id']){
+            // to_id用来插入评论表
+            $to_id = $deal['appeal_user_id'];
+            // update用来更新订单表评论状态
+            $update['comment_service'] = 1;
+        }else if($deal['appeal_user_id'] == $user['id']){
+            $to_id = $deal['service_user_id'];
+            $update['comment_appeal'] = 1;
+        }else{
+            return result(0,'非法操作');
+        }
+        // 2、评论表数据准备
+        $images = implode(',',$p['images']);
+        $insert = [
+            'deal_id'       =>  $deal['id'],
+            'service_id'    =>  $deal['service_id'],
+            'user_id'       =>  $user['id'],
+            'to_id'         =>  $to_id,
+            'content'       =>  $p['content'],
+            'score'         =>  $p['score'],
+            'images'        =>  $images,
+            'anonymous'     =>  $p['anonymous'],
+            'create_time'   =>  time(),
+            'update_time'   =>  time()
+        ];
+        // 插入评论表
+        $res = db('comment')->insert($insert);
+        if(!$res){
+            return result(0,'数据插入失败');
+        }else{
+            // 订单表评论状态更新
+            $res_ds = db('deal_service')->where('id',$p['deal_id'])->update($update);
+            // 评分表数据插入或更新
+            $score_u = db('score')->where('user_id',$user['id'])->find();
+            if($score_u){
+                $overall = $score_u['overall'] + $p['score'];
+                $count = $score_u['count'] + 1;
+                $average = round($overall/$count,1);
+                $data = [
+                    'overall'   =>  $overall,
+                    'average'   =>  $average,
+                    'count'     =>  $count,
+                    'update_time'   =>  time()
+                ];
+                $res_sc = db('score')->where('user_id',$user['id'])->update($data);
+            }else{
+                $data = [
+                    'user_id'   =>  $user['id'],
+                    'overall'   =>  $p['score'],
+                    'average'   =>  $p['score'],
+                    'count'     =>  1,
+                    'create_time'   => time(),
+                    'update_time'   =>  time()
+                ];
+                $res_sc = db('score')->insert($data);
+            }
+            return ($res_ds && $res_sc)?result(1,'评论成功'):result(0,['评论失败',$res_ds,$res_sc]);
+        }
+    }
+
+
+    /**
+     * 确认订单完成
+     * 如果对方已经确认，则发起打款操作
+     * （因为企业支付还未开通，不能调用API直接发起支付，改用个人微信号给用户打款，在后台确认完成修改订单状态）
+     */
 	public function confirmCompleteOrder()
 	{
 		// 1、校验数据
@@ -104,16 +212,200 @@ class Service extends Controller
 		}else{
 			// 3、判断双方是否已经确认，如果没有则返回，否则进行结算处理
 			if($complete==1){
-				// 4、对方也已经确认，现在可以结算
+			    // 先直接返回，等待人工进一步处理
+                return result(1,'订单确认成功');
 
+				// 4、对方也已经确认，现在可以结算
+//                return $this->finishTheDeal($user['session'],$deal_id);
 			}else{
 				return result(1,'订单确认成功');
 			}
 		}
 	}
 
+
+    /**
+     * 订单完成，进行结算（未测试）
+     * 1、向服务方发起打款
+     * 2、向需求方发起打款（还没写）
+     * 3、现在的问题是，企业支付还没开通，没有权限调用该接口，下面的代码未测试先放着吧
+     * @param $session: 用户session
+     * @param $deal_id: 订单id
+     */
+	public function finishTheDeal($session,$deal_id)
+    {
+        $user = db('users')->where(['session'=>$session])->find();
+        $deal = db('deal_service')->where(['id'=>$deal_id])->find();
+        if($deal['service_user_id']==$user['id'] || $deal['appeal_user_id']==$user['id']){
+            // 转给服务方的，单位为分，扣除百分之一作为手续费，单位为分得乘上100,
+            $amount = ($deal['overall'] - $deal['discount_price'])>=0?:0;
+            $amount *= 100;
+            $amount = $amount<100?:round($amount*0.99);
+            $orderNumber = getOrderNumber();
+            $remote_addr = Request::instance()->server('REMOTE_ADDR');
+            // 下面准备需要发送的数据
+            $request = [
+                'mch_appid' =>  config('APPID'),
+                'mchid'     =>  config('MCH_ID'),
+                'nonce_str' =>  getRandomString(),
+                'partner_trade_no'  => $orderNumber,
+                'openid'    =>  $user['openid'],
+                'check_name'=>  'NO_CHECK',
+                'amount'    =>  $amount,
+                'desc'      =>  '服务所得',
+                'spbill_create_ip'  =>  $remote_addr
+            ];
+            // 准备签名
+            $request['sign'] = getSign($request);
+            // 发起请求
+            $res = curl_post_ssl(config('PAY_TO_USER_URL'),$request);
+            // 如果请求成功，则修改更新订单状态
+            if($res['return_code']=='SUCCESS' && $res['result_code']=='SUCCESS'){
+                $update = [
+                    'status'    => 1,
+                    'complete_service'  => 1,
+                    'complete_appeal'   => 1,
+                    'amount'    => $amount,
+                    'update_time'   =>  time()
+                ];
+                $res = db('deal_service')->where(['id'=>$deal_id])->update($update);
+                // 同时插入一条交易记录
+                $insert = [
+                    'deal_id'   =>  $deal_id,
+                    'order_number'  =>  $orderNumber,
+                    'amount'    =>  $amount,
+                    'type'      =>  3,
+                    'transaction_id'    =>  'payment_no:'.$res['payment_no'],
+                    'create_time'   =>  time(),
+                    'update_time'   =>  time()
+                ];
+                $pay_res = db('pay_log')->insert($insert);
+                return $res?result(1,['确认成功',$res,$pay_res]):result(0,['确认失败',$res,$pay_res]);
+            }else{
+                return result(0,['插入失败',$res]);
+            }
+        }else{
+            return result(0,'参数非法');
+        }
+    }
+
+
+    /**
+     *  拒绝对方的取消订单申请
+     * 拒绝之后抹除之前的取消标记
+     * 然后订单保持进行中状态继续
+     */
+	public function confirmRejectCancelOrder()
+    {
+        // 1、校验数据
+        $p = input('post.');
+        $user = db('users')->where('session',$p['session'])->find();
+        if(!$user){
+            return result(0,'用户不存在');
+        }
+        $deal_id = $p['deal_id'];
+        $where = [
+            'id'	=>	$deal_id
+        ];
+        $deal = db('deal_service')->where($where)->find();
+        if(!$deal){
+            return result(0,'操作非法');
+        }
+        // 2、判断是谁要进行确认操作，记录下另一个人的取消状态，看是否为1
+        if($deal['service_user_id']==$user['id']){
+            $cancel = $deal['cancel_appeal'];
+            $update['cancel_appeal'] = 0;
+        }else if($deal['appeal_user_id']==$user['id']){
+            $cancel = $deal['cancel_service'];
+            $update['cancel_service'] = 0;
+        }else{
+            return result(0,'非本人操作');
+        }
+        if($cancel==1 && $deal['status']==5){
+            // 3、让订单恢复原状继续进行
+            $where = ['id'=>$deal_id];
+            $res = db('deal_service')->where($where)->update($update);
+            return $res?result(1,'拒绝取消订单成功'):result(0,'拒绝取消订单失败');
+        }else{
+            return result(0,'状态错误，操作非法');
+        }
+    }
+
+
+    /**
+     * 同意对方的取消订单申请
+     * 最后将会进行全额退款操作
+     */
+	public function confirmAgreeCancelOrder()
+    {
+        // 1、校验数据
+        $p = input('post.');
+        $user = db('users')->where('session',$p['session'])->find();
+        if(!$user){
+            return result(0,'用户不存在');
+        }
+        $deal_id = $p['deal_id'];
+        $where = [
+            'id'	=>	$deal_id
+        ];
+        $deal = db('deal_service')->where($where)->find();
+        if(!$deal){
+            return result(0,'操作非法');
+        }
+        // 2、判断是谁要进行确认操作，记录下另一个人的取消状态，看是否为1
+        if($deal['service_user_id']==$user['id']){
+            $cancel = $deal['cancel_appeal'];
+        }else if($deal['appeal_user_id']==$user['id']){
+            $cancel = $deal['cancel_service'];
+        }else{
+            return result(0,'非本人操作');
+        }
+        if($cancel==1 && $deal['status']==5){
+            // 3、进行退款处理
+            return $this->dealRefundAll($user['session'],$deal['id'],4);
+        }else{
+            return result(0,'状态错误，操作非法');
+        }
+    }
+
+
+    /**
+     * 确认取消订单（进行中，需要等待对方确认）
+     * 找到自己对应角色修改对应的字段后返回
+     */
+	public function confirmCancelOnGoingDeal()
+    {
+        // 1、校验数据
+        $p = input('post.');
+        $user = db('users')->where('session',$p['session'])->find();
+        if(!$user){
+            return result(0,'用户不存在');
+        }
+        $deal_id = $p['deal_id'];
+        $where = [
+            'id'	=>	$deal_id
+        ];
+        $deal = db('deal_service')->where($where)->find();
+        if(!$deal){
+            return result(0,'操作非法');
+        }
+        // 2、判断是谁要进行取消操作
+        if($deal['service_user_id']==$user['id']){
+            $update['cancel_service'] = 1;
+        }else if($deal['appeal_user_id']==$user['id']){
+            $update['cancel_appeal'] = 1;
+        }else{
+            return result(0,'非本人操作');
+        }
+        $update['cancel_message'] = $p['message'];
+        // 3、更新数据库
+        $where = ['id'=>$deal_id];
+        $res = db('deal_service')->where($where)->update($update);
+        return $res?result(1,'申请成功'):result(0,'申请失败');
+    }
+
 	/**
-	 * 确认取消订单
+	 * 确认取消订单（接单前，不需要对方确认，直接取消）
 	 * @throws \think\Exception
 	 */
 	public function confirmCancelTakeOrder()
@@ -124,20 +416,34 @@ class Service extends Controller
 		if(!$user){
 			return result(0,'用户不存在');
 		}
+		$type = $p['type'];
 		$deal_id = $p['deal_id'];
 		$where = [
-				'id'	=>	$deal_id,
-				'service_user_id'	=>	$user['id']
+				'id'	=>	$deal_id
 		];
+		// 根据类型来判断此时是服务方还是需求方
+		if($type==1){
+		    $where['service_user_id'] = $user['id'];
+        }else if($type==2){
+		    $where['appeal_user_id'] = $user['id'];
+        }else{
+            return result(0,'参数非法');
+        }
 		$deal = db('deal_service')->where($where)->find();
 		if(!$deal){
 			return result(0,'操作非法');
 		}
-		// 2、找到需求方的formid，用来发送模板通知
-		$appealer = db('users')->where('id',$deal['appeal_user_id'])->find();
+		// 2、找到需要通知的用户以及formid，用来发送模板通知
+        if($type==1){
+            $noticeUser = db('users')->where('id',$deal['appeal_user_id'])->find();
+        }else if($type==2){
+            $noticeUser = db('users')->where('id',$deal['service_user_id'])->find();
+        }else{
+            return result(0,'参数非法');
+        }
 		// 3、记录下之前的formId来发送通知，同时用新的更新它
 		$oldFormId = $deal['form_id'];
-		$update = [
+        $update = [
 				'status'	=>	7,
 				'form_id'	=>	$p['form_id']
 		];
@@ -146,14 +452,40 @@ class Service extends Controller
 		if(!$res){
 			return result(0,'拒绝接单处理失败');
 		}else{
-			$sendResMes = $this->sendTempMessage_RejectTakingOrder($appealer['openid'],$oldFormId);
+			$sendResMes = $this->sendTempMessage_RejectTakingOrder($noticeUser['openid'],$oldFormId);
 		}
 		$refundResMes = $this->dealRefundAll($p['session'],$p['deal_id'],7);
 		return $res?result(1,['订单拒绝成功',$sendResMes,$refundResMes]):result(0,['订单拒绝失败',$sendResMes,$refundResMes]);
 	}
 
+
+    /**
+     * 确认接单（需求方）
+     */
+    public function confirmTakeOrder_appeal()
+    {
+        // 1、校验数据
+        $p = input('post.');
+        $user = db('users')->where('session',$p['session'])->find();
+        if(!$user){
+            return result(0,'用户不存在');
+        }
+        $deal_id = $p['deal_id'];
+        $where = [
+            'id'	=>	$deal_id,
+            'appeal_user_id'	=>	$user['id']
+        ];
+        $deal = db('deal_service')->where($where)->find();
+        if(!$deal){
+            return result(0,'操作非法');
+        }
+        // 2、发起预支付请求
+        return $this->getPrepayResult($deal['id'],$deal['order_number'],$deal['overall'],$user['openid']);
+    }
+
+
 	/**
-	 * 确认接单
+	 * 确认接单（服务方）
 	 * 1、校验数据
 	 * 2、找到需求方的formid，用来发送模板通知
 	 * 3、记录下之前的formId来发送通知，同时用新的更新它
@@ -265,7 +597,13 @@ class Service extends Controller
 		return $this->dealRefundAll($p['session'],$p['deal_id'],4);
 	}
 
-
+    /**
+     * 退全款
+     *
+     * @param $session: 用户session
+     * @param $deal_id: 订单id
+     * @param $status:  退款后订单状态
+     */
 	public function dealRefundAll($session,$deal_id,$status)
 	{
 		// 校验数据
@@ -290,7 +628,7 @@ class Service extends Controller
 			$result = $this->dealRefund($pay_log[$k]['order_number'],$pay_log[$k]['amount']);
 			$res[] = $result;
 			if($result == true){
-				$refund_fee += $pay_log[$k]['amount'];
+				$refund_fee += getRefundAmount($pay_log[$k]['amount']*100);
 			}else{
 				$flag = false;
 			}
@@ -323,7 +661,7 @@ class Service extends Controller
 		// 生成退款单号
 		$out_refund_no = getRefundNumber();
 		// 金额大于 1元的 收取百分之一的手续费
-		$refund_fee	  = $amount<100?:floor($amount*0.99);
+		$refund_fee	  = getRefundAmount($amount);
 		// 数据准备
 		$request = [
 			'appid'		=>	config('APPID'),
@@ -389,11 +727,13 @@ class Service extends Controller
 					->join('service sv','ds.service_id = sv.id')
 					->join('users ur','ds.service_user_id = ur.id')
 					->field('ds.id as id,
+					         ds.service_id,
 							 ds.service_user_id,
 							 ds.appeal_user_id,
 							 ds.appeal_name,
 							 ds.appeal_phone,
 							 ds.appeal_address,
+							 ds.message,
 							 ds.start_time,
 							 ds.end_time,
 							 ds.unit,
@@ -407,29 +747,52 @@ class Service extends Controller
 							 ds.status,
 							 ds.complete_service,
 							 ds.complete_appeal,
+							 ds.cancel_service,
+							 ds.cancel_appeal,
+							 ds.cancel_message,
+							 ds.comment_service,
+							 ds.comment_appeal,
 							 ur.avatar_url,
 							 ur.nickname,
 							 sv.title,
-							 sv.images')
+							 sv.images,
+							 sv.phone as service_phone')
 					->find();
+
 			if(!$res){
 				return result(0,'获取订单详情失败');
 			}else{
 				// 3、返回数据前对数据进行加工
-				// 判断当前用户是服务方还是需求方，定下操作值operator和确认完成标志位complete
+                $res['avatar_url_me'] = $user['avatar_url'];
+                $res['nickname_me']    = $user['nickname'];
+				// 判断当前用户是服务方还是需求方，定下操作值operator和确认完成标志位complete和取消标志
 				if($res['service_user_id']==$user['id']){
 					// 服务方
 					$role = 1;
 					$res['complete'] = $res['complete_service'];
+					// 如果对方取消订单，同时记录下自己是否有取消订单
+					$res['cancel']   = $res['cancel_appeal'];
+					$res['cancel_me']   = $res['cancel_service'];
+					// 看自己是否已经评论
+                    $res['comment_me'] = $res['comment_service'];
 				}else if($res['appeal_user_id']==$user['id']){
 					// 需求方
 					$role = 2;
 					$res['complete'] = $res['complete_appeal'];
+					// 如果对方取消订单，同时记录下自己是否有取消订单
+                    $res['cancel']   = $res['cancel_service'];
+                    $res['cancel_me'] = $res['cancel_appeal'];
+                    // 看自己是否已经评论
+                    $res['comment_me'] = $res['comment_appeal'];
 				}else{
 					return result(0,'非法操作');
 				}
 				unset($res['complete_service']);
 				unset($res['complete_appeal']);
+				unset($res['cancel_service']);
+				unset($res['cancel_appeal']);
+				unset($res['comment_service']);
+				unset($res['comment_appeal']);
 				$res['role'] = $role;
 				// 获取订单状态
 				$res['status_text'] = getDealStatus($res['status']);
@@ -510,7 +873,19 @@ class Service extends Controller
 			$servicer = db('users')->where('id',$service['user_id'])->find();
 			$sendRes = $this->sendTempMessage_WaitForTaking($servicer['openid'],$service['form_id']);
 //			$sendResMes = $sendRes?'模板发送成功':'模板发送失败';
-			return $payLog?result(1,['deal_id'=>$payLog['deal_id'],'sendResMes'=>$sendRes]):result(0,['订单不存在',$sendRes]);
+            // 更新订单状态
+            $update_deal = [];
+            if($p['type']==1){
+                $status = 3;
+            }else if($p['type']==2){
+                $status = 5;
+            }else{
+                $status = 0;
+            }
+            $update_deal['status']			= $status;
+            $update_deal['update_time']		= time();
+            $res_ds = db('deal_service')->where('id',$deal['id'])->update($update_deal);
+			return $payLog?result(1,['deal_id'=>$payLog['deal_id'],'sendResMes'=>$sendRes,'res_ds'=>$res_ds]):result(0,['订单不存在',$sendRes,'res_ds'=>$res_ds]);
 		}else{
 			return result(0,'prepay_id为空');
 		}
@@ -561,10 +936,7 @@ class Service extends Controller
 //					$result = true;
 //					Db::startTrans();
 //					try{
-					$update_deal = [];
-					$update_deal['status']			= 3;
-					$update_deal['update_time']		= time();
-					$res_ds = db('deal_service')->where('id',$order['deal_id'])->update($update_deal);
+
 					$update_log = [];
 					$update_log['transaction_id'] 	= $info['transaction_id'];
 					$update_log['pay_confirm'] 		= 1;
@@ -577,7 +949,7 @@ class Service extends Controller
 //						Db::rollback();
 //					}
 					// 更新成功后返回SUCCESS给微信进行确认，格式为XML
-					if($res_ds && $res_pl){
+					if($res_pl){
 						$ret = [
 								'return_code'	=>	'SUCCESS',
 								'return_msg'	=>	''
@@ -606,6 +978,7 @@ class Service extends Controller
 		if(!$user){
 			return result(0,'用户不存在');
 		}
+		$type = $post['type'];
 		$where = [];
 		$where['id'] 		= $post['service_id'];
 		$where['user_id'] 	= $post['service_user_id'];
@@ -629,9 +1002,6 @@ class Service extends Controller
 			'form_id'			=>	$post['formId'],
 			'order_number'		=>	$order_number,
 			'service_id'		=>	$post['service_id'],
-			'service_user_id'	=>	$post['service_user_id'],
-			'appeal_user_id'	=>	$user['id'],
-			'status'			=>	2,
 			'price'				=>	$post['price'],
 			'unit'				=>	$post['unit'],
 			'count'				=>	$post['count'],
@@ -645,12 +1015,33 @@ class Service extends Controller
 			'create_time'		=>	time(),
 			'update_time'		=>	time()
 		];
+		if($type==1){
+            $data['service_user_id'] = $post['service_user_id'];
+            $data['appeal_user_id']  = $user['id'];
+            $data['status']          = 2;
+        }else if($type==2){
+            $data['service_user_id'] = $user['id'];
+            $data['appeal_user_id']  = $post['service_user_id'];
+            $data['status']          = 3;
+        }else{
+            return result(0,'参数错误');
+        }
 		$deal_id = db('deal_service')->insertGetId($data);
 		if(!$deal_id){
 			return result(0,'数据库操作失败');
 		}
-		// 发起预支付请求并返回给客户端相关支付数据
-		return $this->getPrepayResult($deal_id,$order_number,$post['overall'],$user['openid'],'1','周末邦-学习服务');
+        if($type==1){
+            // 发起预支付请求并返回给客户端相关支付数据
+            return $this->getPrepayResult($deal_id,$order_number,$post['overall'],$user['openid'],'1','周末邦-学习服务');
+        }else{
+            // 发送模板消息通知
+            // 准备数据openid和formid
+            $deal = db('deal_service')->where('id',$deal_id)->find();
+            $service = db('service')->where('id',$deal['service_id'])->find();
+            $servicer = db('users')->where('id',$service['user_id'])->find();
+            $sendRes = $this->sendTempMessage_WaitForTaking($servicer['openid'],$service['form_id']);
+            return result(1,['deal_id'=>$deal_id]);
+        }
 	}
 
 	/**
@@ -725,47 +1116,56 @@ class Service extends Controller
 			unset($payment['appId']);	// 不要传送APPID
 			return result(1,$payment);
 		}else{
-			return result(0,'微信返回的签名校验失败');
+			return result(0,['微信返回的签名校验失败',$res]);
 		}
 	}
 
 
-
-
 	/**
-	 * 根部ID获取单个服务详情
+	 * 根部ID获取单个服务详情（详情展示页面）
 	 * @return array 经过处理的服务详情
 	 */
 	public function getOne()
 	{
+	    // 1、校验数据
 		$post = input('post.');
 		$user = db('users')->where('session',$post['session'])->find();
 		if(!$user){
 			return result(0);
 		}
-		$info = db('service')
-				->alias('s')
-				->where('status',1)
-				->where('s.id',$post['id'])
-				->join('users u','s.user_id = u.id')
-				->join('type_unit tu','s.unit_id = tu.id')
-				->join('type_service tsv','s.service_id = tsv.id')
-				->field('s.id as service_id,
-						 user_id,nickname,gender,
-						 avatar_url as avatar,
-						 title,summary,attention,location,location_name,
-						 images,style,price,
-						 tu.name as unit_name,
-						 tsv.name as service_name,
-						 scale_id')
-				->select();
-		$info = $info?$info[0]:[];
-		$info['images'] = explode(',',$info['images']);
+		$where = [
+		    'status'    =>  1,
+            's.id'      =>  $post['id']
+        ];
+        $info = db('service')
+            ->alias('s')
+            ->where($where)
+            ->join('users u','s.user_id = u.id','LEFT')
+            ->join('type_unit tu','s.unit_id = tu.id','LEFT')
+            ->join('type_service tsv','s.service_id = tsv.id','LEFT')
+            ->join('type_appeal tap','s.appeal_id = tap.id','LEFT')
+            ->field('s.id as service_id,
+                     user_id,nickname,gender,
+                     avatar_url as avatar,
+                     title,summary,attention,location,location_name,
+                     images,style,price,longitude,latitude,
+                     tu.name as unit_name,
+                     tsv.name as service_name,
+                     tap.name as appeal_name,
+                     scale_id')
+            ->select();
+        if(!$info){
+            return result(0,['获取失败',$info]);
+        }
+        // 2、处理数据
+        $info = $info[0];
+		if(isset($info['images'])){
+            $info['images'] = explode(',',$info['images']);
+        }
 		$info['style_name'] = $info['style']==1?'当面服务':'在线服务';
 		// 处理服务范围
-		if($info['scale_id']>0){
+		if(isset($info['scale_id']) && $info['scale_id']>0){
 			$info['scale_name'] = db('type_scale')->where('id',$info['scale_id'])->value('name');
-
 		}
 		// 处理得分
 		$info['average'] = db('score')->where('user_id',$user['id'])->value('average');
@@ -774,8 +1174,150 @@ class Service extends Controller
 		unset($info['status']);
 		unset($info['create_time']);
 		unset($info['update_time']);
+		// 加上本人的ID
+        $info['my_id'] = $user['id'];
+		// 3、获取评论内容
+        $where = [
+            'service_id'    =>  $post['id'],
+            'status'        =>  1
+        ];
+        $comment = db('comment')
+            ->alias('c')
+            ->where($where)
+            ->join('users u','c.user_id=u.id')
+            ->field('u.nickname,u.avatar_url,
+                           c.create_time,c.score,c.content,c.images,c.anonymous')
+            ->order('c.id desc')
+            ->select();
+        // 加工数据
+        foreach($comment as $k=>$v){
+            // 匿名则不显示用户名
+            if($comment[$k]['anonymous']==1){
+                $comment[$k]['nickname'] = '';
+            }
+            // 图片字符串转成数组
+            $images = explode(',',$comment[$k]['images']);
+            if(empty($images[0])){
+                $images = [];
+            }
+            $comment[$k]['images'] = $images;
+            // 创建日期
+            $comment[$k]['create_time'] = date('Y-m-d',$comment[$k]['create_time']);
+        }
+        $count = count($comment);
+        $info['comment'] = $count>0?$comment:[];
+        $info['count'] = $count;
+        // 4、看是否有收藏
+        $where = [
+            'user_id'   =>  $user['id'],
+            'service_id'    =>  $info['service_id']
+        ];
+        $info['collected'] = db('collected')->where($where)->find()?1:0;
 		return $info?result(1,$info):result(0);
 	}
+
+
+    /**
+     * 搜索功能
+     * 根据关键字匹配title
+     */
+	public function confirmSearchInfo()
+    {
+        // 1、验证身份
+        $post = input('post.');
+        // 2、获取该用户的地理位置
+        $longitude = $post['longitude'];
+        $latitude = $post['latitude'];
+        $page = $post['page']?$post['page']:0;
+        $count = $post['count']?$post['count']:10;
+        $service_id = $post['service_id']??0;
+        $appeal_id  = $post['appeal_id']??0;
+        $type = $post['type'];
+        $user = db('users')->where('session',$post['session'])->find();
+        if(!$user){
+            return result(0);
+        }
+        // 3、筛选其附近的服务
+        $where = [];
+        $where['status'] = 1;
+        $where['type'] = $type;
+        $search = '%'.$post['search'].'%';
+        $where['title'] = ['like',$search];
+        if($type==1){
+            if($service_id == 1){
+                $where['service_id'] = ['>=',$service_id];
+            }else{
+                $where['service_id'] = $service_id;
+            }
+            $info = db('service')
+                ->alias('s')
+                ->where($where)
+                ->join('users u','s.user_id = u.id')
+                ->join('type_unit tu','s.unit_id = tu.id')
+                ->field('s.id as id,
+					u.nickname,
+					u.avatar_url as avatar,
+					title,
+					summary,
+					price,
+					images,
+					longitude as lon,
+					latitude as lat,
+					tu.name as unit')
+                ->order('id desc')
+                ->limit(20)
+                ->select();
+        }else if($type==2){
+            if($appeal_id == 1){
+                $where['appeal_id'] = ['>=',$appeal_id];
+            }else{
+                $where['appeal_id'] = $appeal_id;
+            }
+            $info = db('service')
+                ->alias('s')
+                ->where($where)
+                ->join('users u','s.user_id = u.id')
+                ->field('s.id as id,
+					u.nickname,
+					u.avatar_url as avatar,
+					title,
+					summary,
+					price,
+					images,
+					longitude as lon,
+					latitude as lat
+					')
+                ->order('id desc')
+                ->limit(20)
+                ->select();
+        }else{
+            return result(0,'类型错误');
+        }
+
+        if(!$info){
+            return result(2,$info);
+        }
+        // 4、对数据进行加工
+        foreach ($info as $k => $v) {
+            // 简介长度截取，首先替换各种换行符，然后截取20哥字符串返回
+            $str = str_replace(PHP_EOL, '', $info[$k]['summary']);
+            $info[$k]['summary'] = mb_substr($str, 0,20).'...';
+            // 图片字符串改成数组
+            $info[$k]['images'] = explode(',', $v['images']);
+            // 计算距离值
+            if($longitude==0 && $latitude==0){
+                $distance = -1;
+            }else{
+                $distance = getDistance($longitude,$latitude,$v['lon'],$v['lat']);
+            }
+            $info[$k]['distance'] = $distance;
+            // 去掉无用的数据
+            unset($info[$k]['lon']);
+            unset($info[$k]['lat']);
+        }
+        return $info?result(1,$info):result(0);
+
+    }
 
 
 	/**
@@ -795,7 +1337,9 @@ class Service extends Controller
 		$latitude = $post['latitude'];
 		$page = $post['page']?$post['page']:0;
 		$count = $post['count']?$post['count']:10;
-		$service_id = $post['service_id']?$post['service_id']:1;
+		$service_id = $post['service_id']??0;
+		$appeal_id  = $post['appeal_id']??0;
+		$type = $post['type'];
 		$user = db('users')->where('session',$post['session'])->find();
 		if(!$user){
 			return result(0);
@@ -803,17 +1347,19 @@ class Service extends Controller
 		// 3、筛选其附近的服务
 		$where = [];
 		$where['status'] = 1;
-		if($service_id == 1){
-			$where['service_id'] = ['>=',$service_id];
-		}else{
-			$where['service_id'] = $service_id;
-		}
-		$info = db('service')
-				->alias('s')
-				->where($where)
-				->join('users u','s.user_id = u.id')
-				->join('type_unit tu','s.unit_id = tu.id')
-				->field('s.id as id,
+		$where['type'] = $type;
+        if($type==1){
+            if($service_id == 1){
+                $where['service_id'] = ['>=',$service_id];
+            }else{
+                $where['service_id'] = $service_id;
+            }
+            $info = db('service')
+                ->alias('s')
+                ->where($where)
+                ->join('users u','s.user_id = u.id')
+                ->join('type_unit tu','s.unit_id = tu.id')
+                ->field('s.id as id,
 					u.nickname,
 					u.avatar_url as avatar,
 					title,
@@ -823,11 +1369,38 @@ class Service extends Controller
 					longitude as lon,
 					latitude as lat,
 					tu.name as unit')
-				->order('id desc')
-				->limit($page*$count,$count)
-				->select();
+                ->order('id desc')
+                ->limit($page*$count,$count)
+                ->select();
+        }else if($type==2){
+            if($appeal_id == 1){
+                $where['appeal_id'] = ['>=',$appeal_id];
+            }else{
+                $where['appeal_id'] = $appeal_id;
+            }
+            $info = db('service')
+                ->alias('s')
+                ->where($where)
+                ->join('users u','s.user_id = u.id')
+                ->field('s.id as id,
+					u.nickname,
+					u.avatar_url as avatar,
+					title,
+					summary,
+					price,
+					images,
+					longitude as lon,
+					latitude as lat
+					')
+                ->order('id desc')
+                ->limit($page*$count,$count)
+                ->select();
+        }else{
+            return result(0,'类型错误');
+        }
+
 		if(!$info){
-			return result(2);
+			return result(2,$info);
 		}
 		// 4、对数据进行加工
 		foreach ($info as $k => $v) {

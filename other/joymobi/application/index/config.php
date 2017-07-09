@@ -13,7 +13,8 @@ return [
 	// API秘钥(key)
 	'API_SECRET_KEY'		=> 'ea4815ed1ad2c75e1c543f6f48b5ac73',
 	// 支付结果的异步接收接口地址
-	'NOTIFY_URL'=> 'https://mobi.fight2escape.club/index/service/getPayResult',
+    'NOTIFY_URL'=> 'https://api.joymobi.com.cn/index/service/getPayResult',
+//    'NOTIFY_URL'=> 'https://mobi.fight2escape.club/index/service/getPayResult',
 	// 微信预支付请求地址
 	'PAY_UNIFIEDORDER'	=>	'https://api.mch.weixin.qq.com/pay/unifiedorder',
 	// 微信退款请求地址
@@ -21,6 +22,8 @@ return [
 	// 模板消息：获取access_token地址
 	'TEMPLATE_GET_ACCESS_TOKEN'	=> 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential',
 	// 模板消息：发送消息
-	'TEMPLATE_SEND_MESSAGE'	=> 'https://api.weixin.qq.com/cgi-bin/message/wxopen/template/send?access_token='
+	'TEMPLATE_SEND_MESSAGE'	=> 'https://api.weixin.qq.com/cgi-bin/message/wxopen/template/send?access_token=',
+    // 企业支付：给用户转账的接口地址
+    'PAY_TO_USER_URL'   =>  'https://api.mch.weixin.qq.com/mmpaymkttransfers/promotion/transfers'
 
 ];
